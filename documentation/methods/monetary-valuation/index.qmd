@@ -39,6 +39,30 @@ results are comparable with it. It needs three Eurostat inputs and one deflator.
 The physical flow is not recomputed here. The page reads the tables that the first phase
 exported to `data/outputs/results/`, so both documents stay consistent.
 
+## Key terms
+
+| Term | Meaning in this document |
+|----|----|
+| Monetary value of the service | The value of the wood that the forest grows in a year, which is the net annual increment (NAI) times a price per cubic metre. |
+| Unit value | A value divided by a volume, here euro per cubic metre. |
+| Standing timber | Trees as they stand in the forest, before harvest. Its value is what the wood is worth before the costs of felling and transport. |
+| Output of forest trees (`P1_TR`) | The item of the Eurostat forestry accounts that records the value of standing timber produced in a year. |
+| Roundwood | Felled and cut timber, not yet processed. Its export price includes harvesting and transport, so it is higher than the value of standing timber. |
+| Current prices | Values in the money of the year in which they occurred. Inflation makes them hard to compare across years. |
+| Constant prices | Values converted to the prices of one base year, so that changes over time reflect quantities and not inflation. |
+| Deflator | The factor that converts a current value to constant prices. It is the price index of the base year divided by the index of the year of the value. |
+| HICP | The Harmonised Index of Consumer Prices of Eurostat, used here as the general price index. |
+
+## Why the method uses two prices
+
+The value of standing timber is the ideal price for the service, but countries rarely report it,
+mainly before 2012. Roundwood export prices are reported by almost every country and year, but they
+include the costs of harvesting and transport, so they are not the same thing. The method uses
+the countries and years where both prices exist to measure how far apart the two are (the
+ratio). It then turns the well-covered export price into an estimate of the timber price by dividing
+by that ratio. In the years and countries with no timber price, the ratio is replaced by an
+average, which is the weakest part of the method and is reported openly in the tables below.
+
 ::: {.callout-important}
 ## Run the physical document first
 
@@ -51,7 +75,8 @@ the physical series changes.
 ## Constant prices use a single base year
 
 The base year is `base_year` in the parameters chunk. It is set to 2010, the base year of the fish provision
-accounts, so that the services share one price level (the INCA plugin uses 2000). Changing it does not touch the nominal
+accounts, so that the services share one price level and can be added or compared (the INCA plugin
+uses 2000). The choice of base year changes the level of the constant-price series but not its shape. Changing it does not touch the nominal
 values, because the deflator is applied in one step at the end.
 :::
 
@@ -75,8 +100,11 @@ source("scripts/helpers_monetary.R", encoding = "UTF-8")
 
 ## Parameters
 
-The averages that complete the gaps use the same windows as the INCA plugin: the country mean over
-the whole series, and the EU mean over the more recent years, where coverage is better. The
+A country with some observations is completed with its own average, because its price level is
+the best guide to its missing years. A country with no observations at all is completed with the
+EU average, taken over recent years, where coverage is better. The averages that complete the gaps
+use the same windows as the INCA plugin: the country mean over the whole series, and the EU mean over
+the more recent years. The
 plugin stops at 2021 because of the data it had; the window here runs to 2023, the last year
 with broad coverage.
 
@@ -193,8 +221,11 @@ unit_value_exports_filled <- fill_with_means(unit_value_exports, country_years, 
 
 ## Ratio of export price to timber price
 
-The ratio is computed from the reported values only, before any filling. Infinite values, which come
-from a zero timber value, are treated as missing. The gaps are then filled with the same averages.
+The ratio is the export unit value divided by the timber unit value. A ratio of 3 means that
+roundwood sells for three times the value of the same wood standing. It is computed from the
+reported values only, before any filling, because a ratio built from filled values would contain
+no new information. Infinite values, which come from a zero timber value, are treated as missing.
+The gaps are then filled with the same averages.
 
 ```{r}
 #| label: ratio
@@ -277,8 +308,12 @@ monetary <- nai |>
 
 ## Constant prices
 
-The HICP index is rebased so that the base year equals 1, and each nominal value is multiplied
-by the deflator of its year. The result is in million euro of the base year.
+Prices rose between 2000 and 2024, so a euro in 2024 buys less than a euro in 2010. To compare
+years, the HICP index is rebased so that the base year equals 1, and each nominal value is
+multiplied by the deflator of its year. Deflators are above 1 before the base year, where prices were
+lower, and below 1 after it. The result is in million euro of the base year. The same index is used
+for all countries, because the question is how the general price level moved and not how timber
+prices moved.
 
 ```{r}
 #| label: constant-prices

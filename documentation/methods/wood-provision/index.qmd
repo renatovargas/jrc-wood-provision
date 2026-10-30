@@ -37,14 +37,33 @@ The routine follows the client instructions and has four components, in this ord
    epoch and compares it with the baseline, with outputs kept apart;
 5. the **exports**, which write the tables and maps to `data/outputs/` for download.
 
-::: {.callout-important}
-## The Excel file in `data/inputs/eurostat/` is not the input
+## Key terms
 
-The workbook `for_vol_efa$defaultview_spreadsheet.xlsx` is the default view of the dataset. It
-reports million euro for the indicator "Forest" in 2015 to 2024 and holds no volumes, so it
-cannot supply NAI or removals in thousand cubic metres. The routine downloads the right slice of
-`for_vol_efa` with the `eurostat` package (script `scripts/03_download_eurostat.R`) and keeps the
-workbook only as provenance.
+The terms below are used throughout the page.
+
+| Term | Meaning in this document |
+|----|----|
+| Ecosystem service | A contribution of ecosystems to human activity. Here it is the growth of trees that can be harvested as timber. |
+| Net annual increment (NAI) | The average annual volume growth of living trees, minus the volume of trees that die naturally. It is the quantity of new wood the forest adds in a year, and it is the accounting measure of the service. |
+| Over bark | Volumes include the bark of the tree, as in the Eurostat questionnaire. |
+| Thousand m3 | The unit of the volumes (1,000 cubic metres), as reported by Eurostat. |
+| Forest available for wood supply (FAWS) | Forest where no environmental, social or economic restriction significantly limits wood supply. Protected areas, steep slopes or remote forests are typical restrictions. |
+| Forest not available for wood supply (FNAWS) | Forest with such restrictions. |
+| Removals | The volume of wood actually taken out of the forest in a year, which is close to the volume harvested. |
+| Overuse | Removals greater than NAI. Harvesting more than the forest grows depletes the stock of timber, so the service is not sustained. |
+| Spatial disaggregation | Splitting a national statistic over a map, using a proxy that says where the quantity is likely to occur. |
+| NUTS | The European classification of territorial units. NUTS 0 is the country level. |
+
+Eurostat reports NAI and removals by country, not by place. The routine therefore works in two
+stages. It first completes the national series, which is a statistical problem, and it then places
+the national values on a map, which is a spatial problem.
+
+::: {.callout-note}
+## Where the data come from
+
+The Eurostat tables are downloaded with the `eurostat` package, which reads the same data as the
+Eurostat website. The download script (`scripts/03_download_eurostat.R`) keeps only the volumes in
+thousand cubic metres, for the years 2000 to 2024.
 :::
 
 ::: {.callout-note}
@@ -147,7 +166,10 @@ boundaries.
 
 ## Loading Eurostat data
 
-The extract has one row per country, year, flow (`NAI` or `RMOV`) and forest class. `FAWS` is
+The data come from the European Forest Accounts questionnaire, which member states answer every
+year. They are partial in practice, because many countries cannot split NAI between available and
+unavailable forest, especially in the early years. The extract has one row per country, year,
+flow (`NAI` or `RMOV`) and forest class. `FAWS` is
 forest available for wood supply, `FNAWS` forest not available, and `FOR` total forest. Only
 the 27 member states are kept, and the EU aggregate published by Eurostat is held aside to
 check the totals later.
@@ -205,9 +227,13 @@ results are comparable with the plugin. The helper `fill_series()` applies the r
 each value with its origin.
 
 1. Use the NAI of FAWS where the country reported it (`reported`).
-2. Otherwise use the NAI of total forest (`fallback`).
+2. Otherwise use the NAI of total forest (`fallback`). Total forest includes the forest that is
+   not available, so this is an upper bound for the flow of FAWS, but it is the closest reported
+   figure.
 3. Remaining gaps take the mean of the nearest earlier and later value of the same country
-   (`interpolated`). Gaps at the start or end of a series repeat the nearest value (`carried`).
+   (`interpolated`). Forest growth changes slowly, so a value between two reported years is a
+   reasonable estimate. Gaps at the start or end of a series repeat the nearest value
+   (`carried`), which assumes no change beyond the data.
 
 ```{r}
 #| label: nai-filled
@@ -298,9 +324,16 @@ nai_adjusted |>
 
 # Overuse check
 
-Overuse occurs when removals exceed NAI. The routine uses the removals from forest available for
-wood supply (`RMOV` of `FAWS`), with the same fallback and gap-filling rules as NAI. Fellings are
-not part of `for_vol_efa`, so removals are the comparison.
+NAI is the wood that the forest grows in a year, and removals are the wood taken out. When removals
+stay above NAI the standing stock shrinks, which means that the service is being used faster than
+it renews. The client asks for this comparison, and overuse is reported when removals exceed NAI.
+Removals are used and not fellings, because fellings are not part of `for_vol_efa`. The routine
+takes the removals from forest available for wood supply (`RMOV` of `FAWS`), with the same
+fallback and gap-filling rules as NAI, so both sides of the comparison cover the same forest.
+
+The comparison is made year by year. A single year above 1 can be a temporary peak, for example
+after a storm, and a sustained ratio above 1 is the stronger signal. The ratio of removals to NAI
+is kept in the table, in addition to the flag, for that reason.
 
 ```{r}
 #| label: removals-filled
@@ -369,6 +402,14 @@ the cells of a country add up to its national value.
 
 The FAWS map describes a single year (2020), so the same spatial key is used for every reporting
 year. Changes between years come only from the national statistics.
+
+Three choices in this step deserve a short explanation. First, the maps use the projection
+EPSG:3035 (ETRS89 Lambert azimuthal equal-area), in which every cell covers the same area on the
+ground, so a share of a cell and a count of cells translate directly into areas. Second, the FAWS map
+is built at 100 m, and the routine summarises it to 1 km cells holding the share of the cell that
+is FAWS. This keeps the delivered files small enough for the repository, and the exact areas
+at 100 m are kept for each country as a reference. Third, the sum of each country is conserved,
+which means that mapping redistributes the national NAI and neither adds nor removes any.
 
 ```{r}
 #| label: spatial-inputs
@@ -511,6 +552,10 @@ and every file name starts with `corine_refinement_`, so it cannot be mistaken f
 :::
 
 ## Why and how
+
+Corine Land Cover is a European land cover map made by photo-interpreting satellite images, with
+44 classes and a minimum mapped unit of 25 ha. It is produced for 1990, 2000, 2006, 2012 and 2018.
+The classes of forest are broad-leaved, coniferous and mixed forest.
 
 The baseline uses the 2020 FAWS pattern for every year. Corine Land Cover (CLC) maps forest
 for 2000, 2006, 2012 and 2018 [@copernicus2020clc], so combining the two lets the spatial key change with forest

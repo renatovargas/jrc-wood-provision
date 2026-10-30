@@ -7,8 +7,6 @@
 # Output : data/inputs/eurostat/for_vol_efa_thsm3.rds and .csv  (long format, a few hundred KB)
 # Run    : source("scripts/03_download_eurostat.R", encoding = "UTF-8"), from the project root.
 #          Needs internet access; the committed output is what the document reads.
-# Note   : the Excel file in data/inputs/eurostat/ is the default view (million euro,
-#          2015 to 2024) and holds no volumes, so it is kept only as provenance.
 
 library(eurostat)
 library(dplyr)

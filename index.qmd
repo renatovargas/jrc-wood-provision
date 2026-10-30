@@ -2,6 +2,19 @@
 title: "Wood Provision"
 ---
 
-This is a Quarto website.
+This site documents, step by step and in R, the update of the **wood provision ecosystem service** for
+the European Union. Wood provision is the contribution of forest ecosystems to the growth of trees
+that can be used as timber. The work follows the accounting approach of the EU Knowledge Innovation
+Project on an Integrated system of Natural Capital and ecosystem services Accounting (INCA).
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Each page is a runnable document, so the procedure can be inspected and repeated from the repository.
+
+- [Wood provision](documentation/methods/wood-provision/index.qmd) builds the physical accounts. It
+  estimates the net annual increment of forest available for wood supply by country for 2000 to 2024,
+  compares it with removals to flag overuse, and maps it at 1 km resolution.
+- [Monetary valuation](documentation/methods/monetary-valuation/index.qmd) gives that flow a value in
+  euro, in current and constant (2010) prices, and maps it.
+
+Both pages include an optional refinement that uses Corine Land Cover to let the maps change over
+time, with its outputs kept separate. The tables and maps produced are available for download at the end
+of each page.

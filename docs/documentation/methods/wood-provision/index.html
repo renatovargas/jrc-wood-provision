@@ -164,10 +164,6 @@ div.csl-indent {
     <a class="nav-link" href="../../../documentation/methods/monetary-valuation/index.html"> 
 <span class="menu-text">Monetary valuation</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../about.html"> 
-<span class="menu-text">About</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -184,7 +180,10 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#key-terms" id="toc-key-terms" class="nav-link" data-scroll-target="#key-terms">Key terms</a></li>
+  </ul></li>
   <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link" data-scroll-target="#preliminaries">Preliminaries</a>
   <ul class="collapse">
   <li><a href="#packages-and-helper-functions" id="toc-packages-and-helper-functions" class="nav-link" data-scroll-target="#packages-and-helper-functions">Packages and helper functions</a></li>
@@ -256,17 +255,75 @@ div.csl-indent {
 <li>an optional <strong>refinement</strong>, which repeats the spatial step with Corine Land Cover forest of each epoch and compares it with the baseline, with outputs kept apart;</li>
 <li>the <strong>exports</strong>, which write the tables and maps to <code>data/outputs/</code> for download.</li>
 </ol>
-<div class="callout callout-style-default callout-important callout-titled">
+<section id="key-terms" class="level2">
+<h2 class="anchored" data-anchor-id="key-terms">Key terms</h2>
+<p>The terms below are used throughout the page.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Meaning in this document</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ecosystem service</td>
+<td>A contribution of ecosystems to human activity. Here it is the growth of trees that can be harvested as timber.</td>
+</tr>
+<tr class="even">
+<td>Net annual increment (NAI)</td>
+<td>The average annual volume growth of living trees, minus the volume of trees that die naturally. It is the quantity of new wood the forest adds in a year, and it is the accounting measure of the service.</td>
+</tr>
+<tr class="odd">
+<td>Over bark</td>
+<td>Volumes include the bark of the tree, as in the Eurostat questionnaire.</td>
+</tr>
+<tr class="even">
+<td>Thousand m3</td>
+<td>The unit of the volumes (1,000 cubic metres), as reported by Eurostat.</td>
+</tr>
+<tr class="odd">
+<td>Forest available for wood supply (FAWS)</td>
+<td>Forest where no environmental, social or economic restriction significantly limits wood supply. Protected areas, steep slopes or remote forests are typical restrictions.</td>
+</tr>
+<tr class="even">
+<td>Forest not available for wood supply (FNAWS)</td>
+<td>Forest with such restrictions.</td>
+</tr>
+<tr class="odd">
+<td>Removals</td>
+<td>The volume of wood actually taken out of the forest in a year, which is close to the volume harvested.</td>
+</tr>
+<tr class="even">
+<td>Overuse</td>
+<td>Removals greater than NAI. Harvesting more than the forest grows depletes the stock of timber, so the service is not sustained.</td>
+</tr>
+<tr class="odd">
+<td>Spatial disaggregation</td>
+<td>Splitting a national statistic over a map, using a proxy that says where the quantity is likely to occur.</td>
+</tr>
+<tr class="even">
+<td>NUTS</td>
+<td>The European classification of territorial units. NUTS 0 is the country level.</td>
+</tr>
+</tbody>
+</table>
+<p>Eurostat reports NAI and removals by country, not by place. The routine therefore works in two stages. It first completes the national series, which is a statistical problem, and it then places the national values on a map, which is a spatial problem.</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>The Excel file in <code>data/inputs/eurostat/</code> is not the input
+<span class="screen-reader-only">Note</span>Where the data come from
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The workbook <code>for_vol_efa$defaultview_spreadsheet.xlsx</code> is the default view of the dataset. It reports million euro for the indicator “Forest” in 2015 to 2024 and holds no volumes, so it cannot supply NAI or removals in thousand cubic metres. The routine downloads the right slice of <code>for_vol_efa</code> with the <code>eurostat</code> package (script <code>scripts/03_download_eurostat.R</code>) and keeps the workbook only as provenance.</p>
+<p>The Eurostat tables are downloaded with the <code>eurostat</code> package, which reads the same data as the Eurostat website. The download script (<code>scripts/03_download_eurostat.R</code>) keeps only the volumes in thousand cubic metres, for the years 2000 to 2024.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -295,6 +352,7 @@ div.csl-indent {
 <p><code>_quarto.yml</code> sets <code>execute-dir: project</code>, so every path below resolves from the repository root regardless of where the <code>.qmd</code> file sits. There is no need for <code>here::here()</code> or <code>setwd()</code>.</p>
 </div>
 </div>
+</section>
 </section>
 <section id="preliminaries" class="level1">
 <h1>Preliminaries</h1>
@@ -391,7 +449,7 @@ div.csl-indent {
 <h1>Statistical component</h1>
 <section id="loading-eurostat-data" class="level2">
 <h2 class="anchored" data-anchor-id="loading-eurostat-data">Loading Eurostat data</h2>
-<p>The extract has one row per country, year, flow (<code>NAI</code> or <code>RMOV</code>) and forest class. <code>FAWS</code> is forest available for wood supply, <code>FNAWS</code> forest not available, and <code>FOR</code> total forest. Only the 27 member states are kept, and the EU aggregate published by Eurostat is held aside to check the totals later.</p>
+<p>The data come from the European Forest Accounts questionnaire, which member states answer every year. They are partial in practice, because many countries cannot split NAI between available and unavailable forest, especially in the early years. The extract has one row per country, year, flow (<code>NAI</code> or <code>RMOV</code>) and forest class. <code>FAWS</code> is forest available for wood supply, <code>FNAWS</code> forest not available, and <code>FOR</code> total forest. Only the 27 member states are kept, and the EU aggregate published by Eurostat is held aside to check the totals later.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>for_vol_efa <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(eurostat_file)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -435,8 +493,8 @@ div.csl-indent {
 <p>The INCA plugin fills the NAI of FAWS in the order below, and the routine does the same so that results are comparable with the plugin. The helper <code>fill_series()</code> applies the rules and labels each value with its origin.</p>
 <ol type="1">
 <li>Use the NAI of FAWS where the country reported it (<code>reported</code>).</li>
-<li>Otherwise use the NAI of total forest (<code>fallback</code>).</li>
-<li>Remaining gaps take the mean of the nearest earlier and later value of the same country (<code>interpolated</code>). Gaps at the start or end of a series repeat the nearest value (<code>carried</code>).</li>
+<li>Otherwise use the NAI of total forest (<code>fallback</code>). Total forest includes the forest that is not available, so this is an upper bound for the flow of FAWS, but it is the closest reported figure.</li>
+<li>Remaining gaps take the mean of the nearest earlier and later value of the same country (<code>interpolated</code>). Forest growth changes slowly, so a value between two reported years is a reasonable estimate. Gaps at the start or end of a series repeat the nearest value (<code>carried</code>), which assumes no change beyond the data.</li>
 </ol>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nai_filled <span class="ot">&lt;-</span> <span class="fu">fill_series</span>(</span>
@@ -517,7 +575,8 @@ div.csl-indent {
 </section>
 <section id="overuse-check" class="level1">
 <h1>Overuse check</h1>
-<p>Overuse occurs when removals exceed NAI. The routine uses the removals from forest available for wood supply (<code>RMOV</code> of <code>FAWS</code>), with the same fallback and gap-filling rules as NAI. Fellings are not part of <code>for_vol_efa</code>, so removals are the comparison.</p>
+<p>NAI is the wood that the forest grows in a year, and removals are the wood taken out. When removals stay above NAI the standing stock shrinks, which means that the service is being used faster than it renews. The client asks for this comparison, and overuse is reported when removals exceed NAI. Removals are used and not fellings, because fellings are not part of <code>for_vol_efa</code>. The routine takes the removals from forest available for wood supply (<code>RMOV</code> of <code>FAWS</code>), with the same fallback and gap-filling rules as NAI, so both sides of the comparison cover the same forest.</p>
+<p>The comparison is made year by year. A single year above 1 can be a temporary peak, for example after a storm, and a sustained ratio above 1 is the stronger signal. The ratio of removals to NAI is kept in the table, in addition to the flag, for that reason.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>removals_filled <span class="ot">&lt;-</span> <span class="fu">fill_series</span>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">primary =</span> <span class="fu">pick_series</span>(<span class="st">"RMOV"</span>, <span class="st">"FAWS"</span>),</span>
@@ -572,6 +631,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="the-spatial-key">The spatial key</h2>
 <p>Chapter 4 of INCA Part II spreads national flows with a productivity proxy over the forest classes of Corine Land Cover, and it explains that a map of forest available for wood supply did not exist at the time <span class="citation" data-cites="vallecillo2019">(<a href="#ref-vallecillo2019" role="doc-biblioref">Vallecillo et al., 2019</a>)</span>. That map now exists <span class="citation" data-cites="jrc2026faws">(<a href="#ref-jrc2026faws" role="doc-biblioref">European Commission, Joint Research Centre, 2026</a>)</span>. The routine uses it as the spatial key: inside each country, the national NAI is spread in proportion to the share of every 1 km cell that is available for wood supply. Cells without FAWS get no flow, and the cells of a country add up to its national value.</p>
 <p>The FAWS map describes a single year (2020), so the same spatial key is used for every reporting year. Changes between years come only from the national statistics.</p>
+<p>Three choices in this step deserve a short explanation. First, the maps use the projection EPSG:3035 (ETRS89 Lambert azimuthal equal-area), in which every cell covers the same area on the ground, so a share of a cell and a count of cells translate directly into areas. Second, the FAWS map is built at 100 m, and the routine summarises it to 1 km cells holding the share of the cell that is FAWS. This keeps the delivered files small enough for the repository, and the exact areas at 100 m are kept for each country as a reference. Third, the sum of each country is conserved, which means that mapping redistributes the national NAI and neither adds nor removes any.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>faws_share <span class="ot">&lt;-</span> <span class="fu">rast</span>(faws_share_file)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>eu_countries <span class="ot">&lt;-</span> <span class="fu">vect</span>(countries_file)</span>
@@ -704,6 +764,7 @@ div.csl-indent {
 </div>
 <section id="why-and-how" class="level2">
 <h2 class="anchored" data-anchor-id="why-and-how">Why and how</h2>
+<p>Corine Land Cover is a European land cover map made by photo-interpreting satellite images, with 44 classes and a minimum mapped unit of 25 ha. It is produced for 1990, 2000, 2006, 2012 and 2018. The classes of forest are broad-leaved, coniferous and mixed forest.</p>
 <p>The baseline uses the 2020 FAWS pattern for every year. Corine Land Cover (CLC) maps forest for 2000, 2006, 2012 and 2018 <span class="citation" data-cites="copernicus2020clc">(<a href="#ref-copernicus2020clc" role="doc-biblioref">European Environment Agency, 2020</a>)</span>, so combining the two lets the spatial key change with forest extent. The refined key of a year is the 100 m overlap of FAWS and CLC forest (broad-leaved, coniferous and mixed forest, CLC 311, 312 and 313) of that epoch, summed to 1 km shares. The national NAI is spread over it in the same way as in the baseline, so the sum of each country is conserved. CLC 2018 is the latest epoch and is also used for 2024.</p>
 <p>The CLC rasters are 3 GB each as downloaded. The script <code>scripts/05_prepare_clc.R</code> reduces them to four 1 km files of about 9 MB in <code>data/inputs/corine/</code>. The version used is V2020_20u1 (the Copernicus Land Monitoring Service release that revised all epochs consistently).</p>
 <div class="cell">

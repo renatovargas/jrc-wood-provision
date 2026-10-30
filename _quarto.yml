@@ -24,7 +24,6 @@ website:
         text: Wood provision
       - href: documentation/methods/monetary-valuation/index.qmd
         text: Monetary valuation
-      - about.qmd
 
 format:
   html:

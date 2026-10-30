@@ -164,10 +164,6 @@ div.csl-indent {
     <a class="nav-link active" href="../../../documentation/methods/monetary-valuation/index.html" aria-current="page"> 
 <span class="menu-text">Monetary valuation</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../about.html"> 
-<span class="menu-text">About</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -184,7 +180,11 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#key-terms" id="toc-key-terms" class="nav-link" data-scroll-target="#key-terms">Key terms</a></li>
+  <li><a href="#why-the-method-uses-two-prices" id="toc-why-the-method-uses-two-prices" class="nav-link" data-scroll-target="#why-the-method-uses-two-prices">Why the method uses two prices</a></li>
+  </ul></li>
   <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link" data-scroll-target="#preliminaries">Preliminaries</a>
   <ul class="collapse">
   <li><a href="#packages-and-helper-functions" id="toc-packages-and-helper-functions" class="nav-link" data-scroll-target="#packages-and-helper-functions">Packages and helper functions</a></li>
@@ -259,6 +259,62 @@ div.csl-indent {
 <li><strong>Deflator.</strong> The EU27 Harmonised Index of Consumer Prices (HICP) converts nominal values to constant prices <span class="citation" data-cites="eurostat2026hicp">(<a href="#ref-eurostat2026hicp" role="doc-biblioref">Eurostat, 2026a</a>)</span>.</li>
 </ol>
 <p>The physical flow is not recomputed here. The page reads the tables that the first phase exported to <code>data/outputs/results/</code>, so both documents stay consistent.</p>
+<section id="key-terms" class="level2">
+<h2 class="anchored" data-anchor-id="key-terms">Key terms</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Meaning in this document</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Monetary value of the service</td>
+<td>The value of the wood that the forest grows in a year, which is the net annual increment (NAI) times a price per cubic metre.</td>
+</tr>
+<tr class="even">
+<td>Unit value</td>
+<td>A value divided by a volume, here euro per cubic metre.</td>
+</tr>
+<tr class="odd">
+<td>Standing timber</td>
+<td>Trees as they stand in the forest, before harvest. Its value is what the wood is worth before the costs of felling and transport.</td>
+</tr>
+<tr class="even">
+<td>Output of forest trees (<code>P1_TR</code>)</td>
+<td>The item of the Eurostat forestry accounts that records the value of standing timber produced in a year.</td>
+</tr>
+<tr class="odd">
+<td>Roundwood</td>
+<td>Felled and cut timber, not yet processed. Its export price includes harvesting and transport, so it is higher than the value of standing timber.</td>
+</tr>
+<tr class="even">
+<td>Current prices</td>
+<td>Values in the money of the year in which they occurred. Inflation makes them hard to compare across years.</td>
+</tr>
+<tr class="odd">
+<td>Constant prices</td>
+<td>Values converted to the prices of one base year, so that changes over time reflect quantities and not inflation.</td>
+</tr>
+<tr class="even">
+<td>Deflator</td>
+<td>The factor that converts a current value to constant prices. It is the price index of the base year divided by the index of the year of the value.</td>
+</tr>
+<tr class="odd">
+<td>HICP</td>
+<td>The Harmonised Index of Consumer Prices of Eurostat, used here as the general price index.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="why-the-method-uses-two-prices" class="level2">
+<h2 class="anchored" data-anchor-id="why-the-method-uses-two-prices">Why the method uses two prices</h2>
+<p>The value of standing timber is the ideal price for the service, but countries rarely report it, mainly before 2012. Roundwood export prices are reported by almost every country and year, but they include the costs of harvesting and transport, so they are not the same thing. The method uses the countries and years where both prices exist to measure how far apart the two are (the ratio). It then turns the well-covered export price into an estimate of the timber price by dividing by that ratio. In the years and countries with no timber price, the ratio is replaced by an average, which is the weakest part of the method and is reported openly in the tables below.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -282,9 +338,10 @@ div.csl-indent {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The base year is <code>base_year</code> in the parameters chunk. It is set to 2010, the base year of the fish provision accounts, so that the services share one price level (the INCA plugin uses 2000). Changing it does not touch the nominal values, because the deflator is applied in one step at the end.</p>
+<p>The base year is <code>base_year</code> in the parameters chunk. It is set to 2010, the base year of the fish provision accounts, so that the services share one price level and can be added or compared (the INCA plugin uses 2000). The choice of base year changes the level of the constant-price series but not its shape. Changing it does not touch the nominal values, because the deflator is applied in one step at the end.</p>
 </div>
 </div>
+</section>
 </section>
 <section id="preliminaries" class="level1">
 <h1>Preliminaries</h1>
@@ -304,7 +361,7 @@ div.csl-indent {
 </section>
 <section id="parameters" class="level2">
 <h2 class="anchored" data-anchor-id="parameters">Parameters</h2>
-<p>The averages that complete the gaps use the same windows as the INCA plugin: the country mean over the whole series, and the EU mean over the more recent years, where coverage is better. The plugin stops at 2021 because of the data it had; the window here runs to 2023, the last year with broad coverage.</p>
+<p>A country with some observations is completed with its own average, because its price level is the best guide to its missing years. A country with no observations at all is completed with the EU average, taken over recent years, where coverage is better. The averages that complete the gaps use the same windows as the INCA plugin: the country mean over the whole series, and the EU mean over the more recent years. The plugin stops at 2021 because of the data it had; the window here runs to 2023, the last year with broad coverage.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>years_all <span class="ot">&lt;-</span> <span class="dv">2000</span><span class="sc">:</span><span class="dv">2024</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>years_report <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">2006</span>, <span class="dv">2012</span>, <span class="dv">2018</span>, <span class="dv">2024</span>)</span>
@@ -398,7 +455,7 @@ div.csl-indent {
 </section>
 <section id="ratio-of-export-price-to-timber-price" class="level2">
 <h2 class="anchored" data-anchor-id="ratio-of-export-price-to-timber-price">Ratio of export price to timber price</h2>
-<p>The ratio is computed from the reported values only, before any filling. Infinite values, which come from a zero timber value, are treated as missing. The gaps are then filled with the same averages.</p>
+<p>The ratio is the export unit value divided by the timber unit value. A ratio of 3 means that roundwood sells for three times the value of the same wood standing. It is computed from the reported values only, before any filling, because a ratio built from filled values would contain no new information. Infinite values, which come from a zero timber value, are treated as missing. The gaps are then filled with the same averages.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ratio <span class="ot">&lt;-</span> unit_value_exports <span class="sc">|&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">exports =</span> value) <span class="sc">|&gt;</span></span>
@@ -469,7 +526,7 @@ div.csl-indent {
 </section>
 <section id="constant-prices" class="level2">
 <h2 class="anchored" data-anchor-id="constant-prices">Constant prices</h2>
-<p>The HICP index is rebased so that the base year equals 1, and each nominal value is multiplied by the deflator of its year. The result is in million euro of the base year.</p>
+<p>Prices rose between 2000 and 2024, so a euro in 2024 buys less than a euro in 2010. To compare years, the HICP index is rebased so that the base year equals 1, and each nominal value is multiplied by the deflator of its year. Deflators are above 1 before the base year, where prices were lower, and below 1 after it. The result is in million euro of the base year. The same index is used for all countries, because the question is how the general price level moved and not how timber prices moved.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>deflator <span class="ot">&lt;-</span> <span class="fu">make_deflator</span>(hicp, <span class="st">"hicp_2015"</span>, base_year)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
