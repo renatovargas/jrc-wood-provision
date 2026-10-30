@@ -1,7 +1,7 @@
 
 ## Rules
 
-- **Processing script:** The whole purpose of this website is to have one single `/documentation/methods/wood-provision/index.qmd` document that describes, with text and human-readable code chunks, the steps to update the wood provision ecosystem services for JRC.
+- **Processing script:** The whole purpose of this website is to have one or more `/documentation/methods/<topic-name>/index.qmd` documents that describe, with text and human-readable code chunks, the steps to update the ecosystem services of interest for JRC.
 - **Language:** all calculation is in R. Never create auxiliary Python tools. If an API requires Python, use an R wrapper.
 - **Paths in R code:** `execute-dir: project`, so paths are relative to the project root wherever the `.qmd` lives. Never use `here::here()`.
 - **Links and images in text:** resolved relative to the `.qmd`.
@@ -15,6 +15,8 @@
 - **Encoding (UTF-8):** all text files are UTF-8. To edit `.qmd`, `.R`, `.md` and `.bib` files with accents or ñ, always use the `edit` (or `write`) tool, which preserves encoding. If `perl` or `sed` is needed in the shell, use `perl -CSDA -Mutf8 -0pi -e ...`, which reads and writes UTF-8; without `-CSDA`, text inserted from a file or decoded variables is written as latin1 and corrupts the line. After any shell edit, verify with `iconv -f UTF-8 -t UTF-8 file >/dev/null && echo ok`. To repair an already damaged file (stray latin1 lines): `perl -MEncode -e 'binmode(STDOUT,":utf8"); while(<>){ my $d=eval{decode("UTF-8",$_,Encode::FB_CROAK)}; print defined $d ? $d : decode("latin1",$_) }' file > tmp && cp tmp file`. In R, read and write with `encoding = "UTF-8"` (`readLines`, `source`, `writeLines`).
 
 ## Prose style
+
+- **Public, self-standing documents:** the documents are public and must stand on their own. Never mention the client, the requester, internal requests, instructions or discussions, or conversations with LLM agents. When a decision needs explaining, state it as a method choice with its reason (for example, "A decision was made to...", or simply the reasoning), without saying who asked for it.
 
 - Never use long dashes (em dashes) or sentences that need them.
 - Write declarative sentences. Do not split a sentence with a semicolon or a colon when a comma, a linking phrase or a new sentence reads naturally.

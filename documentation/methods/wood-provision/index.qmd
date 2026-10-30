@@ -21,10 +21,10 @@ This page documents the R routine that updates the wood provision ecosystem serv
 European Union and makes it spatially explicit. Wood provision is the ecosystem contribution to
 the growth of trees, and it is measured here with the net annual increment (NAI) of the forest
 available for wood supply (FAWS), in thousand cubic metres over bark [@lanotte2021; @eurostat2026handbook].
-Each step is written so that the team can read it, rerun it from the repository alone and reuse the
+Each step is written so that users can read it, rerun it from the repository alone and reuse the
 parts that generalise.
 
-The routine follows the client instructions and has four components, in this order:
+The routine has five components, in this order:
 
 1. the **statistical component**, which builds a complete country-by-year NAI series from Eurostat
    `for_vol_efa` [@eurostat2026forvolefa] for 2000 to 2024, and reports the years 2000, 2006, 2012,
@@ -70,12 +70,9 @@ thousand cubic metres, for the years 2000 to 2024.
 ## Two reports are consulted for the method
 
 INCA Part III [@lanotte2021] defines the service and the NAI proxy, and INCA Part II [@vallecillo2019]
-(chapter 4) describes how national flows are spatialised. The second reference in the client
-instructions (`KS-01-26-019-EN-N`) is the Eurostat ecosystem accounts handbook [@eurostat2026handbook],
-whose wood chapter treats FAWS as a cultivated context measured by net increment and forest not
-available for wood supply (FNAWS) as an uncultivated context measured by removals. Neither report
-gives a formula for timber overuse, so the check below applies the definition in the client
-instructions (removals greater than NAI). Source notes are in `research/`.
+(chapter 4) describes how national flows are spatialised. The Eurostat ecosystem accounts handbook (`KS-01-26-019-EN-N`) [@eurostat2026handbook] complements them. Its wood chapter treats FAWS as a cultivated context measured by net increment and forest not
+available for wood supply (FNAWS) as an uncultivated context measured by removals. None of the references
+gives a formula for timber overuse, so the check below defines overuse as removals greater than NAI.
 :::
 
 ::: {.callout-note}
@@ -103,11 +100,12 @@ library(terra)
 library(flextable)
 
 source("scripts/helpers_wood.R", encoding = "UTF-8")
+source("scripts/helpers_results.R", encoding = "UTF-8")
 ```
 
 ## Parameters
 
-The client asks for at least 2000, 2006, 2012, 2018 and 2024. The series is built for every year
+The reporting years are 2000, 2006, 2012, 2018 and 2024. The series is built for every year
 from 2000 so that the gap-filling rules can look at neighbouring years.
 
 ```{r}
@@ -121,6 +119,7 @@ eurostat_file <- "data/inputs/eurostat/for_vol_efa_thsm3.rds"
 countries_file <- "data/inputs/gis/NUTS_RG_01M_2024_3035_LEVL0.gpkg"
 faws_share_file <- "data/inputs/faws/FAWS_2020_EU27_1km.tif"
 faws_area_file <- "data/inputs/faws/faws_area_by_country.rds"
+nuts_weights_file <- "data/inputs/faws/faws_weight_by_nuts.rds"
 
 # Outputs
 results_dir <- "data/outputs/results"
@@ -153,6 +152,7 @@ state it. The 100 m map weighs 157 MB, and the 1 km shares weigh about 15 MB in 
 source("scripts/01_prepare_nuts.R", encoding = "UTF-8")
 source("scripts/02_prepare_faws.R", encoding = "UTF-8")
 source("scripts/03_download_eurostat.R", encoding = "UTF-8")
+source("scripts/06_prepare_nuts_weights.R", encoding = "UTF-8")
 ```
 
 ::: {.callout-note}
@@ -296,7 +296,7 @@ NAI of total forest includes the forest not available for wood supply, so using 
 NAI of FAWS probably overstates the flow in the countries that need the fallback. The FAWS map
 gives the share of forest that is available in 2020 for every country. As a sensitivity check,
 the fallback values are multiplied by that share. The adjusted series is not used in the main
-results, and it is exported in the summary workbook so that JRC can decide.
+results, and it is exported in the summary workbook for comparison.
 
 ```{r}
 #| label: nai-sensitivity
@@ -326,7 +326,7 @@ nai_adjusted |>
 
 NAI is the wood that the forest grows in a year, and removals are the wood taken out. When removals
 stay above NAI the standing stock shrinks, which means that the service is being used faster than
-it renews. The client asks for this comparison, and overuse is reported when removals exceed NAI.
+it renews. Overuse is reported when removals exceed NAI.
 Removals are used and not fellings, because fellings are not part of `for_vol_efa`. The routine
 takes the removals from forest available for wood supply (`RMOV` of `FAWS`), with the same
 fallback and gap-filling rules as NAI, so both sides of the comparison cover the same forest.
@@ -775,7 +775,7 @@ measure of forest gain or loss.
 The refined maps are more detailed in time and use a second dataset, but they are not obviously
 more accurate. CLC and FAWS were mapped independently, and CLC classes forest at a coarser
 minimum unit than the 100 m FAWS map. The baseline remains the main result, and the refinement
-is offered for the team to choose from.
+is an alternative for users who need the change of forest extent over time.
 
 ```{r}
 #| label: clc-export
@@ -797,7 +797,7 @@ export_table(
 # Exports
 
 The tables are saved as `.rds`, `.csv` and `.xlsx` through `export_table()`, and a workbook with the
-reporting-year tables is saved for the team. A GeoPackage of the countries carries the
+reporting-year tables is saved for users. A GeoPackage of the countries carries the
 reporting-year values for use in GIS.
 
 ```{r}
@@ -839,6 +839,19 @@ summary_sheets <- list(
 writexl::write_xlsx(summary_sheets, file.path(results_dir, "wood_provision_summary.xlsx"))
 ```
 
+The results workbook has the tables of the actual flow and of the overuse for NUTS0, NUTS2 and NUTS3.
+Regions share the national value in proportion to their FAWS weight, so they add up to the country.
+The sheets in monetary terms are added by the monetary valuation document.
+
+```{r}
+#| label: export-results-workbook
+
+write_results_workbook(
+  overuse, readRDS(nuts_weights_file), years_report, base_year = 2010,
+  path = file.path(results_dir, "wood_provision_results.xlsx")
+)
+```
+
 ```{r}
 #| label: export-gpkg
 
@@ -876,7 +889,8 @@ tables_dl <- tibble(
     "wood_nai_faws_country_year.rds",
     "wood_overuse_country_year.xlsx",
     "wood_overuse_country_year.rds",
-    "wood_provision_summary.xlsx"
+    "wood_provision_summary.xlsx",
+    "wood_provision_results.xlsx"
   ),
   Folder = "results",
   Description = c(
@@ -884,7 +898,8 @@ tables_dl <- tibble(
     "The same panel as an R object",
     "NAI, removals, balance, ratio and overuse flag by country and year",
     "The same panel as an R object",
-    "Reporting-year tables and the fallback sensitivity check, one sheet each"
+    "Reporting-year tables and the fallback sensitivity check, one sheet each",
+    "Results tables for NUTS0, NUTS2 and NUTS3 in physical terms, with the monetary sheets added by the monetary valuation document"
   )
 )
 
@@ -942,8 +957,7 @@ flextable(downloads, col_keys = c("File", "Description")) |>
 - The FAWS and boundary layers are aggregated to 1 km, so cells on the coast and on borders are
   assigned to one country by their centre point.
 
-Further candidate refinements, each documented with its source and size in
-`research/refinement-proposals.md`, include the biomass available for wood supply map as a
+Further candidate refinements include the biomass available for wood supply map as a
 weight and dry matter productivity as a within-FAWS weight. The monetary valuation that follows
 the physical accounts is in its own [document](../monetary-valuation/).
 

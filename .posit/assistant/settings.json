@@ -8,7 +8,13 @@
       "mkdir *": "allow",
       "cp *": "allow",
       "unzip *": "allow",
-      "echo *": "allow"
+      "echo *": "allow",
+      "which *": "allow",
+      "pandoc *": "allow",
+      "perl *": "allow",
+      "grep *": "allow",
+      "sed *": "allow",
+      "python3 *": "allow"
     },
     "edit": {
       "*.md": "allow",

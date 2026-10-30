@@ -17,8 +17,8 @@ execute:
 
 # Introduction
 
-This page is the second phase of the wood provision update. The first phase
-([physical accounts](../wood-provision/)) produced the net annual increment (NAI) of forest
+This page continues the wood provision update. The
+[physical accounts](../wood-provision/) produced the net annual increment (NAI) of forest
 available for wood supply (FAWS) by country and year, and mapped it. This page gives that flow a
 monetary value, expresses it in constant prices and maps it.
 
@@ -36,7 +36,7 @@ results are comparable with it. It needs three Eurostat inputs and one deflator.
 4. **Deflator.** The EU27 Harmonised Index of Consumer Prices (HICP) converts nominal values to
    constant prices [@eurostat2026hicp].
 
-The physical flow is not recomputed here. The page reads the tables that the first phase
+The physical flow is not recomputed here. The page reads the tables that the physical accounts
 exported to `data/outputs/results/`, so both documents stay consistent.
 
 ## Key terms
@@ -74,8 +74,8 @@ the physical series changes.
 ::: {.callout-note}
 ## Constant prices use a single base year
 
-The base year is `base_year` in the parameters chunk. It is set to 2010, the base year of the fish provision
-accounts, so that the services share one price level and can be added or compared (the INCA plugin
+The base year is `base_year` in the parameters chunk. It is set to 2010 so that this service shares one price level
+with the other ecosystem service accounts and can be added to or compared with them (the INCA plugin
 uses 2000). The choice of base year changes the level of the constant-price series but not its shape. Changing it does not touch the nominal
 values, because the deflator is applied in one step at the end.
 :::
@@ -96,6 +96,7 @@ library(flextable)
 
 source("scripts/helpers_wood.R", encoding = "UTF-8")
 source("scripts/helpers_monetary.R", encoding = "UTF-8")
+source("scripts/helpers_results.R", encoding = "UTF-8")
 ```
 
 ## Parameters
@@ -121,6 +122,8 @@ eu_years <- 2012:2023
 
 # Inputs
 nai_file <- "data/outputs/results/wood_nai_faws_country_year.rds"
+overuse_file <- "data/outputs/results/wood_overuse_country_year.rds"
+nuts_weights_file <- "data/inputs/faws/faws_weight_by_nuts.rds"
 sup_file <- "data/inputs/eurostat/for_sup_cp_p1tr.rds"
 basic_file <- "data/inputs/eurostat/for_basic_rw_exports.rds"
 hicp_file <- "data/inputs/eurostat/hicp_eu27.rds"
@@ -623,6 +626,19 @@ writexl::write_xlsx(
 )
 ```
 
+The results workbook of the physical document is completed with the monetary tables of the actual
+flow and of the overuse, for NUTS0, NUTS2 and NUTS3. The overuse is valued with the unit value of NAI of its country.
+
+```{r}
+#| label: export-results-workbook
+
+write_results_workbook(
+  readRDS(overuse_file), readRDS(nuts_weights_file), years_report, base_year,
+  path = file.path(results_dir, "wood_provision_results.xlsx"),
+  monetary = monetary_export
+)
+```
+
 # Downloads
 
 ```{r}
@@ -633,13 +649,15 @@ downloads <- tibble(
     "wood_value_country_year.xlsx",
     "wood_value_country_year.rds",
     "wood_value_summary.xlsx",
+    "wood_provision_results.xlsx",
     sprintf("wood_value_constant_1km_%s.tif", years_report)
   ),
-  Folder = c(rep("results", 3), rep("gis", length(years_report))),
+  Folder = c(rep("results", 4), rep("gis", length(years_report))),
   Description = c(
     "Unit values, nominal and constant-price value by country and year, with the origin of the ratio",
     "The same panel as an R object",
     "Reporting-year table, deflator and parameters",
+    "Results tables for NUTS0, NUTS2 and NUTS3 in physical and monetary terms",
     sprintf("Value of NAI of FAWS in %s, million euro in 2010 prices per 1 km cell, EPSG:3035", years_report)
   )
 ) |>
