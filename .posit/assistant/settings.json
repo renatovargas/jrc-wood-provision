@@ -1,0 +1,38 @@
+{
+  "permission": {
+    "bash": {
+      "cd *": "allow",
+      "ls *": "allow",
+      "cat *": "allow",
+      "head *": "allow",
+      "mkdir *": "allow",
+      "cp *": "allow",
+      "unzip *": "allow",
+      "echo *": "allow"
+    },
+    "edit": {
+      "*.md": "allow",
+      "*.yml": "allow",
+      "*.R": "allow",
+      "*.bib": "allow",
+      "*.qmd": "allow"
+    },
+    "positronCommand": {
+      "positronPackages.getPackages": "allow"
+    },
+    "task": {
+      "general": "allow"
+    },
+    "executeCode": {
+      "*": "allow"
+    },
+    "webfetch": {
+      "https://data.jrc.ec.europa.eu/*": "allow",
+      "https://jeodpp.jrc.ec.europa.eu/*": "allow",
+      "https://land.copernicus.eu/*": "allow",
+      "https://www.eea.europa.eu/*": "allow",
+      "https://ec.europa.eu/*": "allow",
+      "https://sdi.eea.europa.eu/*": "allow"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+project:
+  type: website
+  output-dir: docs # Expected by GitHub Pages to render site
+  execute-dir: project # Sets all calculations relative to root to avoid using here::here()
+  render:
+    - "**/*.qmd"
+    - "**/*.md"
+    - "!refs/"
+    - "!research/"
+  resources:
+    - data/outputs/
+
+website:
+  title: "Wood Provision"
+  site-url: https://renatovargas.github.io/jrc-wood-provision/
+  repo-url: https://github.com/renatovargas/jrc-wood-provision
+  repo-branch: main
+  repo-actions: [source]
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: documentation/methods/wood-provision/index.qmd
+        text: Wood provision
+      - href: documentation/methods/monetary-valuation/index.qmd
+        text: Monetary valuation
+      - about.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+
+
+

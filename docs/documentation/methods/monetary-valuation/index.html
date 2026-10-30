@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Wood Provision: Monetary Valuation – Wood Provision</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-445b8638c3d06994fee0907d791121c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../../../site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="../../../site_libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Wood Provision</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../documentation/methods/wood-provision/index.html"> 
+<span class="menu-text">Wood provision</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../documentation/methods/monetary-valuation/index.html" aria-current="page"> 
+<span class="menu-text">Monetary valuation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link" data-scroll-target="#preliminaries">Preliminaries</a>
+  <ul class="collapse">
+  <li><a href="#packages-and-helper-functions" id="toc-packages-and-helper-functions" class="nav-link" data-scroll-target="#packages-and-helper-functions">Packages and helper functions</a></li>
+  <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters">Parameters</a></li>
+  <li><a href="#preparing-the-eurostat-inputs" id="toc-preparing-the-eurostat-inputs" class="nav-link" data-scroll-target="#preparing-the-eurostat-inputs">Preparing the Eurostat inputs</a></li>
+  </ul></li>
+  <li><a href="#loading-the-inputs" id="toc-loading-the-inputs" class="nav-link" data-scroll-target="#loading-the-inputs">Loading the inputs</a>
+  <ul class="collapse">
+  <li><a href="#how-much-was-reported" id="toc-how-much-was-reported" class="nav-link" data-scroll-target="#how-much-was-reported">How much was reported</a></li>
+  </ul></li>
+  <li><a href="#unit-values" id="toc-unit-values" class="nav-link" data-scroll-target="#unit-values">Unit values</a>
+  <ul class="collapse">
+  <li><a href="#unit-value-of-nai" id="toc-unit-value-of-nai" class="nav-link" data-scroll-target="#unit-value-of-nai">Unit value of NAI</a></li>
+  <li><a href="#unit-value-of-roundwood-exports" id="toc-unit-value-of-roundwood-exports" class="nav-link" data-scroll-target="#unit-value-of-roundwood-exports">Unit value of roundwood exports</a></li>
+  <li><a href="#ratio-of-export-price-to-timber-price" id="toc-ratio-of-export-price-to-timber-price" class="nav-link" data-scroll-target="#ratio-of-export-price-to-timber-price">Ratio of export price to timber price</a></li>
+  <li><a href="#completed-unit-value-of-nai" id="toc-completed-unit-value-of-nai" class="nav-link" data-scroll-target="#completed-unit-value-of-nai">Completed unit value of NAI</a></li>
+  </ul></li>
+  <li><a href="#monetary-flow" id="toc-monetary-flow" class="nav-link" data-scroll-target="#monetary-flow">Monetary flow</a>
+  <ul class="collapse">
+  <li><a href="#nominal-value" id="toc-nominal-value" class="nav-link" data-scroll-target="#nominal-value">Nominal value</a></li>
+  <li><a href="#constant-prices" id="toc-constant-prices" class="nav-link" data-scroll-target="#constant-prices">Constant prices</a></li>
+  <li><a href="#eu-totals" id="toc-eu-totals" class="nav-link" data-scroll-target="#eu-totals">EU totals</a></li>
+  </ul></li>
+  <li><a href="#spatial-component" id="toc-spatial-component" class="nav-link" data-scroll-target="#spatial-component">Spatial component</a>
+  <ul class="collapse">
+  <li><a href="#conservation-check" id="toc-conservation-check" class="nav-link" data-scroll-target="#conservation-check">Conservation check</a></li>
+  <li><a href="#maps" id="toc-maps" class="nav-link" data-scroll-target="#maps">Maps</a></li>
+  </ul></li>
+  <li><a href="#refinement-corine-land-cover-forest-by-year" id="toc-refinement-corine-land-cover-forest-by-year" class="nav-link" data-scroll-target="#refinement-corine-land-cover-forest-by-year">Refinement: Corine Land Cover forest by year</a>
+  <ul class="collapse">
+  <li><a href="#conservation-check-1" id="toc-conservation-check-1" class="nav-link" data-scroll-target="#conservation-check-1">Conservation check</a></li>
+  <li><a href="#comparison-with-the-baseline" id="toc-comparison-with-the-baseline" class="nav-link" data-scroll-target="#comparison-with-the-baseline">Comparison with the baseline</a></li>
+  </ul></li>
+  <li><a href="#exports" id="toc-exports" class="nav-link" data-scroll-target="#exports">Exports</a></li>
+  <li><a href="#downloads" id="toc-downloads" class="nav-link" data-scroll-target="#downloads">Downloads</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/renatovargas/jrc-wood-provision/blob/main/documentation/methods/monetary-valuation/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Wood Provision: Monetary Valuation</h1>
+<p class="subtitle lead">Unit values, constant prices and spatially explicit monetary flow: annotated R processing routine</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This page is the second phase of the wood provision update. The first phase (<a href="../wood-provision/">physical accounts</a>) produced the net annual increment (NAI) of forest available for wood supply (FAWS) by country and year, and mapped it. This page gives that flow a monetary value, expresses it in constant prices and maps it.</p>
+<p>The method is the one of INCA Part III <span class="citation" data-cites="lanotte2021">(<a href="#ref-lanotte2021" role="doc-biblioref">La Notte et al., 2021</a>)</span> as implemented in the INCA plugin, so that results are comparable with it. It needs three Eurostat inputs and one deflator.</p>
+<ol type="1">
+<li><strong>Value of standing timber.</strong> <code>for_sup_cp</code> reports the output of forest trees (<code>P1_TR</code>) in million euro <span class="citation" data-cites="eurostat2026forsupcp">(<a href="#ref-eurostat2026forsupcp" role="doc-biblioref">Eurostat, 2026c</a>)</span>. Dividing it by NAI gives a unit value in euro per cubic metre. It is reported by few countries in the early years.</li>
+<li><strong>Unit value of roundwood exports.</strong> <code>for_basic</code> reports export value and volume of roundwood <span class="citation" data-cites="eurostat2026forbasic">(<a href="#ref-eurostat2026forbasic" role="doc-biblioref">Eurostat, 2026b</a>)</span>. It is reported by almost every country and year.</li>
+<li><strong>Ratio between the two.</strong> Where both unit values exist, their ratio links the well-covered export price to the sparse timber price. The ratio is completed with averages and applied backwards: unit value of NAI = export unit value / ratio.</li>
+<li><strong>Deflator.</strong> The EU27 Harmonised Index of Consumer Prices (HICP) converts nominal values to constant prices <span class="citation" data-cites="eurostat2026hicp">(<a href="#ref-eurostat2026hicp" role="doc-biblioref">Eurostat, 2026a</a>)</span>.</li>
+</ol>
+<p>The physical flow is not recomputed here. The page reads the tables that the first phase exported to <code>data/outputs/results/</code>, so both documents stay consistent.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Run the physical document first
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This page reads <code>data/outputs/results/wood_nai_faws_country_year.rds</code> and the 1 km FAWS shares in <code>data/inputs/faws/</code>. Both are committed to the repository, so nothing needs to be rerun unless the physical series changes.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Constant prices use a single base year
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The base year is <code>base_year</code> in the parameters chunk. It is set to 2010, the base year of the fish provision accounts, so that the services share one price level (the INCA plugin uses 2000). Changing it does not touch the nominal values, because the deflator is applied in one step at the end.</p>
+</div>
+</div>
+</section>
+<section id="preliminaries" class="level1">
+<h1>Preliminaries</h1>
+<section id="packages-and-helper-functions" class="level2">
+<h2 class="anchored" data-anchor-id="packages-and-helper-functions">Packages and helper functions</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flextable)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/helpers_wood.R"</span>, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/helpers_monetary.R"</span>, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="parameters" class="level2">
+<h2 class="anchored" data-anchor-id="parameters">Parameters</h2>
+<p>The averages that complete the gaps use the same windows as the INCA plugin: the country mean over the whole series, and the EU mean over the more recent years, where coverage is better. The plugin stops at 2021 because of the data it had; the window here runs to 2023, the last year with broad coverage.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>years_all <span class="ot">&lt;-</span> <span class="dv">2000</span><span class="sc">:</span><span class="dv">2024</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>years_report <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">2006</span>, <span class="dv">2012</span>, <span class="dv">2018</span>, <span class="dv">2024</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>base_year <span class="ot">&lt;-</span> <span class="dv">2010</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows for the averages that fill gaps</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>country_years <span class="ot">&lt;-</span> <span class="dv">2000</span><span class="sc">:</span><span class="dv">2023</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>eu_years <span class="ot">&lt;-</span> <span class="dv">2012</span><span class="sc">:</span><span class="dv">2023</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Inputs</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>nai_file <span class="ot">&lt;-</span> <span class="st">"data/outputs/results/wood_nai_faws_country_year.rds"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>sup_file <span class="ot">&lt;-</span> <span class="st">"data/inputs/eurostat/for_sup_cp_p1tr.rds"</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>basic_file <span class="ot">&lt;-</span> <span class="st">"data/inputs/eurostat/for_basic_rw_exports.rds"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>hicp_file <span class="ot">&lt;-</span> <span class="st">"data/inputs/eurostat/hicp_eu27.rds"</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>countries_file <span class="ot">&lt;-</span> <span class="st">"data/inputs/gis/NUTS_RG_01M_2024_3035_LEVL0.gpkg"</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>faws_share_file <span class="ot">&lt;-</span> <span class="st">"data/inputs/faws/FAWS_2020_EU27_1km.tif"</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Outputs</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>results_dir <span class="ot">&lt;-</span> <span class="st">"data/outputs/results"</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>gis_dir <span class="ot">&lt;-</span> <span class="st">"data/outputs/gis"</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(results_dir, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(gis_dir, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="preparing-the-eurostat-inputs" class="level2">
+<h2 class="anchored" data-anchor-id="preparing-the-eurostat-inputs">Preparing the Eurostat inputs</h2>
+<p>The script <code>scripts/04_download_eurostat_monetary.R</code> downloads the three Eurostat extracts and saves compact files in <code>data/inputs/eurostat/</code>. It is run once and needs internet access.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/04_download_eurostat_monetary.R"</span>, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="loading-the-inputs" class="level1">
+<h1>Loading the inputs</h1>
+<p>All series are placed on a complete grid of the 27 member states and the years 2000 to 2024, so that every missing value is visible as a missing cell.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>countries <span class="ot">&lt;-</span> <span class="fu">st_read</span>(countries_file, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>eu27 <span class="ot">&lt;-</span> countries<span class="sc">$</span>geo[countries<span class="sc">$</span>eu27]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>nai <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(nai_file) <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">on_grid</span>(eu27, years_all, <span class="st">"nai_faws_1000m3"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>timber_value <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(sup_file) <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">on_grid</span>(eu27, years_all, <span class="st">"value_mio_eur"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>exports <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(basic_file)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>hicp <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(hicp_file)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="how-much-was-reported" class="level2">
+<h2 class="anchored" data-anchor-id="how-much-was-reported">How much was reported</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Year =</span> years_report,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Timber value (for_sup_cp)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sapply</span>(years_report, \(y) <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(timber_value<span class="sc">$</span>value[timber_value<span class="sc">$</span>year <span class="sc">==</span> y]))),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Export value and volume (for_basic)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sapply</span>(years_report, \(y) {</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(exports<span class="sc">$</span>exports_ths_eur[exports<span class="sc">$</span>year <span class="sc">==</span> y] <span class="sc">/</span> exports<span class="sc">$</span>exports_ths_m3[exports<span class="sc">$</span>year <span class="sc">==</span> y]))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show_table</span>(<span class="at">digits =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-d8bad469{}.cl-d19a4b32{font-family:'Helvetica';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a1958ec5{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-d42c2258{width:0.598in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b17addda{width:1.744in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1b56df06{width:2.286in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c8bc059d{width:0.598in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fbf50433{width:1.744in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-739310d0{width:2.286in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c9d4101a{width:0.598in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cdca1ff5{width:1.744in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d48e2922{width:2.286in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-d8bad469"><thead><tr style="overflow-wrap:break-word;"><th class="cl-d42c2258"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Year</span></p></th><th class="cl-b17addda"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Timber value (for_sup_cp)</span></p></th><th class="cl-1b56df06"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Export value and volume (for_basic)</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-c8bc059d"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,000</span></p></td><td class="cl-fbf50433"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2</span></p></td><td class="cl-739310d0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">28</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c8bc059d"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,006</span></p></td><td class="cl-fbf50433"><p class="cl-a1958ec5"><span class="cl-d19a4b32">3</span></p></td><td class="cl-739310d0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">28</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c8bc059d"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,012</span></p></td><td class="cl-fbf50433"><p class="cl-a1958ec5"><span class="cl-d19a4b32">16</span></p></td><td class="cl-739310d0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">27</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c8bc059d"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,018</span></p></td><td class="cl-fbf50433"><p class="cl-a1958ec5"><span class="cl-d19a4b32">17</span></p></td><td class="cl-739310d0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">25</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c9d4101a"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,024</span></p></td><td class="cl-cdca1ff5"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2</span></p></td><td class="cl-d48e2922"><p class="cl-a1958ec5"><span class="cl-d19a4b32">24</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>The table counts member states out of 27. Timber value is reported by only a few countries in 2000 and 2006, and by almost all of them from 2012 on, so the method has to lean on the export price in the early years.</p>
+</section>
+</section>
+<section id="unit-values" class="level1">
+<h1>Unit values</h1>
+<section id="unit-value-of-nai" class="level2">
+<h2 class="anchored" data-anchor-id="unit-value-of-nai">Unit value of NAI</h2>
+<p>The timber value is divided by NAI, and the unit is converted from million euro per thousand cubic metres to euro per cubic metre. A country-year without NAI gets no unit value.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>unit_value_nai <span class="ot">&lt;-</span> nai <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">nai =</span> value) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(timber_value <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">timber =</span> value), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geo"</span>, <span class="st">"year"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">value =</span> <span class="fu">if_else</span>(nai <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1000</span> <span class="sc">*</span> timber <span class="sc">/</span> nai, <span class="cn">NA_real_</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(geo, year, value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="unit-value-of-roundwood-exports" class="level2">
+<h2 class="anchored" data-anchor-id="unit-value-of-roundwood-exports">Unit value of roundwood exports</h2>
+<p>Export value (thousand euro) divided by export volume (thousand cubic metres) gives euro per cubic metre. Gaps are filled with the country mean, or with the EU mean when a country never reports.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>unit_value_exports <span class="ot">&lt;-</span> exports <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">value =</span> <span class="fu">if_else</span>(exports_ths_m3 <span class="sc">&gt;</span> <span class="dv">0</span>, exports_ths_eur <span class="sc">/</span> exports_ths_m3, <span class="cn">NA_real_</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">on_grid</span>(eu27, years_all, <span class="st">"value"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>unit_value_exports_filled <span class="ot">&lt;-</span> <span class="fu">fill_with_means</span>(unit_value_exports, country_years, eu_years)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="ratio-of-export-price-to-timber-price" class="level2">
+<h2 class="anchored" data-anchor-id="ratio-of-export-price-to-timber-price">Ratio of export price to timber price</h2>
+<p>The ratio is computed from the reported values only, before any filling. Infinite values, which come from a zero timber value, are treated as missing. The gaps are then filled with the same averages.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ratio <span class="ot">&lt;-</span> unit_value_exports <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">exports =</span> value) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(unit_value_nai <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">nai_uv =</span> value), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geo"</span>, <span class="st">"year"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> exports <span class="sc">/</span> nai_uv,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="fu">if_else</span>(<span class="fu">is.finite</span>(value), value, <span class="cn">NA_real_</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(geo, year, value)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>ratio_filled <span class="ot">&lt;-</span> <span class="fu">fill_with_means</span>(ratio, country_years, eu_years)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The share of the 27 ratios that are observed in each reporting year shows how much of the result rests on averages.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ratio_filled <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> years_report) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, fill) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> fill, <span class="at">values_from =</span> n, <span class="at">values_fill =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Year =</span> year) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show_table</span>(<span class="at">digits =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-d8bad469{}.cl-d19a4b32{font-family:'Helvetica';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a1958ec5{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-100102b2{width:0.563in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fe6ec199{width:1.077in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-500f5d51{width:0.806in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9768cf65{width:0.799in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d80eb6a0{width:0.563in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9e43111{width:1.077in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d9470728{width:0.806in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e40c5823{width:0.799in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-48bbdf17{width:0.563in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-67dcb169{width:1.077in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d6b4151a{width:0.806in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fedc334{width:0.799in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-d8bad469"><thead><tr style="overflow-wrap:break-word;"><th class="cl-100102b2"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Year</span></p></th><th class="cl-fe6ec199"><p class="cl-a1958ec5"><span class="cl-d19a4b32">country_mean</span></p></th><th class="cl-500f5d51"><p class="cl-a1958ec5"><span class="cl-d19a4b32">eu_mean</span></p></th><th class="cl-9768cf65"><p class="cl-a1958ec5"><span class="cl-d19a4b32">observed</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-d80eb6a0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2000</span></p></td><td class="cl-b9e43111"><p class="cl-a1958ec5"><span class="cl-d19a4b32">22</span></p></td><td class="cl-d9470728"><p class="cl-a1958ec5"><span class="cl-d19a4b32">3</span></p></td><td class="cl-e40c5823"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d80eb6a0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2006</span></p></td><td class="cl-b9e43111"><p class="cl-a1958ec5"><span class="cl-d19a4b32">21</span></p></td><td class="cl-d9470728"><p class="cl-a1958ec5"><span class="cl-d19a4b32">3</span></p></td><td class="cl-e40c5823"><p class="cl-a1958ec5"><span class="cl-d19a4b32">3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d80eb6a0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2012</span></p></td><td class="cl-b9e43111"><p class="cl-a1958ec5"><span class="cl-d19a4b32">12</span></p></td><td class="cl-d9470728"><p class="cl-a1958ec5"><span class="cl-d19a4b32">3</span></p></td><td class="cl-e40c5823"><p class="cl-a1958ec5"><span class="cl-d19a4b32">12</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d80eb6a0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2018</span></p></td><td class="cl-b9e43111"><p class="cl-a1958ec5"><span class="cl-d19a4b32">10</span></p></td><td class="cl-d9470728"><p class="cl-a1958ec5"><span class="cl-d19a4b32">3</span></p></td><td class="cl-e40c5823"><p class="cl-a1958ec5"><span class="cl-d19a4b32">14</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-48bbdf17"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2024</span></p></td><td class="cl-67dcb169"><p class="cl-a1958ec5"><span class="cl-d19a4b32">22</span></p></td><td class="cl-d6b4151a"><p class="cl-a1958ec5"><span class="cl-d19a4b32">3</span></p></td><td class="cl-2fedc334"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</section>
+<section id="completed-unit-value-of-nai" class="level2">
+<h2 class="anchored" data-anchor-id="completed-unit-value-of-nai">Completed unit value of NAI</h2>
+<p>The completed unit value divides the export unit value by the ratio. Where the ratio is observed, this returns the observed timber unit value.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>unit_value <span class="ot">&lt;-</span> unit_value_exports_filled <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(geo, year, <span class="at">export_uv =</span> value) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    ratio_filled <span class="sc">|&gt;</span> <span class="fu">select</span>(geo, year, <span class="at">ratio =</span> value, <span class="at">ratio_fill =</span> fill),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geo"</span>, <span class="st">"year"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">unit_value_eur_m3 =</span> export_uv <span class="sc">/</span> ratio)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The chart shows the completed unit value for every country in the reporting years. A few countries sit far above the rest, and they are the ones whose ratio comes from the average of a small number of observations.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>unit_value <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> years_report) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">geo =</span> <span class="fu">reorder</span>(geo, unit_value_eur_m3, <span class="at">FUN =</span> median)) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> unit_value_eur_m3, <span class="at">y =</span> geo, <span class="at">colour =</span> ratio_fill)) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year, <span class="at">nrow =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Unit value of NAI (euro per m3, current prices)"</span>, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">colour =</span> <span class="st">"Ratio"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unit-value-chart-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="monetary-flow" class="level1">
+<h1>Monetary flow</h1>
+<section id="nominal-value" class="level2">
+<h2 class="anchored" data-anchor-id="nominal-value">Nominal value</h2>
+<p>The monetary flow is NAI times the completed unit value, in million euro at current prices.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>monetary <span class="ot">&lt;-</span> nai <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">nai_1000m3 =</span> value) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(unit_value, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geo"</span>, <span class="st">"year"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">value_mio_eur_current =</span> nai_1000m3 <span class="sc">*</span> unit_value_eur_m3 <span class="sc">/</span> <span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="constant-prices" class="level2">
+<h2 class="anchored" data-anchor-id="constant-prices">Constant prices</h2>
+<p>The HICP index is rebased so that the base year equals 1, and each nominal value is multiplied by the deflator of its year. The result is in million euro of the base year.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>deflator <span class="ot">&lt;-</span> <span class="fu">make_deflator</span>(hicp, <span class="st">"hicp_2015"</span>, base_year)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>monetary <span class="ot">&lt;-</span> monetary <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(deflator, <span class="at">by =</span> <span class="st">"year"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">value_mio_eur_constant =</span> value_mio_eur_current <span class="sc">*</span> deflator)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>deflator <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> years_report) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Year =</span> year, <span class="st">`</span><span class="at">Deflator (base year = 1)</span><span class="st">`</span> <span class="ot">=</span> deflator) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show_table</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-d8bad469{}.cl-d19a4b32{font-family:'Helvetica';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a1958ec5{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-100102b2{width:0.563in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6f04befc{width:1.602in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d80eb6a0{width:0.563in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-06a2c396{width:1.602in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-48bbdf17{width:0.563in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-704cb8b7{width:1.602in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-d8bad469"><thead><tr style="overflow-wrap:break-word;"><th class="cl-100102b2"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Year</span></p></th><th class="cl-6f04befc"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Deflator (base year = 1)</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-d80eb6a0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2000</span></p></td><td class="cl-06a2c396"><p class="cl-a1958ec5"><span class="cl-d19a4b32">1.272</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d80eb6a0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2006</span></p></td><td class="cl-06a2c396"><p class="cl-a1958ec5"><span class="cl-d19a4b32">1.090</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d80eb6a0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2012</span></p></td><td class="cl-06a2c396"><p class="cl-a1958ec5"><span class="cl-d19a4b32">0.947</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d80eb6a0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2018</span></p></td><td class="cl-06a2c396"><p class="cl-a1958ec5"><span class="cl-d19a4b32">0.898</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-48bbdf17"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2024</span></p></td><td class="cl-704cb8b7"><p class="cl-a1958ec5"><span class="cl-d19a4b32">0.717</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</section>
+<section id="eu-totals" class="level2">
+<h2 class="anchored" data-anchor-id="eu-totals">EU totals</h2>
+<p>The table sums the 27 countries in the reporting years. For comparison, INCA Part III reports an EU total of 23,745 million euro for 2000 <span class="citation" data-cites="lanotte2021">(<a href="#ref-lanotte2021" role="doc-biblioref">La Notte et al., 2021</a>)</span>. That figure uses a different country set and vintage of the data, so the comparison is a check of order of magnitude.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>monetary <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> years_report) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">NAI (million m3)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(nai_1000m3) <span class="sc">/</span> <span class="dv">1000</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Current prices (million euro)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(value_mio_eur_current),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Constant prices (million euro)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(value_mio_eur_constant),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> year</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Year =</span> year) <span class="sc">|&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show_table</span>(<span class="at">digits =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-d8bad469{}.cl-d19a4b32{font-family:'Helvetica';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a1958ec5{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-100102b2{width:0.563in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-91b5955c{width:1.174in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5f63666d{width:1.827in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a16f3c2{width:1.911in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d80eb6a0{width:0.563in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e50164c5{width:1.174in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-550f310e{width:1.827in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-626e09d1{width:1.911in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-48bbdf17{width:0.563in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ebd7c115{width:1.174in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e09d46e3{width:1.827in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2a269f34{width:1.911in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-d8bad469"><thead><tr style="overflow-wrap:break-word;"><th class="cl-100102b2"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Year</span></p></th><th class="cl-91b5955c"><p class="cl-a1958ec5"><span class="cl-d19a4b32">NAI (million m3)</span></p></th><th class="cl-5f63666d"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Current prices (million euro)</span></p></th><th class="cl-5a16f3c2"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Constant prices (million euro)</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-d80eb6a0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2000</span></p></td><td class="cl-e50164c5"><p class="cl-a1958ec5"><span class="cl-d19a4b32">912</span></p></td><td class="cl-550f310e"><p class="cl-a1958ec5"><span class="cl-d19a4b32">17,822</span></p></td><td class="cl-626e09d1"><p class="cl-a1958ec5"><span class="cl-d19a4b32">22,672</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d80eb6a0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2006</span></p></td><td class="cl-e50164c5"><p class="cl-a1958ec5"><span class="cl-d19a4b32">900</span></p></td><td class="cl-550f310e"><p class="cl-a1958ec5"><span class="cl-d19a4b32">17,751</span></p></td><td class="cl-626e09d1"><p class="cl-a1958ec5"><span class="cl-d19a4b32">19,342</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d80eb6a0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2012</span></p></td><td class="cl-e50164c5"><p class="cl-a1958ec5"><span class="cl-d19a4b32">855</span></p></td><td class="cl-550f310e"><p class="cl-a1958ec5"><span class="cl-d19a4b32">17,924</span></p></td><td class="cl-626e09d1"><p class="cl-a1958ec5"><span class="cl-d19a4b32">16,982</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-d80eb6a0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2018</span></p></td><td class="cl-e50164c5"><p class="cl-a1958ec5"><span class="cl-d19a4b32">805</span></p></td><td class="cl-550f310e"><p class="cl-a1958ec5"><span class="cl-d19a4b32">18,835</span></p></td><td class="cl-626e09d1"><p class="cl-a1958ec5"><span class="cl-d19a4b32">16,919</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-48bbdf17"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2024</span></p></td><td class="cl-ebd7c115"><p class="cl-a1958ec5"><span class="cl-d19a4b32">736</span></p></td><td class="cl-e09d46e3"><p class="cl-a1958ec5"><span class="cl-d19a4b32">20,626</span></p></td><td class="cl-2a269f34"><p class="cl-a1958ec5"><span class="cl-d19a4b32">14,798</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</section>
+</section>
+<section id="spatial-component" class="level1">
+<h1>Spatial component</h1>
+<p>The monetary flow is spread with the spatial key of the physical document: inside each country, in proportion to the share of every 1 km cell that is FAWS. Every cell of a country therefore has the same unit value, and the pattern of the monetary map is the pattern of the NAI map.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>faws_share <span class="ot">&lt;-</span> <span class="fu">rast</span>(faws_share_file)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>eu_countries <span class="ot">&lt;-</span> <span class="fu">vect</span>(countries_file)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>eu_countries <span class="ot">&lt;-</span> eu_countries[eu_countries<span class="sc">$</span>eu27, ]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>country_ids <span class="ot">&lt;-</span> <span class="fu">make_country_ids</span>(eu_countries, faws_share)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>weight_sums <span class="ot">&lt;-</span> <span class="fu">country_weight_sums</span>(faws_share, country_ids)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>To keep the repository light, the maps are written in constant prices only. They are the ones used to compare years. The nominal values by country are in the exported tables.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (yr <span class="cf">in</span> years_report) {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  value_map <span class="ot">&lt;-</span> <span class="fu">spread_totals</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">totals =</span> monetary <span class="sc">|&gt;</span> <span class="fu">filter</span>(year <span class="sc">==</span> yr) <span class="sc">|&gt;</span> <span class="fu">select</span>(geo, <span class="at">value =</span> value_mio_eur_constant),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight =</span> faws_share,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">country_ids =</span> country_ids,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight_sums =</span> weight_sums</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(value_map) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"value_constant_"</span>, yr)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeRaster</span>(</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    value_map,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">file.path</span>(gis_dir, <span class="fu">sprintf</span>(<span class="st">"wood_value_constant_1km_%s.tif"</span>, yr)),</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">overwrite =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">datatype =</span> <span class="st">"FLT4S"</span>,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">gdal =</span> <span class="fu">c</span>(<span class="st">"COMPRESS=DEFLATE"</span>, <span class="st">"PREDICTOR=3"</span>, <span class="st">"TILED=YES"</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="conservation-check" class="level2">
+<h2 class="anchored" data-anchor-id="conservation-check">Conservation check</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>value_maps <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="fu">file.path</span>(gis_dir, <span class="fu">sprintf</span>(<span class="st">"wood_value_constant_1km_%s.tif"</span>, years_report)))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>national_totals <span class="ot">&lt;-</span> monetary <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> years_report) <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">sum</span>(value_mio_eur_constant), <span class="at">.by =</span> year) <span class="sc">|&gt;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(total)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Year =</span> years_report,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Sum of maps (million euro)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">global</span>(value_maps, <span class="st">"sum"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)[[<span class="dv">1</span>]],</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Sum of national values (million euro)</span><span class="st">`</span> <span class="ot">=</span> national_totals</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Difference (%)</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">100</span> <span class="sc">*</span> (<span class="st">`</span><span class="at">Sum of maps (million euro)</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">Sum of national values (million euro)</span><span class="st">`</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show_table</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-d8bad469{}.cl-d19a4b32{font-family:'Helvetica';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a1958ec5{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c70df3ee{width:0.772in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-347c396a{width:1.779in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-97b104c7{width:2.307in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d6adf9b7{width:1.084in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-94fcb90f{width:0.772in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-823d5cd2{width:1.779in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14e9588d{width:2.307in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6eaf4ea7{width:1.084in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7758982b{width:0.772in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21e613aa{width:1.779in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5448380a{width:2.307in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5668a2d0{width:1.084in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-d8bad469"><thead><tr style="overflow-wrap:break-word;"><th class="cl-c70df3ee"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Year</span></p></th><th class="cl-347c396a"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Sum of maps (million euro)</span></p></th><th class="cl-97b104c7"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Sum of national values (million euro)</span></p></th><th class="cl-d6adf9b7"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Difference (%)</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-94fcb90f"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,000.00</span></p></td><td class="cl-823d5cd2"><p class="cl-a1958ec5"><span class="cl-d19a4b32">22,671.82</span></p></td><td class="cl-14e9588d"><p class="cl-a1958ec5"><span class="cl-d19a4b32">22,671.82</span></p></td><td class="cl-6eaf4ea7"><p class="cl-a1958ec5"><span class="cl-d19a4b32">-0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-94fcb90f"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,006.00</span></p></td><td class="cl-823d5cd2"><p class="cl-a1958ec5"><span class="cl-d19a4b32">19,341.55</span></p></td><td class="cl-14e9588d"><p class="cl-a1958ec5"><span class="cl-d19a4b32">19,341.55</span></p></td><td class="cl-6eaf4ea7"><p class="cl-a1958ec5"><span class="cl-d19a4b32">-0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-94fcb90f"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,012.00</span></p></td><td class="cl-823d5cd2"><p class="cl-a1958ec5"><span class="cl-d19a4b32">16,982.36</span></p></td><td class="cl-14e9588d"><p class="cl-a1958ec5"><span class="cl-d19a4b32">16,982.36</span></p></td><td class="cl-6eaf4ea7"><p class="cl-a1958ec5"><span class="cl-d19a4b32">-0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-94fcb90f"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,018.00</span></p></td><td class="cl-823d5cd2"><p class="cl-a1958ec5"><span class="cl-d19a4b32">16,918.61</span></p></td><td class="cl-14e9588d"><p class="cl-a1958ec5"><span class="cl-d19a4b32">16,918.61</span></p></td><td class="cl-6eaf4ea7"><p class="cl-a1958ec5"><span class="cl-d19a4b32">-0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7758982b"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,024.00</span></p></td><td class="cl-21e613aa"><p class="cl-a1958ec5"><span class="cl-d19a4b32">14,797.70</span></p></td><td class="cl-5448380a"><p class="cl-a1958ec5"><span class="cl-d19a4b32">14,797.70</span></p></td><td class="cl-5668a2d0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">-0.00</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</section>
+<section id="maps" class="level2">
+<h2 class="anchored" data-anchor-id="maps">Maps</h2>
+<p>The maps are shown at 10 km, as the sum of 100 cells of 1 km.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>map_data <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(value_maps, <span class="at">fact =</span> <span class="dv">10</span>, <span class="at">fun =</span> <span class="st">"sum"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(<span class="at">xy =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">starts_with</span>(<span class="st">"value_constant_"</span>), <span class="at">names_to =</span> <span class="st">"year"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">sub</span>(<span class="st">"value_constant_"</span>, <span class="st">""</span>, year)) <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(value <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(map_data) <span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> countries, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">transform =</span> <span class="st">"sqrt"</span>, <span class="at">name =</span> <span class="st">"Million euro</span><span class="sc">\n</span><span class="st">(base-year prices)</span><span class="sc">\n</span><span class="st">per 10 km cell"</span>) <span class="sc">+</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">2.6e6</span>, <span class="fl">6.6e6</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">1.4e6</span>, <span class="fl">5.4e6</span>), <span class="at">datum =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/value-maps-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="refinement-corine-land-cover-forest-by-year" class="level1">
+<h1>Refinement: Corine Land Cover forest by year</h1>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Optional refinement with its own outputs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The maps above are the baseline. This section repeats the spatial step with the spatial key of the Corine refinement of the <a href="../wood-provision/">physical document</a>, which is the 100 m overlap of FAWS and Corine Land Cover forest of each epoch (CLC 2018 is used for 2024). It writes only to <code>data/outputs/gis/corine_refinement/</code> and <code>data/outputs/results/corine_refinement/</code>, and every file name starts with <code>corine_refinement_</code>.</p>
+</div>
+</div>
+<p>The national monetary values are the same as in the baseline, so only their placement inside each country changes. The weights are the 1 km files produced by <code>scripts/05_prepare_clc.R</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>clc_epochs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2000"</span>, <span class="st">"2006"</span>, <span class="st">"2012"</span>, <span class="st">"2018"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>clc_for_year <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">2000</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"2000"</span>, <span class="st">`</span><span class="at">2006</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"2006"</span>, <span class="st">`</span><span class="at">2012</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"2012"</span>, <span class="st">`</span><span class="at">2018</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"2018"</span>, <span class="st">`</span><span class="at">2024</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"2018"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>refine_gis_dir <span class="ot">&lt;-</span> <span class="fu">file.path</span>(gis_dir, <span class="st">"corine_refinement"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>refine_results_dir <span class="ot">&lt;-</span> <span class="fu">file.path</span>(results_dir, <span class="st">"corine_refinement"</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(refine_gis_dir, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(refine_results_dir, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>clc_weights <span class="ot">&lt;-</span> <span class="fu">lapply</span>(clc_epochs, \(e) <span class="fu">rast</span>(<span class="fu">sprintf</span>(<span class="st">"data/inputs/corine/FAWS_x_CLC%s_1km.tif"</span>, e)))</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(clc_weights) <span class="ot">&lt;-</span> clc_epochs</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>clc_weight_sums <span class="ot">&lt;-</span> <span class="fu">lapply</span>(clc_weights, country_weight_sums, <span class="at">country_ids =</span> country_ids)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (yr <span class="cf">in</span> years_report) {</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  epoch <span class="ot">&lt;-</span> clc_for_year[[<span class="fu">as.character</span>(yr)]]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  refined_map <span class="ot">&lt;-</span> <span class="fu">spread_totals</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">totals =</span> monetary <span class="sc">|&gt;</span> <span class="fu">filter</span>(year <span class="sc">==</span> yr) <span class="sc">|&gt;</span> <span class="fu">select</span>(geo, <span class="at">value =</span> value_mio_eur_constant),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight =</span> clc_weights[[epoch]],</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">country_ids =</span> country_ids,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight_sums =</span> clc_weight_sums[[epoch]]</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(refined_map) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"value_clc_"</span>, yr)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeRaster</span>(</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    refined_map,</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">file.path</span>(refine_gis_dir, <span class="fu">sprintf</span>(<span class="st">"corine_refinement_wood_value_constant_1km_%s.tif"</span>, yr)),</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">overwrite =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">datatype =</span> <span class="st">"FLT4S"</span>,</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">gdal =</span> <span class="fu">c</span>(<span class="st">"COMPRESS=DEFLATE"</span>, <span class="st">"PREDICTOR=3"</span>, <span class="st">"TILED=YES"</span>)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="conservation-check-1" class="level2">
+<h2 class="anchored" data-anchor-id="conservation-check-1">Conservation check</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>refined_maps <span class="ot">&lt;-</span> <span class="fu">rast</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(refine_gis_dir, <span class="fu">sprintf</span>(<span class="st">"corine_refinement_wood_value_constant_1km_%s.tif"</span>, years_report))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Year =</span> years_report,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">CLC epoch</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">unname</span>(clc_for_year[<span class="fu">as.character</span>(years_report)]),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Sum of maps (million euro)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">global</span>(refined_maps, <span class="st">"sum"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)[[<span class="dv">1</span>]],</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Sum of national values (million euro)</span><span class="st">`</span> <span class="ot">=</span> national_totals</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Difference (%)</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">100</span> <span class="sc">*</span> (<span class="st">`</span><span class="at">Sum of maps (million euro)</span><span class="st">`</span> <span class="sc">/</span> <span class="st">`</span><span class="at">Sum of national values (million euro)</span><span class="st">`</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show_table</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-d8bad469{}.cl-d19a4b32{font-family:'Helvetica';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a1958ec5{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-6477613b{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c70df3ee{width:0.772in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-41e1a11e{width:0.911in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-347c396a{width:1.779in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-97b104c7{width:2.307in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d6adf9b7{width:1.084in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-94fcb90f{width:0.772in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-69a50218{width:0.911in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-823d5cd2{width:1.779in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14e9588d{width:2.307in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6eaf4ea7{width:1.084in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7758982b{width:0.772in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a4f67df1{width:0.911in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21e613aa{width:1.779in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5448380a{width:2.307in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5668a2d0{width:1.084in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-d8bad469"><thead><tr style="overflow-wrap:break-word;"><th class="cl-c70df3ee"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Year</span></p></th><th class="cl-41e1a11e"><p class="cl-6477613b"><span class="cl-d19a4b32">CLC epoch</span></p></th><th class="cl-347c396a"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Sum of maps (million euro)</span></p></th><th class="cl-97b104c7"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Sum of national values (million euro)</span></p></th><th class="cl-d6adf9b7"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Difference (%)</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-94fcb90f"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,000.00</span></p></td><td class="cl-69a50218"><p class="cl-6477613b"><span class="cl-d19a4b32">2000</span></p></td><td class="cl-823d5cd2"><p class="cl-a1958ec5"><span class="cl-d19a4b32">22,671.82</span></p></td><td class="cl-14e9588d"><p class="cl-a1958ec5"><span class="cl-d19a4b32">22,671.82</span></p></td><td class="cl-6eaf4ea7"><p class="cl-a1958ec5"><span class="cl-d19a4b32">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-94fcb90f"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,006.00</span></p></td><td class="cl-69a50218"><p class="cl-6477613b"><span class="cl-d19a4b32">2006</span></p></td><td class="cl-823d5cd2"><p class="cl-a1958ec5"><span class="cl-d19a4b32">19,341.55</span></p></td><td class="cl-14e9588d"><p class="cl-a1958ec5"><span class="cl-d19a4b32">19,341.55</span></p></td><td class="cl-6eaf4ea7"><p class="cl-a1958ec5"><span class="cl-d19a4b32">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-94fcb90f"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,012.00</span></p></td><td class="cl-69a50218"><p class="cl-6477613b"><span class="cl-d19a4b32">2012</span></p></td><td class="cl-823d5cd2"><p class="cl-a1958ec5"><span class="cl-d19a4b32">16,982.36</span></p></td><td class="cl-14e9588d"><p class="cl-a1958ec5"><span class="cl-d19a4b32">16,982.36</span></p></td><td class="cl-6eaf4ea7"><p class="cl-a1958ec5"><span class="cl-d19a4b32">-0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-94fcb90f"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,018.00</span></p></td><td class="cl-69a50218"><p class="cl-6477613b"><span class="cl-d19a4b32">2018</span></p></td><td class="cl-823d5cd2"><p class="cl-a1958ec5"><span class="cl-d19a4b32">16,918.61</span></p></td><td class="cl-14e9588d"><p class="cl-a1958ec5"><span class="cl-d19a4b32">16,918.61</span></p></td><td class="cl-6eaf4ea7"><p class="cl-a1958ec5"><span class="cl-d19a4b32">-0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7758982b"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,024.00</span></p></td><td class="cl-a4f67df1"><p class="cl-6477613b"><span class="cl-d19a4b32">2018</span></p></td><td class="cl-21e613aa"><p class="cl-a1958ec5"><span class="cl-d19a4b32">14,797.70</span></p></td><td class="cl-5448380a"><p class="cl-a1958ec5"><span class="cl-d19a4b32">14,797.70</span></p></td><td class="cl-5668a2d0"><p class="cl-a1958ec5"><span class="cl-d19a4b32">-0.00</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</section>
+<section id="comparison-with-the-baseline" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-with-the-baseline">Comparison with the baseline</h2>
+<p>Each country has one unit value, so inside a country the monetary map is the NAI map multiplied by a constant. The comparison below therefore shows the same pattern of differences as in the physical document, in money terms. The table gives the share of the value that sits in a different 10 km cell, and the correlation between the two maps.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>base_10km <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(value_maps, <span class="at">fact =</span> <span class="dv">10</span>, <span class="at">fun =</span> <span class="st">"sum"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>refined_10km <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(refined_maps, <span class="at">fact =</span> <span class="dv">10</span>, <span class="at">fun =</span> <span class="st">"sum"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>comparison <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Year =</span> years_report,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Value moved (% of total)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sapply</span>(<span class="fu">seq_along</span>(years_report), \(i) {</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span> <span class="sc">*</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">global</span>(<span class="fu">abs</span>(refined_10km[[i]] <span class="sc">-</span> base_10km[[i]]), <span class="st">"sum"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)[[<span class="dv">1</span>]] <span class="sc">/</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">global</span>(base_10km[[i]], <span class="st">"sum"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  }),</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Value moved (million euro)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sapply</span>(<span class="fu">seq_along</span>(years_report), \(i) {</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">global</span>(<span class="fu">abs</span>(refined_10km[[i]] <span class="sc">-</span> base_10km[[i]]), <span class="st">"sum"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  }),</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Correlation of cells</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sapply</span>(<span class="fu">seq_along</span>(years_report), \(i) {</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cor</span>(<span class="fu">values</span>(base_10km[[i]]), <span class="fu">values</span>(refined_10km[[i]]), <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="fu">show_table</span>(comparison, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-d8bad469{}.cl-d19a4b32{font-family:'Helvetica';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a1958ec5{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c70df3ee{width:0.772in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7e0fab1f{width:1.654in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-be994f24{width:1.772in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-257cc26e{width:1.32in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-94fcb90f{width:0.772in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-34e0eb82{width:1.654in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f730d696{width:1.772in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ad828dc5{width:1.32in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7758982b{width:0.772in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7b5e343f{width:1.654in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5992f72b{width:1.772in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c5fc35a{width:1.32in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-d8bad469"><thead><tr style="overflow-wrap:break-word;"><th class="cl-c70df3ee"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Year</span></p></th><th class="cl-7e0fab1f"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Value moved (% of total)</span></p></th><th class="cl-be994f24"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Value moved (million euro)</span></p></th><th class="cl-257cc26e"><p class="cl-a1958ec5"><span class="cl-d19a4b32">Correlation of cells</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-94fcb90f"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,000.00</span></p></td><td class="cl-34e0eb82"><p class="cl-a1958ec5"><span class="cl-d19a4b32">7.64</span></p></td><td class="cl-f730d696"><p class="cl-a1958ec5"><span class="cl-d19a4b32">1,732.42</span></p></td><td class="cl-ad828dc5"><p class="cl-a1958ec5"><span class="cl-d19a4b32">0.98</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-94fcb90f"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,006.00</span></p></td><td class="cl-34e0eb82"><p class="cl-a1958ec5"><span class="cl-d19a4b32">7.08</span></p></td><td class="cl-f730d696"><p class="cl-a1958ec5"><span class="cl-d19a4b32">1,369.11</span></p></td><td class="cl-ad828dc5"><p class="cl-a1958ec5"><span class="cl-d19a4b32">0.99</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-94fcb90f"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,012.00</span></p></td><td class="cl-34e0eb82"><p class="cl-a1958ec5"><span class="cl-d19a4b32">5.96</span></p></td><td class="cl-f730d696"><p class="cl-a1958ec5"><span class="cl-d19a4b32">1,012.70</span></p></td><td class="cl-ad828dc5"><p class="cl-a1958ec5"><span class="cl-d19a4b32">0.99</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-94fcb90f"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,018.00</span></p></td><td class="cl-34e0eb82"><p class="cl-a1958ec5"><span class="cl-d19a4b32">5.83</span></p></td><td class="cl-f730d696"><p class="cl-a1958ec5"><span class="cl-d19a4b32">985.64</span></p></td><td class="cl-ad828dc5"><p class="cl-a1958ec5"><span class="cl-d19a4b32">0.99</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7758982b"><p class="cl-a1958ec5"><span class="cl-d19a4b32">2,024.00</span></p></td><td class="cl-7b5e343f"><p class="cl-a1958ec5"><span class="cl-d19a4b32">5.38</span></p></td><td class="cl-5992f72b"><p class="cl-a1958ec5"><span class="cl-d19a4b32">795.60</span></p></td><td class="cl-5c5fc35a"><p class="cl-a1958ec5"><span class="cl-d19a4b32">0.99</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>The map shows the difference in value (refined minus baseline) for 2018. Red cells gain value with the refinement and blue cells lose it.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>diff_data <span class="ot">&lt;-</span> (refined_10km[[<span class="dv">4</span>]] <span class="sc">-</span> base_10km[[<span class="dv">4</span>]]) <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="st">"difference"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(<span class="at">xy =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">abs</span>(difference) <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>diff_limit <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">quantile</span>(<span class="fu">abs</span>(diff_data<span class="sc">$</span>difference), <span class="fl">0.99</span>))</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diff_data) <span class="sc">+</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> <span class="fu">pmax</span>(<span class="fu">pmin</span>(difference, diff_limit), <span class="sc">-</span>diff_limit))) <span class="sc">+</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> countries, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient2</span>(</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">low =</span> <span class="st">"#2166ac"</span>, <span class="at">mid =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"#b2182b"</span>,</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Million euro</span><span class="sc">\n</span><span class="st">(2010 prices)</span><span class="sc">\n</span><span class="st">per 10 km cell"</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">2.6e6</span>, <span class="fl">6.6e6</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">1.4e6</span>, <span class="fl">5.4e6</span>), <span class="at">datum =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/clc-difference-map-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The refined maps depend on a second dataset that was mapped independently of FAWS, so they are offered as an option and the baseline remains the main result.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">export_table</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  comparison <span class="sc">|&gt;</span> <span class="fu">rename_with</span>(\(x) <span class="fu">gsub</span>(<span class="st">"[^A-Za-z0-9]+"</span>, <span class="st">"_"</span>, x)),</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"corine_refinement_value_comparison_with_baseline"</span>,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dir =</span> refine_results_dir</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="exports" class="level1">
+<h1>Exports</h1>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>monetary_export <span class="ot">&lt;-</span> monetary <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    geo, year,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    nai_1000m3,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">export_uv_eur_m3 =</span> export_uv,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ratio_export_to_timber =</span> ratio,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">ratio_source =</span> ratio_fill,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    unit_value_eur_m3,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    value_mio_eur_current,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    deflator,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    value_mio_eur_constant</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="fu">export_table</span>(monetary_export, <span class="st">"wood_value_country_year"</span>)</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>writexl<span class="sc">::</span><span class="fu">write_xlsx</span>(</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">value_report_years =</span> monetary_export <span class="sc">|&gt;</span> <span class="fu">filter</span>(year <span class="sc">%in%</span> years_report),</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">deflator =</span> deflator,</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">parameters =</span> <span class="fu">tibble</span>(</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">parameter =</span> <span class="fu">c</span>(<span class="st">"base_year"</span>, <span class="st">"country_years"</span>, <span class="st">"eu_years"</span>, <span class="st">"deflator"</span>),</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> <span class="fu">c</span>(</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>        base_year,</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(<span class="fu">range</span>(country_years), <span class="at">collapse =</span> <span class="st">"-"</span>),</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(<span class="fu">range</span>(eu_years), <span class="at">collapse =</span> <span class="st">"-"</span>),</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"HICP all items, EU27 (2020), annual average"</span></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(results_dir, <span class="st">"wood_value_summary.xlsx"</span>)</span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="downloads" class="level1">
+<h1>Downloads</h1>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>downloads <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">File =</span> <span class="fu">c</span>(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"wood_value_country_year.xlsx"</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"wood_value_country_year.rds"</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"wood_value_summary.xlsx"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"wood_value_constant_1km_%s.tif"</span>, years_report)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Folder =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"results"</span>, <span class="dv">3</span>), <span class="fu">rep</span>(<span class="st">"gis"</span>, <span class="fu">length</span>(years_report))),</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Description =</span> <span class="fu">c</span>(</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Unit values, nominal and constant-price value by country and year, with the origin of the ratio"</span>,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"The same panel as an R object"</span>,</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Reporting-year table, deflator and parameters"</span>,</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"Value of NAI of FAWS in %s, million euro in 2010 prices per 1 km cell, EPSG:3035"</span>, years_report)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">File =</span> <span class="fu">c</span>(</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"corine_refinement_value_comparison_with_baseline.xlsx"</span>,</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sprintf</span>(<span class="st">"corine_refinement_wood_value_constant_1km_%s.tif"</span>, years_report)</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">Folder =</span> <span class="fu">c</span>(<span class="st">"results/corine_refinement"</span>, <span class="fu">rep</span>(<span class="st">"gis/corine_refinement"</span>, <span class="fu">length</span>(years_report))),</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">Description =</span> <span class="fu">c</span>(</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Refinement: how far the refined value maps differ from the baseline maps, by year"</span>,</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sprintf</span>(<span class="st">"Refinement: value of NAI of FAWS in %s spread over FAWS and CLC forest, million euro in 2010 prices per 1 km cell"</span>, years_report)</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Path =</span> <span class="fu">file.path</span>(<span class="st">"../../../data/outputs"</span>, Folder, File))</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a><span class="fu">flextable</span>(downloads, <span class="at">col_keys =</span> <span class="fu">c</span>(<span class="st">"File"</span>, <span class="st">"Description"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compose</span>(</span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">j =</span> <span class="st">"File"</span>,</span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="fu">as_paragraph</span>(<span class="fu">hyperlink_text</span>(<span class="at">x =</span> File, <span class="at">url =</span> Path))</span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fontsize</span>(<span class="at">size =</span> <span class="dv">9</span>, <span class="at">part =</span> <span class="st">"all"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autofit</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-d8bad469{}.cl-d19a4b32{font-family:'Helvetica';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-6477613b{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7c3d33d0{width:3.447in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e9819da9{width:6.885in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-deca212d{width:3.447in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fe874cb3{width:6.885in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-60dbb1f5{width:3.447in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d7b6f164{width:6.885in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-d8bad469"><thead><tr style="overflow-wrap:break-word;"><th class="cl-7c3d33d0"><p class="cl-6477613b"><span class="cl-d19a4b32">File</span></p></th><th class="cl-e9819da9"><p class="cl-6477613b"><span class="cl-d19a4b32">Description</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-deca212d"><p class="cl-6477613b"><a href="../../../data/outputs/results/wood_value_country_year.xlsx"><span class="cl-d19a4b32">wood_value_country_year.xlsx</span></a></p></td><td class="cl-fe874cb3"><p class="cl-6477613b"><span class="cl-d19a4b32">Unit values, nominal and constant-price value by country and year, with the origin of the ratio</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-deca212d"><p class="cl-6477613b"><a href="../../../data/outputs/results/wood_value_country_year.rds"><span class="cl-d19a4b32">wood_value_country_year.rds</span></a></p></td><td class="cl-fe874cb3"><p class="cl-6477613b"><span class="cl-d19a4b32">The same panel as an R object</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-deca212d"><p class="cl-6477613b"><a href="../../../data/outputs/results/wood_value_summary.xlsx"><span class="cl-d19a4b32">wood_value_summary.xlsx</span></a></p></td><td class="cl-fe874cb3"><p class="cl-6477613b"><span class="cl-d19a4b32">Reporting-year table, deflator and parameters</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-deca212d"><p class="cl-6477613b"><a href="../../../data/outputs/gis/wood_value_constant_1km_2000.tif"><span class="cl-d19a4b32">wood_value_constant_1km_2000.tif</span></a></p></td><td class="cl-fe874cb3"><p class="cl-6477613b"><span class="cl-d19a4b32">Value of NAI of FAWS in 2000, million euro in 2010 prices per 1 km cell, EPSG:3035</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-deca212d"><p class="cl-6477613b"><a href="../../../data/outputs/gis/wood_value_constant_1km_2006.tif"><span class="cl-d19a4b32">wood_value_constant_1km_2006.tif</span></a></p></td><td class="cl-fe874cb3"><p class="cl-6477613b"><span class="cl-d19a4b32">Value of NAI of FAWS in 2006, million euro in 2010 prices per 1 km cell, EPSG:3035</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-deca212d"><p class="cl-6477613b"><a href="../../../data/outputs/gis/wood_value_constant_1km_2012.tif"><span class="cl-d19a4b32">wood_value_constant_1km_2012.tif</span></a></p></td><td class="cl-fe874cb3"><p class="cl-6477613b"><span class="cl-d19a4b32">Value of NAI of FAWS in 2012, million euro in 2010 prices per 1 km cell, EPSG:3035</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-deca212d"><p class="cl-6477613b"><a href="../../../data/outputs/gis/wood_value_constant_1km_2018.tif"><span class="cl-d19a4b32">wood_value_constant_1km_2018.tif</span></a></p></td><td class="cl-fe874cb3"><p class="cl-6477613b"><span class="cl-d19a4b32">Value of NAI of FAWS in 2018, million euro in 2010 prices per 1 km cell, EPSG:3035</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-deca212d"><p class="cl-6477613b"><a href="../../../data/outputs/gis/wood_value_constant_1km_2024.tif"><span class="cl-d19a4b32">wood_value_constant_1km_2024.tif</span></a></p></td><td class="cl-fe874cb3"><p class="cl-6477613b"><span class="cl-d19a4b32">Value of NAI of FAWS in 2024, million euro in 2010 prices per 1 km cell, EPSG:3035</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-deca212d"><p class="cl-6477613b"><a href="../../../data/outputs/results/corine_refinement/corine_refinement_value_comparison_with_baseline.xlsx"><span class="cl-d19a4b32">corine_refinement_value_comparison_with_baseline.xlsx</span></a></p></td><td class="cl-fe874cb3"><p class="cl-6477613b"><span class="cl-d19a4b32">Refinement: how far the refined value maps differ from the baseline maps, by year</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-deca212d"><p class="cl-6477613b"><a href="../../../data/outputs/gis/corine_refinement/corine_refinement_wood_value_constant_1km_2000.tif"><span class="cl-d19a4b32">corine_refinement_wood_value_constant_1km_2000.tif</span></a></p></td><td class="cl-fe874cb3"><p class="cl-6477613b"><span class="cl-d19a4b32">Refinement: value of NAI of FAWS in 2000 spread over FAWS and CLC forest, million euro in 2010 prices per 1 km cell</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-deca212d"><p class="cl-6477613b"><a href="../../../data/outputs/gis/corine_refinement/corine_refinement_wood_value_constant_1km_2006.tif"><span class="cl-d19a4b32">corine_refinement_wood_value_constant_1km_2006.tif</span></a></p></td><td class="cl-fe874cb3"><p class="cl-6477613b"><span class="cl-d19a4b32">Refinement: value of NAI of FAWS in 2006 spread over FAWS and CLC forest, million euro in 2010 prices per 1 km cell</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-deca212d"><p class="cl-6477613b"><a href="../../../data/outputs/gis/corine_refinement/corine_refinement_wood_value_constant_1km_2012.tif"><span class="cl-d19a4b32">corine_refinement_wood_value_constant_1km_2012.tif</span></a></p></td><td class="cl-fe874cb3"><p class="cl-6477613b"><span class="cl-d19a4b32">Refinement: value of NAI of FAWS in 2012 spread over FAWS and CLC forest, million euro in 2010 prices per 1 km cell</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-deca212d"><p class="cl-6477613b"><a href="../../../data/outputs/gis/corine_refinement/corine_refinement_wood_value_constant_1km_2018.tif"><span class="cl-d19a4b32">corine_refinement_wood_value_constant_1km_2018.tif</span></a></p></td><td class="cl-fe874cb3"><p class="cl-6477613b"><span class="cl-d19a4b32">Refinement: value of NAI of FAWS in 2018 spread over FAWS and CLC forest, million euro in 2010 prices per 1 km cell</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-60dbb1f5"><p class="cl-6477613b"><a href="../../../data/outputs/gis/corine_refinement/corine_refinement_wood_value_constant_1km_2024.tif"><span class="cl-d19a4b32">corine_refinement_wood_value_constant_1km_2024.tif</span></a></p></td><td class="cl-d7b6f164"><p class="cl-6477613b"><span class="cl-d19a4b32">Refinement: value of NAI of FAWS in 2024 spread over FAWS and CLC forest, million euro in 2010 prices per 1 km cell</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</section>
+<section id="limitations" class="level1">
+<h1>Limitations</h1>
+<ul>
+<li>The unit value of timber is observed for few countries before 2012. In those years most of the value comes from the export price divided by an average ratio, so the monetary series is better read as an estimate than as a measurement.</li>
+<li>Roundwood export prices include harvesting and transport, whereas <code>for_sup_cp</code> values standing trees. The ratio between them is large (a median of several times), and it is the weakest link of the method. It is inherited from the INCA approach.</li>
+<li>NAI of FAWS partly comes from total forest NAI (see the physical document), and the monetary value inherits that. The sensitivity check of the physical document applies here proportionally.</li>
+<li>A single EU27 deflator is applied to all countries, as in the plugin.</li>
+<li>The baseline spatial key is a 2020 map, so maps of earlier years apply the 2020 pattern. The Corine refinement adds change over time, with the limits discussed in the physical document.</li>
+</ul>
+</section>
+<section id="references" class="level1 unnumbered">
+<h1 class="unnumbered">References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-eurostat2026hicp" class="csl-entry" role="listitem">
+Eurostat. (2026a). <em>HICP, annual data (average index and rate of change) [prc_hicp_aind]</em>. Eurostat database. Retrieved from <a href="https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_aind">https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_aind</a>
+</div>
+<div id="ref-eurostat2026forbasic" class="csl-entry" role="listitem">
+Eurostat. (2026b). <em>Roundwood, fuelwood and other basic products [for_basic]</em>. Eurostat database. Retrieved from <a href="https://ec.europa.eu/eurostat/databrowser/view/for_basic">https://ec.europa.eu/eurostat/databrowser/view/for_basic</a>
+</div>
+<div id="ref-eurostat2026forsupcp" class="csl-entry" role="listitem">
+Eurostat. (2026c). <em>Supply and use of products within forestry [for_sup_cp]</em>. Eurostat database. Retrieved from <a href="https://ec.europa.eu/eurostat/databrowser/view/for_sup_cp">https://ec.europa.eu/eurostat/databrowser/view/for_sup_cp</a>
+</div>
+<div id="ref-lanotte2021" class="csl-entry" role="listitem">
+La Notte, A., Vallecillo, S., Garcia-Bendito, E., Grammatikopoulou, I., Czúcz, B., Ferrini, S., … Maes, J. (2021). <em>Ecosystem services accounting. Part III: Pilot accounts for habitat and species maintenance, on-site soil retention and water purification</em> (No. EUR 30856 EN, JRC126566). Publications Office of the European Union.
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/renatovargas\.github\.io\/jrc-wood-provision\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/renatovargas/jrc-wood-provision/blob/main/documentation/methods/monetary-valuation/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li></ul></div></div></div></footer></body></html>
