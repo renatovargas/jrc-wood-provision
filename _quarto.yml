@@ -20,10 +20,18 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: documentation/methods/wood-provision/index.qmd
-        text: Wood provision
-      - href: documentation/methods/monetary-valuation/index.qmd
-        text: Monetary valuation
+      - href: documentation/index.qmd
+        text: Documents
+  sidebar:
+    - id: methods
+      title: "Documents"
+      style: docked
+      contents:
+        - documentation/index.qmd
+        - section: "Methods"
+          contents:
+            - documentation/methods/wood-provision/index.qmd
+            - documentation/methods/monetary-valuation/index.qmd
 
 format:
   html:

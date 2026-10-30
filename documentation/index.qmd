@@ -1,0 +1,17 @@
+---
+title: "Documents"
+---
+
+This section collects the documents that describe, step by step and in R, how the wood provision
+ecosystem service is updated. Each document is a runnable routine, so the procedure can be inspected
+and repeated from the repository. Every document can also be downloaded as a PDF.
+
+## Methods
+
+[Wood provision](methods/wood-provision/index.qmd)
+: Builds the physical accounts. It estimates the net annual increment of forest available for wood
+  supply by country for 2000 to 2024, compares it with removals to flag overuse, and maps it at 1 km
+  resolution.
+
+[Monetary valuation](methods/monetary-valuation/index.qmd)
+: Gives the physical flow a value in euro, in current and constant (2010) prices, and maps it.
