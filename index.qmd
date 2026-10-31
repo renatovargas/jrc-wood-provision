@@ -11,10 +11,10 @@ Each page is a runnable document, so the procedure can be inspected and repeated
 
 - [Wood provision](documentation/methods/wood-provision/index.qmd) builds the physical accounts. It
   estimates the net annual increment of forest available for wood supply by country for 2000 to 2024,
-  compares it with removals to flag overuse, and maps it at 1 km resolution.
+  compares it with removals to flag overuse, and maps it at 1 km and 100 m resolution over the forest of each year,
+  weighted by the productivity of the vegetation.
 - [Monetary valuation](documentation/methods/monetary-valuation/index.qmd) gives that flow a value in
   euro, in current and constant (2010) prices, and maps it.
 
-Both pages include an optional refinement that uses Corine Land Cover to let the maps change over
-time, with its outputs kept separate. The tables and maps produced are available for download at the end
-of each page.
+The tables and maps produced are available for download at the end of each page. The 100 m maps are too large
+for the repository and are kept in an external folder.

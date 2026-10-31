@@ -66,8 +66,8 @@ average, which is the weakest part of the method and is reported openly in the t
 ::: {.callout-important}
 ## Run the physical document first
 
-This page reads `data/outputs/results/wood_nai_faws_country_year.rds` and the 1 km FAWS shares
-in `data/inputs/faws/`. Both are committed to the repository, so nothing needs to be rerun unless
+This page reads `data/outputs/results/wood_nai_faws_country_year.rds` and the 1 km weights
+in `data/inputs/weights/`. Both are committed to the repository, so nothing needs to be rerun unless
 the physical series changes.
 :::
 
@@ -123,12 +123,12 @@ eu_years <- 2012:2023
 # Inputs
 nai_file <- "data/outputs/results/wood_nai_faws_country_year.rds"
 overuse_file <- "data/outputs/results/wood_overuse_country_year.rds"
-nuts_weights_file <- "data/inputs/faws/faws_weight_by_nuts.rds"
+nuts_weights_file <- "data/inputs/weights/weight_by_nuts.rds"
 sup_file <- "data/inputs/eurostat/for_sup_cp_p1tr.rds"
 basic_file <- "data/inputs/eurostat/for_basic_rw_exports.rds"
 hicp_file <- "data/inputs/eurostat/hicp_eu27.rds"
 countries_file <- "data/inputs/gis/NUTS_RG_01M_2024_3035_LEVL0.gpkg"
-faws_share_file <- "data/inputs/faws/FAWS_2020_EU27_1km.tif"
+weights_dir <- "data/inputs/weights"
 
 # Outputs
 results_dir <- "data/outputs/results"
@@ -360,19 +360,21 @@ monetary |>
 
 # Spatial component
 
-The monetary flow is spread with the spatial key of the physical document: inside each country,
-in proportion to the share of every 1 km cell that is FAWS. Every cell of a country therefore has
-the same unit value, and the pattern of the monetary map is the pattern of the NAI map.
+The monetary flow is spread with the spatial key of the physical document. Inside each country, it is
+spread in proportion to the weight of every 1 km cell, which is the share of forest of the year times the
+annual productivity of the vegetation. Every cell of a country therefore has the same unit value, and the
+pattern of the monetary map is the pattern of the NAI map.
 
 ```{r}
 #| label: spatial-inputs
 
-faws_share <- rast(faws_share_file)
 eu_countries <- vect(countries_file)
 eu_countries <- eu_countries[eu_countries$eu27, ]
+weights <- lapply(years_report, \(y) rast(file.path(weights_dir, sprintf("clc_gdmp_weight_1km_%s.tif", y))))
+names(weights) <- years_report
 
-country_ids <- make_country_ids(eu_countries, faws_share)
-weight_sums <- country_weight_sums(faws_share, country_ids)
+country_ids <- make_country_ids(eu_countries, weights[[1]])
+weight_sums <- lapply(weights, country_weight_sums, country_ids = country_ids)
 ```
 
 To keep the repository light, the maps are written in constant prices only. They are
@@ -384,14 +386,14 @@ the ones used to compare years. The nominal values by country are in the exporte
 for (yr in years_report) {
   value_map <- spread_totals(
     totals = monetary |> filter(year == yr) |> select(geo, value = value_mio_eur_constant),
-    weight = faws_share,
+    weight = weights[[as.character(yr)]],
     country_ids = country_ids,
-    weight_sums = weight_sums
+    weight_sums = weight_sums[[as.character(yr)]]
   )
   names(value_map) <- paste0("value_constant_", yr)
   writeRaster(
     value_map,
-    file.path(gis_dir, sprintf("wood_value_constant_1km_%s.tif", yr)),
+    file.path(gis_dir, sprintf("wood_value_constant_clc_gdmp_1km_%s.tif", yr)),
     overwrite = TRUE,
     datatype = "FLT4S",
     gdal = c("COMPRESS=DEFLATE", "PREDICTOR=3", "TILED=YES")
@@ -404,7 +406,7 @@ for (yr in years_report) {
 ```{r}
 #| label: conservation-check
 
-value_maps <- rast(file.path(gis_dir, sprintf("wood_value_constant_1km_%s.tif", years_report)))
+value_maps <- rast(file.path(gis_dir, sprintf("wood_value_constant_clc_gdmp_1km_%s.tif", years_report)))
 
 national_totals <- monetary |>
   filter(year %in% years_report) |>
@@ -423,7 +425,9 @@ tibble(
 
 ## Maps
 
-The maps are shown at 10 km, as the sum of 100 cells of 1 km.
+The maps are shown at 10 km, as the sum of 100 cells of 1 km. The maps at 100 m are written by
+`scripts/07_write_maps_100m.R`, which applies the same key and checks that the cells of each country add up to
+its national value. They are too large for the repository and are in the external folder listed in the downloads.
 
 ```{r}
 #| label: value-maps
@@ -444,148 +448,6 @@ ggplot(map_data) +
   coord_sf(xlim = c(2.6e6, 6.6e6), ylim = c(1.4e6, 5.4e6), datum = NA) +
   theme_void() +
   labs(x = NULL, y = NULL)
-```
-
-# Refinement: Corine Land Cover forest by year
-
-::: {.callout-important}
-## Optional refinement with its own outputs
-
-The maps above are the baseline. This section repeats the spatial step with the spatial key of the
-Corine refinement of the [physical document](../wood-provision/), which is the 100 m overlap of FAWS
-and Corine Land Cover forest of each epoch (CLC 2018 is used for 2024). It writes only to
-`data/outputs/gis/corine_refinement/` and `data/outputs/results/corine_refinement/`, and every file name
-starts with `corine_refinement_`.
-:::
-
-The national monetary values are the same as in the baseline, so only their placement inside each
-country changes. The weights are the 1 km files produced by `scripts/05_prepare_clc.R`.
-
-```{r}
-#| label: clc-weights
-
-clc_epochs <- c("2000", "2006", "2012", "2018")
-clc_for_year <- c(`2000` = "2000", `2006` = "2006", `2012` = "2012", `2018` = "2018", `2024` = "2018")
-
-refine_gis_dir <- file.path(gis_dir, "corine_refinement")
-refine_results_dir <- file.path(results_dir, "corine_refinement")
-dir.create(refine_gis_dir, showWarnings = FALSE, recursive = TRUE)
-dir.create(refine_results_dir, showWarnings = FALSE, recursive = TRUE)
-
-clc_weights <- lapply(clc_epochs, \(e) rast(sprintf("data/inputs/corine/FAWS_x_CLC%s_1km.tif", e)))
-names(clc_weights) <- clc_epochs
-
-clc_weight_sums <- lapply(clc_weights, country_weight_sums, country_ids = country_ids)
-```
-
-```{r}
-#| label: clc-spread-value
-
-for (yr in years_report) {
-  epoch <- clc_for_year[[as.character(yr)]]
-  refined_map <- spread_totals(
-    totals = monetary |> filter(year == yr) |> select(geo, value = value_mio_eur_constant),
-    weight = clc_weights[[epoch]],
-    country_ids = country_ids,
-    weight_sums = clc_weight_sums[[epoch]]
-  )
-  names(refined_map) <- paste0("value_clc_", yr)
-  writeRaster(
-    refined_map,
-    file.path(refine_gis_dir, sprintf("corine_refinement_wood_value_constant_1km_%s.tif", yr)),
-    overwrite = TRUE,
-    datatype = "FLT4S",
-    gdal = c("COMPRESS=DEFLATE", "PREDICTOR=3", "TILED=YES")
-  )
-}
-```
-
-## Conservation check
-
-```{r}
-#| label: clc-conservation
-
-refined_maps <- rast(
-  file.path(refine_gis_dir, sprintf("corine_refinement_wood_value_constant_1km_%s.tif", years_report))
-)
-
-tibble(
-  Year = years_report,
-  `CLC epoch` = unname(clc_for_year[as.character(years_report)]),
-  `Sum of maps (million euro)` = global(refined_maps, "sum", na.rm = TRUE)[[1]],
-  `Sum of national values (million euro)` = national_totals
-) |>
-  mutate(`Difference (%)` = 100 * (`Sum of maps (million euro)` / `Sum of national values (million euro)` - 1)) |>
-  show_table(digits = 2)
-```
-
-## Comparison with the baseline
-
-Each country has one unit value, so inside a country the monetary map is the NAI map multiplied
-by a constant. The comparison below therefore shows the same pattern of differences as in the
-physical document, in money terms. The table gives the share of the value that sits in a different
-10 km cell, and the correlation between the two maps.
-
-```{r}
-#| label: clc-comparison
-
-base_10km <- aggregate(value_maps, fact = 10, fun = "sum", na.rm = TRUE)
-refined_10km <- aggregate(refined_maps, fact = 10, fun = "sum", na.rm = TRUE)
-
-comparison <- tibble(
-  Year = years_report,
-  `Value moved (% of total)` = sapply(seq_along(years_report), \(i) {
-    100 * 0.5 * global(abs(refined_10km[[i]] - base_10km[[i]]), "sum", na.rm = TRUE)[[1]] /
-      global(base_10km[[i]], "sum", na.rm = TRUE)[[1]]
-  }),
-  `Value moved (million euro)` = sapply(seq_along(years_report), \(i) {
-    0.5 * global(abs(refined_10km[[i]] - base_10km[[i]]), "sum", na.rm = TRUE)[[1]]
-  }),
-  `Correlation of cells` = sapply(seq_along(years_report), \(i) {
-    cor(values(base_10km[[i]]), values(refined_10km[[i]]), use = "complete.obs")
-  })
-)
-
-show_table(comparison, digits = 2)
-```
-
-The map shows the difference in value (refined minus baseline) for 2018. Red cells gain value with the
-refinement and blue cells lose it.
-
-```{r}
-#| label: clc-difference-map
-#| fig-height: 6
-#| fig-width: 6
-
-diff_data <- (refined_10km[[4]] - base_10km[[4]]) |>
-  setNames("difference") |>
-  as.data.frame(xy = TRUE) |>
-  filter(abs(difference) > 0)
-
-diff_limit <- as.numeric(quantile(abs(diff_data$difference), 0.99))
-
-ggplot(diff_data) +
-  geom_tile(aes(x = x, y = y, fill = pmax(pmin(difference, diff_limit), -diff_limit))) +
-  geom_sf(data = countries, fill = NA, linewidth = 0.1) +
-  scale_fill_gradient2(
-    low = "#2166ac", mid = "white", high = "#b2182b",
-    name = "Million euro\n(2010 prices)\nper 10 km cell"
-  ) +
-  coord_sf(xlim = c(2.6e6, 6.6e6), ylim = c(1.4e6, 5.4e6), datum = NA) +
-  theme_void()
-```
-
-The refined maps depend on a second dataset that was mapped independently of FAWS, so they are
-offered as an option and the baseline remains the main result.
-
-```{r}
-#| label: clc-export
-
-export_table(
-  comparison |> rename_with(\(x) gsub("[^A-Za-z0-9]+", "_", x)),
-  "corine_refinement_value_comparison_with_baseline",
-  dir = refine_results_dir
-)
 ```
 
 # Exports
@@ -650,31 +512,24 @@ downloads <- tibble(
     "wood_value_country_year.rds",
     "wood_value_summary.xlsx",
     "wood_provision_results.xlsx",
-    sprintf("wood_value_constant_1km_%s.tif", years_report)
+    sprintf("wood_value_constant_clc_gdmp_1km_%s.tif", years_report),
+    "100 m maps: flow and value, 2000 to 2024 (Dropbox folder)"
   ),
-  Folder = c(rep("results", 4), rep("gis", length(years_report))),
+  Folder = c(rep("results", 4), rep("gis", length(years_report)), "external"),
   Description = c(
     "Unit values, nominal and constant-price value by country and year, with the origin of the ratio",
     "The same panel as an R object",
     "Reporting-year table, deflator and parameters",
     "Results tables for NUTS0, NUTS2 and NUTS3 in physical and monetary terms",
-    sprintf("Value of NAI of FAWS in %s, million euro in 2010 prices per 1 km cell, EPSG:3035", years_report)
+    sprintf("Value of NAI in %s, million euro in 2010 prices per 1 km cell, EPSG:3035", years_report),
+    "Maps of the NAI and of its value at 100 m for the five reporting years. They are too large for the repository and are kept in an external folder with a README"
   )
 ) |>
-  bind_rows(
-    tibble(
-      File = c(
-        "corine_refinement_value_comparison_with_baseline.xlsx",
-        sprintf("corine_refinement_wood_value_constant_1km_%s.tif", years_report)
-      ),
-      Folder = c("results/corine_refinement", rep("gis/corine_refinement", length(years_report))),
-      Description = c(
-        "Refinement: how far the refined value maps differ from the baseline maps, by year",
-        sprintf("Refinement: value of NAI of FAWS in %s spread over FAWS and CLC forest, million euro in 2010 prices per 1 km cell", years_report)
-      )
-    )
-  ) |>
-  mutate(Path = file.path("../../../data/outputs", Folder, File))
+  mutate(Path = if_else(
+    Folder == "external",
+    "https://www.dropbox.com/scl/fo/v4hxro4cb600n8jj98j28/AIOkKqQsECgwZdttaoXRx3s?rlkey=lcc6aq55oxtlb2wfrku40blh5&st=1l044409&dl=0",
+    file.path("../../../data/outputs", Folder, File)
+  ))
 
 flextable(downloads, col_keys = c("File", "Description")) |>
   compose(
@@ -696,8 +551,9 @@ flextable(downloads, col_keys = c("File", "Description")) |>
 - NAI of FAWS partly comes from total forest NAI (see the physical document), and the monetary
   value inherits that. The sensitivity check of the physical document applies here proportionally.
 - A single EU27 deflator is applied to all countries, as in the plugin.
-- The baseline spatial key is a 2020 map, so maps of earlier years apply the 2020 pattern. The
-  Corine refinement adds change over time, with the limits discussed in the physical document.
+- The spatial key is forest of the year times the productivity of the vegetation, so it does not distinguish
+  forest available for wood supply from forest that is not. The maps of 2018 and 2024 use a finer productivity
+  product than the earlier years, as explained in the physical document.
 
 # References {.unnumbered}
 

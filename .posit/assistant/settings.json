@@ -21,7 +21,8 @@
       "*.yml": "allow",
       "*.R": "allow",
       "*.bib": "allow",
-      "*.qmd": "allow"
+      "*.qmd": "allow",
+      "*.txt": "allow"
     },
     "positronCommand": {
       "positronPackages.getPackages": "allow"

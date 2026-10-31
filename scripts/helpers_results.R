@@ -14,15 +14,15 @@ results_number_format <- "#,##0.0"
 #' Regional values from national values.
 #'
 #' National values are shared among the NUTS2 and NUTS3 regions of a country in proportion to
-#' the FAWS weight of the region (the spatial key of the maps), so regions add up to the country.
+#' the weight of the region in the year (the spatial key of the maps), so regions add up to the country.
 #'
 #' @param national Data frame with `geo` and `year` and the columns in `cols`.
 #' @param cols Names of the numeric columns to share.
-#' @param nuts_weights Table of `level`, `nuts_id`, `name`, `geo` and `share`.
+#' @param nuts_weights Table of `year`, `level`, `nuts_id`, `name`, `geo` and `share`.
 #' @return Data frame with `level`, `nuts_id`, `name`, `geo`, `year` and the columns in `cols`.
 to_nuts_levels <- function(national, cols, nuts_weights) {
   regions <- nuts_weights |>
-    inner_join(national, by = "geo", relationship = "many-to-many") |>
+    inner_join(national, by = c("geo", "year")) |>
     mutate(across(all_of(cols), \(v) v * share)) |>
     select(level, nuts_id, name, geo, year, all_of(cols))
 
@@ -175,7 +175,7 @@ write_results_workbook <- function(overuse, nuts_weights, years, base_year, path
            " as the base year (Eurostat HICP, EU-27)."),
     "One sheet per output table and NUTS level (NUTS0, NUTS2, NUTS3). Sheet names start with Flow or Overuse, then phys or mon.",
     "Actual flow is the net annual increment (NAI) of FAWS. Sustainable flow is the removals up to the NAI. Overuse is the removals above the NAI.",
-    "National values come from Eurostat. NUTS2 and NUTS3 values share the national value in proportion to the FAWS weight of each region, so regions add up to the country.",
+    "National values come from Eurostat. NUTS2 and NUTS3 values share the national value in proportion to the weight of each region in the spatial key, so regions add up to the country.",
     "Monetary values are the physical values times the national unit value of NAI, in million euro.",
     if (is.null(monetary)) "Monetary sheets are added when the monetary valuation document is run." else NULL,
     "The Checks sheet compares the NUTS2 and NUTS3 totals with the NUTS0 total for every table, metric and year.",

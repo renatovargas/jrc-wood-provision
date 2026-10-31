@@ -31,11 +31,9 @@ The routine has five components, in this order:
    2018 and 2024;
 2. the **overuse check**, which compares removals with NAI and flags country-years in which
    removals exceed NAI;
-3. the **spatial component**, which spreads each national NAI over the map of forest available for
-   wood supply in 2020 [@jrc2026faws], so that the pixels of a country add up to its national value;
-4. an optional **refinement**, which repeats the spatial step with Corine Land Cover forest of each
-   epoch and compares it with the baseline, with outputs kept apart;
-5. the **exports**, which write the tables and maps to `data/outputs/` for download.
+3. the **spatial component**, which spreads each national NAI over the forest of the year, weighted by
+   the productivity of the vegetation, so that the pixels of a country add up to its national value;
+4. the **exports**, which write the tables and maps to `data/outputs/` for download.
 
 ## Key terms
 
@@ -49,6 +47,8 @@ The terms below are used throughout the page.
 | Thousand m3 | The unit of the volumes (1,000 cubic metres), as reported by Eurostat. |
 | Forest available for wood supply (FAWS) | Forest where no environmental, social or economic restriction significantly limits wood supply. Protected areas, steep slopes or remote forests are typical restrictions. |
 | Forest not available for wood supply (FNAWS) | Forest with such restrictions. |
+| Corine Land Cover (CLC) accounting layers | European land cover maps at 100 m for 2000, 2006, 2012, 2018 and 2024. Forest is taken from them. |
+| Gross Dry Matter Productivity (GDMP) | The rate at which vegetation produces dry matter, in kilograms per hectare and day, estimated from satellite images every ten days. |
 | Removals | The volume of wood actually taken out of the forest in a year, which is close to the volume harvested. |
 | Overuse | Removals greater than NAI. Harvesting more than the forest grows depletes the stock of timber, so the service is not sustained. |
 | Spatial disaggregation | Splitting a national statistic over a map, using a proxy that says where the quantity is likely to occur. |
@@ -117,9 +117,9 @@ years_report <- c(2000, 2006, 2012, 2018, 2024)
 # Inputs (committed to the repository)
 eurostat_file <- "data/inputs/eurostat/for_vol_efa_thsm3.rds"
 countries_file <- "data/inputs/gis/NUTS_RG_01M_2024_3035_LEVL0.gpkg"
-faws_share_file <- "data/inputs/faws/FAWS_2020_EU27_1km.tif"
 faws_area_file <- "data/inputs/faws/faws_area_by_country.rds"
-nuts_weights_file <- "data/inputs/faws/faws_weight_by_nuts.rds"
+weights_dir <- "data/inputs/weights"
+nuts_weights_file <- "data/inputs/weights/weight_by_nuts.rds"
 
 # Outputs
 results_dir <- "data/outputs/results"
@@ -130,7 +130,7 @@ dir.create(gis_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Preparing the inputs
 
-Three inputs are too heavy or too raw to live in the repository as downloaded. Each one is reduced
+Four inputs are too heavy or too raw to live in the repository as downloaded. Each one is reduced
 by a short script in `scripts/`, which is run once and whose compact product is committed. The
 scripts read from `refs/`, which is not versioned, so anyone who wants to repeat the reduction
 needs to place the original files there.
@@ -138,12 +138,17 @@ needs to place the original files there.
 | Script | Source | Product in `data/inputs/` |
 |----|----|----|
 | `01_prepare_nuts.R` | Eurostat GISCO NUTS 2024, 1:1 million, shipped with the INCA plugin [@gisco2024nuts] | `gis/NUTS_RG_01M_2024_3035_LEVL0.gpkg`, country polygons in EPSG:3035 |
-| `02_prepare_faws.R` | FAWS 2020 map, 100 m, EU27 [@jrc2026faws] | `faws/FAWS_2020_EU27_1km.tif` (share of each 1 km cell that is FAWS), `faws/FNAWS_2020_EU27_1km.tif` and `faws/faws_area_by_country.rds` (exact hectares by country at 100 m) |
+| `02_prepare_faws.R` | FAWS 2020 map, 100 m, EU27 [@jrc2026faws] | `faws/faws_area_by_country.rds` (exact hectares of FAWS and FNAWS by country at 100 m) |
 | `03_download_eurostat.R` | Eurostat `for_vol_efa`, thousand m3, NAI and removals [@eurostat2026forvolefa] | `eurostat/for_vol_efa_thsm3.rds` and `.csv` |
+| `05_prepare_weights.R` | Corine Land Cover accounting layers, 100 m, version 21 [@eea2026clcacc], and annual Gross Dry Matter Productivity of the Copernicus Land Monitoring Service, 1 km and 300 m, version 2 [@copernicus2020gdmp1km; @copernicus2020gdmp300] | `weights/clc_gdmp_weight_1km_<year>.tif`, the spatial key of each reporting year at 1 km (about 12 MB each) |
+| `06_prepare_nuts_weights.R` | The weights above and the NUTS 2024 regions | `weights/weight_by_nuts.rds`, the share of every NUTS2 and NUTS3 region in the weight of its country, by year |
 
 The FAWS map has two values, 1 and 2. The coding (1 for FAWS, 2 for forest not available) is
 inferred from the pixel counts and the accompanying report [@avitabile2023], since the files do not
-state it. The 100 m map weighs 157 MB, and the 1 km shares weigh about 15 MB in total.
+state it. The FAWS map is used only to measure the share of forest that is available in each country,
+for the sensitivity check below. The annual productivity is the sum of the 36 ten-day values of the year,
+each multiplied by its number of days. Script `05_prepare_weights.R` also keeps the 100 m weights in
+`refs/weights_100m/`, which are used for the 100 m maps and are not versioned.
 
 ```{r}
 #| label: prepare-inputs
@@ -152,6 +157,7 @@ state it. The 100 m map weighs 157 MB, and the 1 km shares weigh about 15 MB in 
 source("scripts/01_prepare_nuts.R", encoding = "UTF-8")
 source("scripts/02_prepare_faws.R", encoding = "UTF-8")
 source("scripts/03_download_eurostat.R", encoding = "UTF-8")
+source("scripts/05_prepare_weights.R", encoding = "UTF-8")
 source("scripts/06_prepare_nuts_weights.R", encoding = "UTF-8")
 ```
 
@@ -393,58 +399,55 @@ overuse |>
 
 ## The spatial key
 
-Chapter 4 of INCA Part II spreads national flows with a productivity proxy over the forest classes
-of Corine Land Cover, and it explains that a map of forest available for wood supply did not
-exist at the time [@vallecillo2019]. That map now exists [@jrc2026faws]. The routine uses
-it as the spatial key: inside each country, the national NAI is spread in proportion to the
-share of every 1 km cell that is available for wood supply. Cells without FAWS get no flow, and
-the cells of a country add up to its national value.
+The spatial key follows the method of the INCA tool and of INCA Part II. Chapter 4 of INCA Part II spreads
+national flows over the forest classes of Corine Land Cover with dry matter productivity as a proxy
+[@vallecillo2019]. The INCA wood provision tool does the same, multiplying a forest mask by an annual
+productivity layer and spreading each national value in proportion to the result. The Earth observation
+roadmap of the INCA project names the Gross Dry Matter Productivity (GDMP) of the Copernicus Land
+Monitoring Service as the proxy for the provisioning services [@zurbaran2025]. A decision was made to
+follow this method. Cells with more productive vegetation add more wood, so they receive a larger part of
+the national NAI.
 
-The FAWS map describes a single year (2020), so the same spatial key is used for every reporting
-year. Changes between years come only from the national statistics.
+The weight of a 100 m cell is 1 if it is forest in the Corine accounting layer of the year (broad-leaved,
+coniferous and mixed forest and transitional woodland and shrub, CLC 311, 312, 313 and 324) and 0
+otherwise, times the annual productivity of the same year. The sources of productivity differ by year. The 1
+km product, version 2, covers 2000, 2006 and 2012 [@copernicus2020gdmp1km]. The 300 m product, version 2,
+covers 2018 and 2024 [@copernicus2020gdmp300]. The weights only share a national value among the cells of a
+country, so a difference in level between the two products does not change any national total. The weight
+of a 1 km cell is the sum of the weights of the 100 cells of 100 m inside it.
 
-Three choices in this step deserve a short explanation. First, the maps use the projection
-EPSG:3035 (ETRS89 Lambert azimuthal equal-area), in which every cell covers the same area on the
-ground, so a share of a cell and a count of cells translate directly into areas. Second, the FAWS map
-is built at 100 m, and the routine summarises it to 1 km cells holding the share of the cell that
-is FAWS. This keeps the delivered files small enough for the repository, and the exact areas
-at 100 m are kept for each country as a reference. Third, the sum of each country is conserved,
-which means that mapping redistributes the national NAI and neither adds nor removes any.
+Inside each country, the national NAI is spread in proportion to the weight of every cell. Cells without
+forest get no flow, and the cells of a country add up to its national value. The forest used for the weight
+is all forest and not only the forest available for wood supply. INCA Part II and the INCA tool do not restrict the
+spatial key to FAWS, because the thresholds that define availability are not common across countries
+and a map built on them can mislead [@vallecillo2019]. The statistic that is spread is still the NAI of
+FAWS.
+
+Three choices in this step deserve a short explanation. First, the maps use the projection EPSG:3035
+(ETRS89 Lambert azimuthal equal-area), in which every cell covers the same area on the ground, so a
+share of a cell and a count of cells translate directly into areas. Second, the weights are built at
+100 m and summed to 1 km, which keeps the files in the repository small. The maps at 100 m are kept
+outside the repository because of their size. Third, the sum of each country is conserved, which means that
+mapping redistributes the national NAI and neither adds nor removes any.
 
 ```{r}
 #| label: spatial-inputs
 
-faws_share <- rast(faws_share_file)
 eu_countries <- vect(countries_file)
 eu_countries <- eu_countries[eu_countries$eu27, ]
+weights <- lapply(years_report, \(y) rast(file.path(weights_dir, sprintf("clc_gdmp_weight_1km_%s.tif", y))))
+names(weights) <- years_report
 ```
 
 ## Country grid and weights
 
-Each 1 km cell is assigned to a country, and the weights of every country are added once. The
-sums are reused for every year.
+Each 1 km cell is assigned to a country, and the weights of every country are added once per year.
 
 ```{r}
 #| label: country-grid
 
-country_ids <- make_country_ids(eu_countries, faws_share)
-weight_sums <- country_weight_sums(faws_share, country_ids)
-```
-
-The weights of the 1 km grid can be compared with the exact hectares computed from the 100 m map.
-The small shortfall comes from cells that fall outside the generalised country polygons, mostly
-on coasts.
-
-```{r}
-#| label: weights-check
-
-weight_sums |>
-  left_join(faws_area, by = "geo") |>
-  summarise(
-    `FAWS in 1 km weights (Mha)` = sum(weight_sum) * 100 / 1e6,
-    `FAWS at 100 m (Mha)` = sum(faws_ha) / 1e6
-  ) |>
-  show_table(digits = 2)
+country_ids <- make_country_ids(eu_countries, weights[[1]])
+weight_sums <- lapply(weights, country_weight_sums, country_ids = country_ids)
 ```
 
 ## Spreading the national NAI
@@ -459,14 +462,14 @@ per 1 km cell, and each year is saved as a compressed GeoTIFF in `data/outputs/g
 for (yr in years_report) {
   flow_map <- spread_totals(
     totals = filter(nai_filled, year == yr),
-    weight = faws_share,
+    weight = weights[[as.character(yr)]],
     country_ids = country_ids,
-    weight_sums = weight_sums
+    weight_sums = weight_sums[[as.character(yr)]]
   )
-  names(flow_map) <- paste0("nai_faws_", yr)
+  names(flow_map) <- paste0("nai_clc_gdmp_", yr)
   writeRaster(
     flow_map,
-    file.path(gis_dir, sprintf("wood_nai_faws_1km_%s.tif", yr)),
+    file.path(gis_dir, sprintf("wood_nai_clc_gdmp_1km_%s.tif", yr)),
     overwrite = TRUE,
     datatype = "FLT4S",
     gdal = c("COMPRESS=DEFLATE", "PREDICTOR=3", "TILED=YES")
@@ -482,7 +485,7 @@ maps back from disk, so it also verifies the files that are delivered.
 ```{r}
 #| label: conservation-check
 
-nai_maps <- rast(file.path(gis_dir, sprintf("wood_nai_faws_1km_%s.tif", years_report)))
+nai_maps <- rast(file.path(gis_dir, sprintf("wood_nai_clc_gdmp_1km_%s.tif", years_report)))
 
 national_totals <- nai_filled |>
   filter(year %in% years_report) |>
@@ -501,24 +504,25 @@ tibble(
   show_table(digits = 2)
 ```
 
-A second check confirms that no country is left without a map although it has a national value.
-A country with a national NAI and no FAWS cells would lose its flow, and the table would list it.
+A second check lists the countries that have a national value and no forest weight in some year. Such a
+country would lose its flow. A national NAI of zero, as in Malta, is not a loss.
 
 ```{r}
 #| label: lost-countries
 
-nai_filled |>
-  filter(year == max(years_report)) |>
-  left_join(weight_sums, by = "geo") |>
-  filter(is.na(weight_sum) | weight_sum <= 0) |>
-  select(Country = geo, `NAI (1000 m3)` = value) |>
+lapply(names(weight_sums), \(y) mutate(weight_sums[[y]], year = as.integer(y))) |>
+  bind_rows() |>
+  right_join(nai_filled |> filter(year %in% years_report), by = c("geo", "year")) |>
+  filter((is.na(weight_sum) | weight_sum <= 0) & value > 0) |>
+  select(Year = year, Country = geo, `NAI (1000 m3)` = value) |>
   show_table(digits = 0)
 ```
 
 ## Maps
 
 The maps are shown at 10 km (sum of the 100 cells of 1 km) so that they draw quickly. The delivered
-files keep the 1 km resolution.
+files keep the 1 km resolution, and the 100 m maps are available in the external folder listed in the
+downloads.
 
 ```{r}
 #| label: nai-maps
@@ -527,8 +531,8 @@ files keep the 1 km resolution.
 
 map_data <- aggregate(nai_maps, fact = 10, fun = "sum", na.rm = TRUE) |>
   as.data.frame(xy = TRUE) |>
-  pivot_longer(starts_with("nai_faws_"), names_to = "year", values_to = "nai") |>
-  mutate(year = sub("nai_faws_", "", year)) |>
+  pivot_longer(starts_with("nai_clc_gdmp_"), names_to = "year", values_to = "nai") |>
+  mutate(year = sub("nai_clc_gdmp_", "", year)) |>
   filter(nai > 0)
 
 ggplot(map_data) +
@@ -541,258 +545,13 @@ ggplot(map_data) +
   labs(x = NULL, y = NULL)
 ```
 
-# Refinement: Corine Land Cover forest by year
+## Maps at 100 m
 
-::: {.callout-important}
-## Optional refinement with its own outputs
-
-Everything above is the baseline and is not changed by this section. The refinement writes to
-the subfolders `data/outputs/gis/corine_refinement/` and `data/outputs/results/corine_refinement/`,
-and every file name starts with `corine_refinement_`, so it cannot be mistaken for the baseline.
-:::
-
-## Why and how
-
-Corine Land Cover is a European land cover map made by photo-interpreting satellite images, with
-44 classes and a minimum mapped unit of 25 ha. It is produced for 1990, 2000, 2006, 2012 and 2018.
-The classes of forest are broad-leaved, coniferous and mixed forest.
-
-The baseline uses the 2020 FAWS pattern for every year. Corine Land Cover (CLC) maps forest
-for 2000, 2006, 2012 and 2018 [@copernicus2020clc], so combining the two lets the spatial key change with forest
-extent. The refined key of a year is the 100 m overlap of FAWS and CLC forest (broad-leaved,
-coniferous and mixed forest, CLC 311, 312 and 313) of that epoch, summed to 1 km shares. The
-national NAI is spread over it in the same way as in the baseline, so the sum of each country is
-conserved. CLC 2018 is the latest epoch and is also used for 2024.
-
-The CLC rasters are 3 GB each as downloaded. The script `scripts/05_prepare_clc.R` reduces them to
-four 1 km files of about 9 MB in `data/inputs/corine/`. The version used is V2020_20u1
-(the Copernicus Land Monitoring Service release that revised all epochs consistently).
-
-```{r}
-#| label: clc-prepare
-#| eval: false
-
-source("scripts/05_prepare_clc.R", encoding = "UTF-8")
-```
-
-## Weights by epoch
-
-```{r}
-#| label: clc-weights
-
-clc_epochs <- c("2000", "2006", "2012", "2018")
-# CLC epoch used for each reporting year
-clc_for_year <- c(`2000` = "2000", `2006` = "2006", `2012` = "2012", `2018` = "2018", `2024` = "2018")
-
-refine_gis_dir <- file.path(gis_dir, "corine_refinement")
-refine_results_dir <- file.path(results_dir, "corine_refinement")
-dir.create(refine_gis_dir, showWarnings = FALSE, recursive = TRUE)
-dir.create(refine_results_dir, showWarnings = FALSE, recursive = TRUE)
-
-clc_weights <- lapply(clc_epochs, \(e) rast(sprintf("data/inputs/corine/FAWS_x_CLC%s_1km.tif", e)))
-names(clc_weights) <- clc_epochs
-
-clc_weight_sums <- lapply(clc_weights, country_weight_sums, country_ids = country_ids)
-```
-
-The table gives the area where FAWS and CLC forest coincide, as a share of the FAWS area. CLC
-forest and FAWS come from different sources and mapping units (CLC has a minimum mapping unit of
-25 ha), so the overlap is partial, and it differs by country.
-
-```{r}
-#| label: clc-overlap
-
-overlap <- bind_rows(clc_weight_sums, .id = "epoch") |>
-  left_join(weight_sums |> rename(faws = weight_sum), by = "geo") |>
-  mutate(
-    overlap_ha = weight_sum * 100,
-    faws_ha_1km = faws * 100,
-    overlap_share = overlap_ha / faws_ha_1km
-  )
-
-overlap |>
-  summarise(
-    `FAWS (Mha)` = sum(faws_ha_1km) / 1e6,
-    `FAWS and CLC forest (Mha)` = sum(overlap_ha) / 1e6,
-    `Overlap (% of FAWS)` = 100 * sum(overlap_ha) / sum(faws_ha_1km),
-    .by = epoch
-  ) |>
-  rename(`CLC epoch` = epoch) |>
-  show_table(digits = 1)
-```
-
-No country loses all of its weights, so every national value can be placed. The countries with
-the lowest overlap in 2018 are listed below, since their refined maps depend most on CLC.
-
-```{r}
-#| label: clc-overlap-lowest
-
-overlap |>
-  filter(epoch == "2018") |>
-  arrange(overlap_share) |>
-  slice_head(n = 6) |>
-  transmute(Country = geo, `Overlap (% of FAWS)` = 100 * overlap_share) |>
-  show_table(digits = 0)
-```
-
-## Spreading the national NAI
-
-```{r}
-#| label: clc-spread
-
-for (yr in years_report) {
-  epoch <- clc_for_year[[as.character(yr)]]
-  refined_map <- spread_totals(
-    totals = filter(nai_filled, year == yr),
-    weight = clc_weights[[epoch]],
-    country_ids = country_ids,
-    weight_sums = clc_weight_sums[[epoch]]
-  )
-  names(refined_map) <- paste0("nai_clc_", yr)
-  writeRaster(
-    refined_map,
-    file.path(refine_gis_dir, sprintf("corine_refinement_wood_nai_faws_1km_%s.tif", yr)),
-    overwrite = TRUE,
-    datatype = "FLT4S",
-    gdal = c("COMPRESS=DEFLATE", "PREDICTOR=3", "TILED=YES")
-  )
-}
-```
-
-The conservation check reads the files back, as in the baseline.
-
-```{r}
-#| label: clc-conservation
-
-refined_maps <- rast(
-  file.path(refine_gis_dir, sprintf("corine_refinement_wood_nai_faws_1km_%s.tif", years_report))
-)
-
-tibble(
-  Year = years_report,
-  `CLC epoch` = unname(clc_for_year[as.character(years_report)]),
-  `Sum of maps (million m3)` = global(refined_maps, "sum", na.rm = TRUE)[[1]] / 1000,
-  `Sum of national values (million m3)` = national_totals
-) |>
-  mutate(
-    `Difference (%)` = 100 * (`Sum of maps (million m3)` / `Sum of national values (million m3)` - 1)
-  ) |>
-  show_table(digits = 2)
-```
-
-## Comparison with the baseline
-
-Both sets of maps hold the same national totals, so differences are only in where the flow falls
-inside each country. For each year, the table reports the share of the total NAI that sits in a
-different place at 10 km resolution, and the correlation between the two maps at that resolution.
-
-```{r}
-#| label: clc-comparison
-
-base_10km <- aggregate(nai_maps, fact = 10, fun = "sum", na.rm = TRUE)
-refined_10km <- aggregate(refined_maps, fact = 10, fun = "sum", na.rm = TRUE)
-
-comparison <- tibble(
-  Year = years_report,
-  `NAI moved (% of total)` = sapply(seq_along(years_report), \(i) {
-    100 * 0.5 * global(abs(refined_10km[[i]] - base_10km[[i]]), "sum", na.rm = TRUE)[[1]] /
-      global(base_10km[[i]], "sum", na.rm = TRUE)[[1]]
-  }),
-  `Correlation of cells` = sapply(seq_along(years_report), \(i) {
-    cor(values(base_10km[[i]]), values(refined_10km[[i]]), use = "complete.obs")
-  })
-)
-
-show_table(comparison, digits = 2)
-```
-
-The maps show the difference (refined minus baseline) for the first and last CLC epochs. Red
-cells receive more flow with the refinement and blue cells receive less.
-
-```{r}
-#| label: clc-difference-map
-#| fig-height: 5
-#| fig-width: 10
-
-diff_data <- (refined_10km[[c(1, 4)]] - base_10km[[c(1, 4)]]) |>
-  setNames(c("2000", "2018")) |>
-  as.data.frame(xy = TRUE) |>
-  pivot_longer(c(`2000`, `2018`), names_to = "year", values_to = "difference") |>
-  filter(abs(difference) > 0)
-
-diff_limit <- as.numeric(quantile(abs(diff_data$difference), 0.99))
-
-ggplot(diff_data) +
-  geom_tile(aes(x = x, y = y, fill = pmax(pmin(difference, diff_limit), -diff_limit))) +
-  geom_sf(data = countries, fill = NA, linewidth = 0.1) +
-  scale_fill_gradient2(
-    low = "#2166ac", mid = "white", high = "#b2182b",
-    name = "1000 m3 per\n10 km cell"
-  ) +
-  facet_wrap(~year, ncol = 2) +
-  coord_sf(xlim = c(2.6e6, 6.6e6), ylim = c(1.4e6, 5.4e6), datum = NA) +
-  theme_void() +
-  labs(x = NULL, y = NULL)
-```
-
-The next chart shows what only the refinement can show, which is the change of the spatial
-pattern between the 2000 and 2018 epochs. For each country, it gives the share of the national NAI
-that would sit in a different cell if the 2018 pattern replaced the 2000 pattern. The baseline
-would show zero for every country.
-
-```{r}
-#| label: clc-pattern-change
-#| fig-height: 6
-#| fig-width: 8
-
-pattern_change <- country_ids$ids |>
-  mutate(
-    # Share of the national NAI per 1 km cell, in 2000 and 2018 epochs
-    gain = sapply(id, \(i) {
-      mask <- country_ids$raster == i
-      a <- clc_weights[["2000"]] * mask
-      b <- clc_weights[["2018"]] * mask
-      sa <- global(a, "sum", na.rm = TRUE)[[1]]
-      sb <- global(b, "sum", na.rm = TRUE)[[1]]
-      if (sa <= 0 || sb <= 0) return(NA_real_)
-      100 * 0.5 * global(abs(a / sa - b / sb), "sum", na.rm = TRUE)[[1]]
-    })
-  )
-
-pattern_change |>
-  filter(!is.na(gain)) |>
-  mutate(geo = reorder(geo, gain)) |>
-  ggplot(aes(x = gain, y = geo)) +
-  geom_col() +
-  labs(x = "Share of national NAI that moves between 2000 and 2018 (%)", y = NULL)
-```
-
-The largest shifts are in Ireland, Portugal and Spain. Part of what looks like change in forest
-may come from differences in how national teams classified land in each CLC epoch, and from
-fires and plantation cycles, so the pattern change should be read with caution and not as a
-measure of forest gain or loss.
-
-The refined maps are more detailed in time and use a second dataset, but they are not obviously
-more accurate. CLC and FAWS were mapped independently, and CLC classes forest at a coarser
-minimum unit than the 100 m FAWS map. The baseline remains the main result, and the refinement
-is an alternative for users who need the change of forest extent over time.
-
-```{r}
-#| label: clc-export
-
-export_table(
-  overlap |>
-    transmute(epoch, geo, faws_ha_1km, overlap_ha, overlap_share),
-  "corine_refinement_faws_clc_overlap_by_country",
-  dir = refine_results_dir
-)
-
-export_table(
-  comparison |> rename_with(\(x) gsub("[^A-Za-z0-9]+", "_", x)),
-  "corine_refinement_comparison_with_baseline",
-  dir = refine_results_dir
-)
-```
+The maps at 100 m use the same key without the summation to 1 km, so a forest cell of 100 m receives its
+share of the national NAI. They are written by `scripts/07_write_maps_100m.R`, with the same conservation
+check, and they are too large for the repository. Each file weighs about 0.6 GB because continuous values
+compress poorly. They are delivered in an external folder together with a README that gives the grid,
+units, method and totals.
 
 # Exports
 
@@ -840,7 +599,7 @@ writexl::write_xlsx(summary_sheets, file.path(results_dir, "wood_provision_summa
 ```
 
 The results workbook has the tables of the actual flow and of the overuse for NUTS0, NUTS2 and NUTS3.
-Regions share the national value in proportion to their FAWS weight, so they add up to the country.
+Regions share the national value in proportion to their weight in the spatial key of the year, so they add up to the country.
 The sheets in monetary terms are added by the monetary valuation document.
 
 ```{r}
@@ -905,32 +664,24 @@ tables_dl <- tibble(
 
 maps_dl <- tibble(
   File = c(
-    sprintf("wood_nai_faws_1km_%s.tif", years_report),
-    "wood_provision_countries.gpkg"
+    sprintf("wood_nai_clc_gdmp_1km_%s.tif", years_report),
+    "wood_provision_countries.gpkg",
+    "100 m maps: flow and value, 2000 to 2024 (Dropbox folder)"
   ),
-  Folder = "gis",
+  Folder = c(rep("gis", length(years_report) + 1), "external"),
   Description = c(
-    sprintf("NAI of FAWS in %s, thousand m3 per 1 km cell, EPSG:3035", years_report),
-    "EU27 country polygons with NAI, removals and overuse flag for the reporting years"
+    sprintf("NAI in %s, thousand m3 per 1 km cell, EPSG:3035", years_report),
+    "EU27 country polygons with NAI, removals and overuse flag for the reporting years",
+    "Maps of the NAI and of its value at 100 m for the five reporting years. They are too large for the repository and are kept in an external folder with a README"
   )
 )
 
-refinement_dl <- tibble(
-  File = c(
-    "corine_refinement_faws_clc_overlap_by_country.xlsx",
-    "corine_refinement_comparison_with_baseline.xlsx",
-    sprintf("corine_refinement_wood_nai_faws_1km_%s.tif", years_report)
-  ),
-  Folder = c(rep("results/corine_refinement", 2), rep("gis/corine_refinement", length(years_report))),
-  Description = c(
-    "Refinement: area where FAWS and CLC forest coincide, by country and CLC epoch",
-    "Refinement: how far the refined maps differ from the baseline maps, by year",
-    sprintf("Refinement: NAI of FAWS in %s spread over FAWS and CLC forest, thousand m3 per 1 km cell", years_report)
-  )
-)
-
-downloads <- bind_rows(tables_dl, maps_dl, refinement_dl) |>
-  mutate(Path = file.path("../../../data/outputs", Folder, File))
+downloads <- bind_rows(tables_dl, maps_dl) |>
+  mutate(Path = if_else(
+    Folder == "external",
+    "https://www.dropbox.com/scl/fo/v4hxro4cb600n8jj98j28/AIOkKqQsECgwZdttaoXRx3s?rlkey=lcc6aq55oxtlb2wfrku40blh5&st=1l044409&dl=0",
+    file.path("../../../data/outputs", Folder, File)
+  ))
 
 flextable(downloads, col_keys = c("File", "Description")) |>
   compose(
@@ -943,23 +694,25 @@ flextable(downloads, col_keys = c("File", "Description")) |>
 
 # Limitations and proposals to refine the spatial key
 
-- The FAWS map is a single year. Time variation in forest extent is not represented in the
-  baseline, so the maps of 2000 and 2006 apply the 2020 pattern to older national values. The
-  Corine refinement above adds that variation, with the limits discussed in its section.
-- The FAWS map says where wood supply is possible and says nothing about growing conditions.
-  Cells with the same FAWS share receive the same flow inside a country. INCA Part II used dry
-  matter productivity for this purpose [@vallecillo2019].
+- The key combines where forest is with the productivity of the vegetation. Productivity measures the growth
+  of vegetation in general and does not distinguish stands that are available for wood supply from those
+  that are not, so some flow is placed on forest that is not harvested.
+- The maps of 2000, 2006 and 2012 use a 1 km productivity product and those of 2018 and 2024 use a 300 m
+  product, so the spatial detail of the two groups of years differs, and differences between years partly
+  reflect the change of product.
+- The Corine accounting layers have a minimum mapping unit of 25 ha. The class of transitional woodland and
+  shrub is included in the forest mask, as in the INCA tool.
 - NAI of FAWS is reported by few countries before 2018. The fallback to total forest probably
   overstates the flow, as the sensitivity check shows. The INCA plugin replaces missing values
   with estimates from the JRC carbon budget model, which are not available in this repository.
 - The 2024 values mostly repeat the latest available year, since Eurostat holds 2024 for very few
   countries. They should be refreshed when the dataset is updated.
-- The FAWS and boundary layers are aggregated to 1 km, so cells on the coast and on borders are
+- The boundary layers are aggregated to 1 km, so cells on the coast and on borders are
   assigned to one country by their centre point.
 
-Further candidate refinements include the biomass available for wood supply map as a
-weight and dry matter productivity as a within-FAWS weight. The monetary valuation that follows
-the physical accounts is in its own [document](../monetary-valuation/).
+Further candidate refinements include a mask of forest availability, which the INCA tool accepts as an optional
+set of weights, and the biomass available for wood supply map as an additional weight. The monetary
+valuation that follows the physical accounts is in its own [document](../monetary-valuation/).
 
 # References {.unnumbered}
 
