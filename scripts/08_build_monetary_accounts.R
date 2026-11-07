@@ -129,14 +129,10 @@ checks <- bind_rows(
 # Exports.
 saveRDS(monetary, "data/outputs/results/wood_value_country_year.rds")
 
-national_sources <- overuse |>
-  filter(year %in% years_report) |>
-  left_join(select(monetary, geo, year, ratio_source, unit_value_eur_m3), by = c("geo", "year")) |>
-  transmute(geo, year, nai_source, removals_source, ratio_source, unit_value_eur_m3, removals_to_nai)
 write_results_workbook(
   overuse, nuts_weights, years_report, base_year,
   path = "data/outputs/results/wood_provision_results.xlsx",
-  monetary = monetary, sources = national_sources
+  monetary = monetary
 )
 
 # Small tables for the report.

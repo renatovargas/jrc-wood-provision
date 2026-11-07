@@ -459,8 +459,8 @@ as well, and they give the figures of this report (see [09_write_maps_1km.R in A
 ## Checks
 
 Each script stops when a check fails and records the result. @tbl-checks lists them with the largest relative gap found. The 100 m maps are read
-back from disk and compared with the national values country by country (see [11_check_maps_100m.R in Annex I](#script-11)). The workbook also carries a sheet
-that compares the NUTS2 and NUTS3 totals with the NUTS0 totals for every table, metric and year.
+back from disk and compared with the national values country by country (see [11_check_maps_100m.R in Annex I](#script-11)). Script 08 also stops if the NUTS2 and NUTS3
+totals differ from the NUTS0 totals in any table, metric or year.
 
 ```{r}
 #| label: tbl-checks
@@ -703,8 +703,8 @@ and the annexes of script 04. It computes the export price of each country and y
 removes the outliers of the INCA tool [@incatool] and the countries and points whose ratio falls outside the range of @sec-screen, and it fills the gaps with country and
 EU means. The export price divided by the ratio gives the unit value, and the unit value times the physical quantity gives the value, in current prices and in
 constant 2010 prices. The script stops if a value is missing or if the deflator does not return to current prices. It saves
-`wood_value_country_year.rds` for the maps. It also writes the workbook of the Downloads page, `wood_provision_results.xlsx`, with four tables at three NUTS levels, the origin of each
-national value and a sheet that confirms that regions add up to countries. Finally, it saves the small tables of the monetary results and the figure of the unit values.
+`wood_value_country_year.rds` for the maps. It also writes the workbook of the Downloads page, `wood_provision_results.xlsx`, with four tables at three NUTS levels, and it stops if the regions do
+not add up to the countries. Finally, it saves the small tables of the monetary results and the figure of the unit values.
 
 ## 09_write_maps_1km.R {#script-09 .unnumbered .unlisted}
 

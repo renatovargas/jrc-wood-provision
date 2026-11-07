@@ -1,7 +1,7 @@
 # Helper functions for the results workbook of the wood provision service.
 #
 # The workbook has a Readme sheet, then one sheet per output table and NUTS level, each with a banner,
-# a nested header and a total row, then the origin of the national values and the checks.
+# a nested header and a total row.
 # Used by scripts/08_build_monetary_accounts.R.
 
 library(dplyr)
@@ -114,12 +114,11 @@ write_results_sheet <- function(wb, sheet, title, note, data, metrics) {
 #' @param overuse National table from `check_overuse()` (thousand m3).
 #' @param monetary National table with `nai_1000m3`, `unit_value_eur_m3`, `deflator`.
 #' @param nuts_weights Table from `scripts/06_prepare_nuts_weights.R`.
-#' @param sources National table with the origin of each value in the reporting years.
 #' @param years Reporting years.
 #' @param base_year Base year of the constant prices.
 #' @param path Output file.
 #' @return The path, invisibly.
-write_results_workbook <- function(overuse, nuts_weights, years, base_year, path, monetary, sources) {
+write_results_workbook <- function(overuse, nuts_weights, years, base_year, path, monetary) {
   national <- overuse |>
     filter(year %in% years) |>
     transmute(geo, year, nai, removals,
@@ -146,8 +145,7 @@ write_results_workbook <- function(overuse, nuts_weights, years, base_year, path
     ),
     Overuse_phys = list(
       title = "Overuse and sustainable flow of wood provision in physical terms (thousand m3)",
-      metrics = c(nai = "Net annual increment", removals = "Removals",
-                  sustainable = "Sustainable flow", overuse = "Overuse")
+      metrics = c(sustainable = "Sustainable flow", overuse = "Overuse")
     )
   )
   tables$Flow_mon <- list(
@@ -170,8 +168,7 @@ write_results_workbook <- function(overuse, nuts_weights, years, base_year, path
     "Actual flow is the net annual increment (NAI) of forest available for wood supply. Sustainable flow is the removals up to the NAI. Overuse is the removals above the NAI.",
     "National values come from Eurostat and the JRC carbon budget model estimates. NUTS2 and NUTS3 values share the national value in proportion to the weight of each region in the spatial key, so regions add up to the country.",
     "Monetary values are the physical values times the national unit value of NAI, in million euro.",
-    "The Sources sheet gives the origin of each national value. A value marked carried repeats the nearest earlier or later year.",
-    "The Checks sheet compares the NUTS2 and NUTS3 totals with the NUTS0 total for every table, metric and year."
+    "Eurostat holds few values for 2024, so most values of that year repeat earlier years. The report explains which values are reported, which are estimates and which repeat another year."
   )
 
   wb <- wb_workbook() |>
@@ -195,20 +192,8 @@ write_results_workbook <- function(overuse, nuts_weights, years, base_year, path
     }
   }
 
-  wb <- wb_add_worksheet(wb, "Sources")
-  wb <- wb_add_data(wb, "Sources", x = sources)
-  wb <- wb_add_font(wb, "Sources", dims = wb_dims(rows = 1, cols = seq_along(sources)), bold = TRUE)
-  wb <- wb_set_col_widths(wb, "Sources", cols = seq_along(sources), widths = 16)
-
   checks <- results_checks(regional, tables)
   stopifnot("NUTS2 and NUTS3 totals must equal NUTS0 totals" = all(checks$match))
-  wb <- wb_add_worksheet(wb, "Checks")
-  wb <- wb_add_data(wb, "Checks", x = checks)
-  wb <- wb_add_font(wb, "Checks", dims = wb_dims(rows = 1, cols = seq_along(checks)), bold = TRUE)
-  wb <- wb_add_numfmt(wb, "Checks", dims = wb_dims(rows = 2:(nrow(checks) + 1L), cols = 5:7),
-                      numfmt = "#,##0.000")
-  wb <- wb_set_col_widths(wb, "Checks", cols = seq_along(checks), widths = c(14, 34, 8, 10, 16, 16, 16, 8))
-  wb <- wb_freeze_pane(wb, "Checks", first_active_row = 2L)
 
   wb_save(wb, path)
   invisible(path)
