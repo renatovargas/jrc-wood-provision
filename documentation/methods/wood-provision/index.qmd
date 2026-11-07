@@ -19,6 +19,10 @@ format:
     toc: true
     toc-depth: 3
     number-sections: true
+    # The default PDF title block leaves out affiliations, so the block is set here.
+    include-in-header:
+      text: |
+        \AtBeginDocument{\author{Renato Vargas\\ {\small Consultant for JRC} \and Alessandra La Notte\\ {\small Senior Environmental Economist at European Dynamics}}}
 bibliography: wood-provision.bib
 csl: ../../../assets/apa-6th-edition.csl
 execute:
