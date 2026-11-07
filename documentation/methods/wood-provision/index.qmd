@@ -1,6 +1,13 @@
 ---
 title: "Wood Provision Ecosystem Service Accounts"
-subtitle: "European Union, 2000 to 2024: methods and results"
+subtitle: "European Union, 2000 to 2024 series update: processing methods and results"
+author:
+  - name: Renato Vargas
+    affiliations:
+      - name: Consultant for JRC
+  - name: Alessandra La Notte
+    affiliations:
+      - name: Senior Environmental Economist at European Dynamics
 aliases:
   - ../monetary-valuation/index.html
 format:
@@ -54,6 +61,7 @@ checks <- bind_rows(read_report("checks_physical"), read_report("checks_monetary
                     read_report("checks_maps_1km"), read_report("checks_maps_100m"))
 regions <- read_report("region_counts")
 published_fr <- read_report("published_france")
+dmp_check <- read_report("dmp_gdmp_check")
 
 # Lookups for the numbers quoted in the text.
 in_year <- function(table, y) table[table$year == y, ]
@@ -114,6 +122,7 @@ tables and the 100 m maps can be retrieved from the Downloads page of this site.
 | [09_write_maps_1km.R](#script-09) | Maps at 1 km, their checks and the map figures |
 | [10_write_maps_100m.R](#script-10) | Maps at 100 m |
 | [11_check_maps_100m.R](#script-11) | Comparison of the 100 m maps with the tables |
+| [12_compare_dmp_gdmp.R](#script-12) | Test of Dry Matter Productivity against Gross Dry Matter Productivity, run by hand |
 
 : Scripts of the pipeline, in the order in which they run. Each name links to its entry in Annex I. {#tbl-scripts}
 
@@ -408,6 +417,25 @@ a national value among the cells of a country, so what matters is the relative p
 it. The 1 km product, version 2, serves 2000, 2006 and 2012 [@copernicus2020gdmp1km], and the 300 m product, version 2, serves 2018 and 2024
 [@copernicus2020gdmp300].
 
+A test then measured what this choice costs (see [12_compare_dmp_gdmp.R in Annex I](#script-12)). It compared the Dry Matter Productivity products
+[@copernicus2020dmp1km; @copernicus2020dmp300] with half of the gross products, since the quality page of the 1 km product describes a constant fraction of 0.5. It covers
+`r nrow(dmp_check)` of the 180 pairs of files behind the key, namely the files ending on 10 January and 10 July of each reporting year, over the whole of Europe. The tolerance
+was set before the comparison. In every pair, the absolute difference could reach `r num(100 * dmp_check$tolerance_difference[1])` percent of the productivity total, and the cells with
+data in only one product could reach `r num(100 * dmp_check$tolerance_unmatched[1], 1)` percent of the cells. @tbl-dmp shows the outcome, which is that Dry Matter Productivity equals exactly half
+of the gross value in every cell, with data in the same cells. A constant ratio leaves the share of every cell unchanged, so on this evidence the two products give the same key, and the key stays on
+Gross Dry Matter Productivity. The other `r 180 - nrow(dmp_check)` pairs were not compared, so the finding rests on this sample.
+
+```{r}
+#| label: tbl-dmp
+#| tbl-cap: "Dry Matter Productivity against half of Gross Dry Matter Productivity, by pair of files over Europe. Cells are in millions, and the two gaps are percentages."
+
+dmp_check |>
+  transmute(`File date` = date, Product = product, `Cells with data` = cells_with_data / 1e6,
+            `Data in one product only (%)` = 100 * unmatched_share, `Absolute difference (%)` = 100 * difference_share,
+            `Within tolerance` = if_else(within_tolerance, "Yes", "No")) |>
+  show_table(digits = 1)
+```
+
 ## Regional tables
 
 The value of a region is the national value times the share of the region in the weight of its country in that year, so the regions add up to
@@ -547,7 +575,7 @@ maps do not show price differences within a country.
 
 **Space.** The key combines forest with the productivity of the vegetation, and productivity measures growth of vegetation in general, so some flow is placed on forest
 that is not harvested. Productivity comes from a 1 km product in 2000, 2006 and 2012 and from a 300 m product in 2018 and 2024, so spatial detail differs between the two groups and
-changes in the pattern between them partly reflect the change of product. Gross and net products may also differ in pattern within a country, which we have not measured. The Corine accounting layers have a minimum mapping unit of 25 hectares.
+changes in the pattern between them partly reflect the change of product. The equivalence of the gross and net products rests on a sample of `r nrow(dmp_check)` of the 180 pairs of files, as the Methods section explains. The Corine accounting layers have a minimum mapping unit of 25 hectares.
 Regional shares use weights at 1 km, whose cells on borders are assigned by their centre, so they can differ slightly from a sum of the 100 m maps.
 
 # Appendix: accounts by Member State {.unnumbered}
@@ -579,7 +607,7 @@ by_country |>
 This annex describes each script in the order in which it runs. The link under each name opens its code on GitHub, and the paragraph explains
 what the script takes in, what it does and what it saves for the steps that follow. Script 00 builds the annual productivity layers and runs only by hand. Scripts 01 to 06 prepare the inputs. Script 02 needs internet
 access, and the others need source files that are kept outside the repository. Scripts 07 to 09 run from the repository alone. Scripts 10 and
-11 write and check the 100 m maps, and they need large files kept outside the repository again.
+11 write and check the 100 m maps, and they need large files kept outside the repository again. Script 12 is a test that runs by hand, and the report reads the small table it saved.
 
 ## 00_prepare_gdmp_annual.R {#script-00 .unnumbered .unlisted}
 
@@ -699,6 +727,14 @@ This script reads the 30 maps at 100 m back from disk, adds up their cells by co
 more than 0.1 percent, and it leaves out of the comparison the countries whose national value in the map is under 10,000 of its units, where rounding to whole numbers has a large relative effect. Because the
 maps stay outside the repository, the script saves this record as `maps_100m_totals.rds` and `checks_maps_100m.rds`, and the report reads it from there.
 
+## 12_compare_dmp_gdmp.R {#script-12 .unnumbered .unlisted}
+
+[View on GitHub](https://github.com/renatovargas/jrc-wood-provision/blob/main/scripts/12_compare_dmp_gdmp.R)
+
+This script tests whether Dry Matter Productivity [@copernicus2020dmp1km; @copernicus2020dmp300] would change the spatial key. It reads the part that covers Europe of the net and gross files ending on 10 January and
+10 July of each reporting year, from the Copernicus Data Space Ecosystem, and compares the net value with half of the gross value, cell by cell. It records how much the two differ and how many cells have data in only one
+product, against a tolerance set beforehand. The result is `dmp_gdmp_check.rds`, which this report reads. The script needs Copernicus access keys and stays out of [run_all.R](#script-run-all), and the comparison took about four minutes.
+
 ## run_all.R {#script-run-all .unnumbered .unlisted}
 
 [View on GitHub](https://github.com/renatovargas/jrc-wood-provision/blob/main/scripts/run_all.R)
@@ -717,5 +753,5 @@ View on GitHub: [helpers_common.R](https://github.com/renatovargas/jrc-wood-prov
 
 These files hold the steps that several scripts share, and they do not run on their own. The first holds the reporting years, the list of Member States, the saving of small tables and figures, the checks and the
 national values of the 100 m maps. The second fills the gaps in a series, compares removals with the increment and spreads national values over the 1 km grid. The third fills gaps with means and
-prepares the deflator. The fourth holds the forest classes, the 100 m grid and the weight of each cell. The fifth shares national values among the regions and builds the workbook, and the sixth reads the small tables
+prepares the deflator. The fourth holds the forest classes, the access to the Copernicus store, the 100 m grid and the weight of each cell. The fifth shares national values among the regions and builds the workbook, and the sixth reads the small tables
 and formats them for this report.

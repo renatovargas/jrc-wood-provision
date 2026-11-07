@@ -17,6 +17,9 @@
 # the network and roughly 10 GB of temporary disk space per year at 300 m, and the layers come from an archive that
 # rarely changes, so a normal run reuses the 1 GB of finished files. To rebuild them, set the keys as its header
 # explains, remove the file to replace and uncomment the line. Files that already exist are skipped.
+#
+# Script 12 stays out of the pipeline as well. It is a one-off test of DMP against GDMP that also needs the keys, and
+# the report reads the small table it saved.
 
 pipeline <- list(
   inputs = c(

@@ -86,6 +86,7 @@ All calculation is in the scripts, and the report reads their small tables and f
 | `09_write_maps_1km.R` | 1 km maps, map figures and comparison of maps with tables |
 | `10_write_maps_100m.R` | 100 m maps |
 | `11_check_maps_100m.R` | Comparison of the 100 m maps with the tables |
+| `12_compare_dmp_gdmp.R` | Test of DMP against GDMP on a sample of files, run by hand |
 
 ## Menu
 

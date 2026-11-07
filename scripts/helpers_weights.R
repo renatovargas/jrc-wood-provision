@@ -10,6 +10,19 @@ forest_codes <- c(311, 312, 313)
 # Annual productivity product used for each reporting year
 gdmp_product <- c(`2000` = "1km", `2006` = "1km", `2012` = "1km", `2018` = "300m", `2024` = "300m")
 
+#' Set the access to the Copernicus Data Space S3 store for this process and the ones it starts.
+#' The keys come from the environment variables CDSE_S3_ACCESS_KEY and CDSE_S3_SECRET_KEY.
+use_s3_keys <- function() {
+  access_key <- Sys.getenv("CDSE_S3_ACCESS_KEY")
+  secret_key <- Sys.getenv("CDSE_S3_SECRET_KEY")
+  stopifnot("Set CDSE_S3_ACCESS_KEY and CDSE_S3_SECRET_KEY" = nzchar(access_key) && nzchar(secret_key))
+  Sys.setenv(
+    AWS_ACCESS_KEY_ID = access_key, AWS_SECRET_ACCESS_KEY = secret_key,
+    AWS_S3_ENDPOINT = "eodata.dataspace.copernicus.eu", AWS_VIRTUAL_HOSTING = "FALSE",
+    AWS_HTTPS = "YES", AWS_DEFAULT_REGION = "default"
+  )
+}
+
 # Grid of the maps: 100 m, aligned with the CLC grid, EPSG:3035
 template_100m <- function() {
   rast(

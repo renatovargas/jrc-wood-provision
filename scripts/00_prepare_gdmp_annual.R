@@ -33,18 +33,6 @@ catalogue_url <- "https://s3.waw3-1.cloudferro.com/swift/v1/CatalogueCSV/bio-geo
 s3_root <- "/vsis3/eodata/CLMS/bio-geophysical/dry-gross_dry_matter_productivity"
 n_cores <- max(1L, min(4L, parallel::detectCores() - 1L))
 
-#' Set the access to the store for this process and the ones it starts.
-use_s3_keys <- function() {
-  access_key <- Sys.getenv("CDSE_S3_ACCESS_KEY")
-  secret_key <- Sys.getenv("CDSE_S3_SECRET_KEY")
-  stopifnot("Set CDSE_S3_ACCESS_KEY and CDSE_S3_SECRET_KEY" = nzchar(access_key) && nzchar(secret_key))
-  Sys.setenv(
-    AWS_ACCESS_KEY_ID = access_key, AWS_SECRET_ACCESS_KEY = secret_key,
-    AWS_S3_ENDPOINT = "eodata.dataspace.copernicus.eu", AWS_VIRTUAL_HOSTING = "FALSE",
-    AWS_HTTPS = "YES", AWS_DEFAULT_REGION = "default"
-  )
-}
-
 #' Paths of the 36 files of a year and the days each one covers, from the public catalogue of the product.
 dekad_paths <- function(year, product) {
   dataset <- if (product == "1km") "gdmp_global_1km_10daily_v2" else "gdmp_global_300m_10daily_v2"
