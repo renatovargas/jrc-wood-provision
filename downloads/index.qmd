@@ -1,0 +1,24 @@
+---
+title: "Downloads"
+---
+
+The workbook below holds the wood provision accounts of the EU27 for 2000, 2006, 2012, 2018 and 2024, in Excel format. It arranges the
+actual flow, the sustainable flow and the overuse by NUTS0, NUTS2 and NUTS3, with one column per year, in physical terms and in
+monetary terms. Physical values are in thousand cubic metres over bark, and monetary values are in million euro at current prices and at
+constant 2010 prices. A further sheet gives the origin of each national value.
+
+The 100 m maps are too large for the repository, so they are kept in an external folder. It holds 30 GeoTIFF files, with six maps per year of
+the actual flow, the sustainable flow and the overuse, in physical terms and at constant 2010 prices. A `README.md` file in that folder explains
+the units and how to read them.
+
+Values for 2024 mostly repeat the last year reported for each Member State, because Eurostat holds few values for that year. The
+[report](../documentation/methods/wood-provision/index.qmd) explains how each file was produced and how to read it.
+
+::: {.download-table}
+
+| Download | Description |
+|:---|:---|
+| [wood_provision_results.xlsx](../data/outputs/results/wood_provision_results.xlsx){.btn .btn-primary .btn-sm download=""} | Workbook with the actual flow, sustainable flow and overuse, in physical and monetary terms, by NUTS0, NUTS2 and NUTS3 |
+| [100 m maps, 2000 to 2024](https://www.dropbox.com/scl/fo/v4hxro4cb600n8jj98j28/AIOkKqQsECgwZdttaoXRx3s?rlkey=lcc6aq55oxtlb2wfrku40blh5&st=9pb6i8n3&dl=0){.btn .btn-primary .btn-sm target="_blank"} | Folder with the 30 GeoTIFF files of the actual flow, sustainable flow and overuse at 100 m, opened in Dropbox |
+
+:::

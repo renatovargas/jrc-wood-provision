@@ -1,0 +1,12 @@
+---
+title: "Wood Provision"
+---
+
+This site presents the **wood provision ecosystem service accounts** of the European Union for 2000, 2006, 2012, 2018 and 2024. Wood provision
+is the ecological contribution to the production of timber that can be harvested and used as a raw material. The accounts measure the net annual
+increment of forest available for wood supply, compare it with removals to separate the sustainable flow from overuse, value these quantities and map
+them over the forest of each year.
+
+The [report](documentation/methods/wood-provision/index.qmd) describes the methods, the decisions taken along the way and the results. The
+[Downloads](downloads/index.qmd) page holds the tables by NUTS region and the 100 m maps. The numbered scripts in the folder
+<https://github.com/renatovargas/jrc-wood-provision/tree/main/scripts> reproduce the work, and Annex I of the report explains each of them.

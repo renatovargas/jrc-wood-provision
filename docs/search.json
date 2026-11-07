@@ -1,0 +1,384 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Wood Provision",
+    "section": "",
+    "text": "This site presents the wood provision ecosystem service accounts of the European Union for 2000, 2006, 2012, 2018 and 2024. Wood provision is the ecological contribution to the production of timber that can be harvested and used as a raw material. The accounts measure the net annual increment of forest available for wood supply, compare it with removals to separate the sustainable flow from overuse, value these quantities and map them over the forest of each year.\nThe report describes the methods, the decisions taken along the way and the results. The Downloads page holds the tables by NUTS region and the 100 m maps. The numbered scripts in the folder https://github.com/renatovargas/jrc-wood-provision/tree/main/scripts reproduce the work, and Annex I of the report explains each of them."
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html",
+    "href": "documentation/methods/wood-provision/index.html",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "",
+    "text": "We provide estimates of the wood provision ecosystem service for the 27 Member States of the European Union in 2000, 2006, 2012, 2018 and 2024, following the accounting method of INCA Part III (La Notte et al., 2021), which updates INCA Part II (Vallecillo et al., 2019). The actual flow is the net annual increment of the forest available for wood supply, which falls from 955 million cubic metres in 2000 to 749 million cubic metres in 2024. Part of that fall comes from a change of source within the series, as Section 2.2.2 shows. Removals stay below the increment in every Member State in the reporting years up to 2018, so the sustainable flow equals the removals in those years. In 2024, 3 Member States show overuse, adding up to 6.2 million cubic metres, and those flags rest on values carried forward from earlier years. At constant 2010 prices, the actual flow is worth 25.6 billion euro in 2000 and 17.2 billion euro in 2024, and the overuse of 2024 is worth 146 million euro. All quantities are reported by NUTS0, NUTS2 and NUTS3 region and mapped at 100 m.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#sources-of-orientation",
+    "href": "documentation/methods/wood-provision/index.html#sources-of-orientation",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "1.1 Sources of orientation",
+    "text": "1.1 Sources of orientation\nThe method comes from Chapter 4 of INCA Part II and Section 6.2 of INCA Part III, and these reports settle any question they address. Section 6.2 of Part III replaces two steps of Part II. It reports the whole NAI as the flow, because the forest asset accounts already record natural growth as an addition to the stock, and because forest management does not change stand volume growth much within a range of thinning grades (La Notte et al., 2021). The ecosystem contribution coefficient of Part II is therefore dropped. It also replaces the valuation through the output of forestry with a valuation through export prices.\nThe INCA tool applies the same method and adds details that the reports do not state, such as the list of outliers described in Section 2.4.1. We took those details from it. The reports give no method for overuse of wood or for the sustainable flow, so those steps are decisions of this work, explained below.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#territory-and-reporting-regions",
+    "href": "documentation/methods/wood-provision/index.html#territory-and-reporting-regions",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "2.1 Territory and reporting regions",
+    "text": "2.1 Territory and reporting regions\nThe accounts cover the EU27 with the NUTS 2024 boundaries, at the country level (27 regions), NUTS2 (239 regions) and NUTS3 (1160 regions) (Eurostat GISCO, 2024) (see 01_prepare_nuts.R in Annex I). Malta has no forest available for wood supply and no forestry activity (Vallecillo et al., 2019), so its values are zero throughout.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#actual-flow",
+    "href": "documentation/methods/wood-provision/index.html#actual-flow",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "2.2 Actual flow",
+    "text": "2.2 Actual flow\nThe source of the actual flow is the table for_vol_efa of Eurostat, which collects the European Forest Accounts in thousand cubic metres over bark (Eurostat, 2026e) (see 02_download_eurostat.R in Annex I). Table 2 shows why it needs completing, since the NAI of forest available for wood supply is reported by few Member States before 2018.\n\n\n\n\nTable 2: Member States out of 27 that report each series in for_vol_efa. FAWS is forest available for wood supply and FOR is total forest.\n\n\n\nSeriesForest20002006201220182024Net annual incrementFOR262626262RemovalsFAWS262626262RemovalsFOR262626262Net annual incrementFAWS026142\n\n\n\n\n\n\n2.2.1 Filling the gaps\nINCA Part III fills the gaps with the estimates of the carbon budget model (La Notte et al., 2021; Pilli & Grassi, 2021). These estimates are published in a workbook that combines the model with the forest accounts and gives the total NAI of each country from 2000 to 2019, with the values after 2016 held at their level of 2015 (see 03_prepare_carbon_budget.R in Annex I). The series refers to total forest, and the workbook also gives the share of available forest in the growing stock, so two versions of the fill are possible. The INCA tool uses a third, the NAI of total forest reported to Eurostat. Table 3 compares all three with the values by Member State printed in the annexes of Part III, which are the published reference for the method (see 04_extract_manual_annex.R in Annex I for the annexes and 07_build_physical_accounts.R in Annex I for the comparison).\n\n\n\n\nTable 3: Rules to fill the gaps in the NAI of available forest, against the values of Annexes AA37, AA41 and AA45 of INCA Part III. The differences add up the absolute gap of each Member State, without the United Kingdom.\n\n\n\nRuleYearEU27 (million m3)Published (million m3)Sum of differences (million m3)Median difference (%)Total forest reported to Eurostat200091292311213.2Total forest reported to Eurostat2006900866837.1Total forest reported to Eurostat2012855850819.4Carbon budget model, total forest2000955923394.0Carbon budget model, total forest2006916866647.4Carbon budget model, total forest2012887850607.0Carbon budget model, scaled to available forest2000855923695.7Carbon budget model, scaled to available forest2006824866688.5Carbon budget model, scaled to available forest2012800850647.7\n\n\n\n\n\nThe total forest fallback has the closest EU totals, but only because errors offset, as its country differences are the largest, at 112, 83, 81 million cubic metres in the three years. The total forest estimate of the carbon budget model gives 39, 64, 60 million cubic metres. It follows the method that Part III states and reproduces its member state values best, so a decision was made to use it. The NAI is therefore taken in this order. A value reported for available forest comes first. The carbon budget estimate comes next. Any remaining gap takes the mean of the nearest earlier and later values of the same country, and gaps at the end of the series repeat the last value. Table 4 shows what each reporting year rests on.\n\n\n\n\nTable 4: Origin of the NAI of the 27 Member States in the reporting years. Malta is the entry with no supply.\n\n\n\nYearReportedCarbon budget modelCarriedNo supply2000026012006224012012620012018141201202420241\n\n\n\n\n\nThe carbon budget estimate covers total forest and fills a statistic of available forest, so it probably overstates the flow in the countries that take it. Table 5 shows the size of this effect against the EU27 aggregates that Eurostat publishes, which it estimates itself. The accounts sit above the aggregate for available forest by 9 percent in 2012.\n\n\n\n\nTable 5: EU27 NAI in the accounts, the Eurostat aggregates and the sum of the published Member State values without the United Kingdom, in million cubic metres.\n\n\n\nYearAccountsEurostat, available forestEurostat, total forestINCA Part III20009558919129232006916838900866201288781487185020188227848492024749\n\n\n\n\n\nEurostat holds very few values for 2024. Table 6 gives the last year with an original value for each Member State, so the column of 2024 mostly repeats earlier years, and the method says nothing about how far a value may be carried. A decision was made to carry the last value, since the increment changes slowly and any trend applied to it would add an assumption that the data cannot support.\n\n\n\n\nTable 6: Last year with a value reported or estimated for the NAI, as a count of Member States.\n\n\n\nLast yearMember States2019320232120242\n\n\n\n\n\n\n\n2.2.2 Changes of source within the series\nA Member State that starts reporting available forest moves from the estimate of the model to its own figure, and the two can differ widely. Table 7 lists the Member States where this happens between two reporting years. France falls by 30 percent between 2006 and 2012 and Sweden by 29 percent between 2012 and 2018, and in both cases the model estimate of the later year is far from the reported figure. Part III has the same feature, since its value for France goes from 156 million cubic metres in 2000 to 93 million in 2012. We kept the series as the method builds it and did not adjust the model estimates to the reported levels, so changes over time within these countries should be read together with this table.\n\n\n\n\nTable 7: Member States whose NAI changes from the model estimate to a reported value between two reporting years, in thousand cubic metres.\n\n\n\nCountryFromToNAI, fromNAI, toModel, toChange (%)CY2012201825455253-78FR20062012132,49893,230127,389-30SE20122018130,46992,708133,291-29SK2012201816,25212,76418,532-21SI200620128,4406,9504,253-18AT2000200636,93630,82038,596-17DE20122018111,37993,747123,591-16HR2012201810,2028,89310,696-13RO2006201231,90835,81858,17112IE201220188,7037,9009,333-9LU200620127177606896DK201220187,7478,1527,1225BG2000200615,68315,40919,401-2PL2012201879,82079,23676,997-1",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#sustainable-flow-and-overuse",
+    "href": "documentation/methods/wood-provision/index.html#sustainable-flow-and-overuse",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "2.3 Sustainable flow and overuse",
+    "text": "2.3 Sustainable flow and overuse\nThe accounting reports class wood among the services with a regeneration rate that use can exceed (La Notte et al., 2021), and the handbook of ecosystem accounts describes overharvesting as removals above the NAI (Eurostat, 2026a). Neither gives a formula for wood, so we adapted the one of Part III for water purification, in which overuse is the difference between the actual and the sustainable flow and the threshold defines the sustainable flow. Regeneration is the threshold for wood, which gives these two equations for each country and year.\n\\[\n\\text{Overuse} = \\max(\\text{Removals} - \\text{NAI},\\ 0)\n\\tag{1}\\]\n\\[\n\\text{Sustainable flow} = \\min(\\text{Removals},\\ \\text{NAI})\n\\tag{2}\\]\nRemovals are the removals of available forest in for_vol_efa, which Member States report more widely than the NAI, as Table 2 shows. They take the same rule for gaps, with reported removals of total forest in place of the model estimate. The two quantities add up to the removals in every country and year (see 07_build_physical_accounts.R in Annex I). A single year above the threshold can be a temporary peak, for example after a storm, so the table of results also gives the ratio of removals to NAI, and the handbook treats overharvesting as a matter of an extended period.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#monetary-valuation",
+    "href": "documentation/methods/wood-provision/index.html#monetary-valuation",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "2.4 Monetary valuation",
+    "text": "2.4 Monetary valuation\nThe value is the physical quantity times a unit value in euro per cubic metre. INCA Part III derives the unit value in three steps (La Notte et al., 2021). The output of forest trees in for_sup_cp (Eurostat, 2026d) divided by the NAI gives the unit value of the NAI, which few Member States report in the early years, as Table 8 shows. The roundwood exports of for_basic (Eurostat, 2026c), in value and in volume, give a unit value for most countries and years, but this price includes the harvesting and transport added on the way to the market. The ratio between the two then carries the export price back to the standing tree.\n\\[\n\\text{Ratio}_{c,t} = \\frac{\\text{Unit value of exports}_{c,t}}{\\text{Unit value of NAI}_{c,t}}\n\\tag{3}\\]\n\\[\n\\text{Completed unit value}_{c,t} = \\frac{\\text{Unit value of exports}_{c,t}}{\\widehat{\\text{Ratio}}_{c,t}}\n\\tag{4}\\]\nWhere the ratio is missing, \\(\\widehat{\\text{Ratio}}\\) takes the mean ratio of the country, or the EU mean if the country has no ratio at all (see 08_build_monetary_accounts.R in Annex I). Gaps in the export price take the same means. Means run over 2000 to 2023 for a country. The EU mean takes the mean of the countries in each year and then the mean of those years from 2012 to 2023, where coverage is better, as in the INCA tool.\n\n\n\n\nTable 8: Member States out of 27 with a reported timber value and an export unit value.\n\n\n\nYearTimber valueExport unit value2000224200632320121623201817232024220\n\n\n\n\n\n\n2.4.1 Screening the ratio\nThe ratio is very sensitive to small denominators. Eurostat records the output of forest trees in Croatia as 0.00 or 0.01 million euro, which yields a ratio near 90,746. With no screening, the EU mean of the ratio is 921, against a median of 3.3 among the ratios kept after screening, so every Member State that takes the EU mean ends up with a unit value close to zero.\nThe INCA tool removes all the timber values of Croatia, Finland, Greece, Portugal and Sweden and the export points of Denmark in 2014 and Greece in 2006 (European Union, 2026), and we did the same. The data used here are more recent than that list, so it does not catch everything. Lithuania now has a median ratio of 1,547. Belgium has a median of 0.89, which would make the standing tree worth more than the harvested roundwood, and Part III reports Belgium at a far lower value. A decision was made to extend the rule in a way that the data support. A Member State whose median ratio falls below 1 or above 100 loses all its timber values, and any single observation outside that range is dropped. The lower bound follows from the meaning of the ratio. Among the Member States left after the list of the INCA tool, no ratio lies between 13 and 1,000, so any upper bound in that range gives the same result. Table 9 shows the outcome. After screening, the EU mean of the ratio is 3.52.\n\n\n\n\nTable 9: Ratio of export to timber unit values by Member State, after the removal of export errors and before the screening of the ratio.\n\n\n\nCountryObservationsMedianMinimumMaximumTreatmentHR290,745.583,511.397,979.7All timber values removed, as in the INCA toolLT41,547.31,182.81,617.9All timber values removedEL267.667.367.8All timber values removed, as in the INCA toolPT2411.83.239.6All timber values removed, as in the INCA toolFI811.02.918.6All timber values removed, as in the INCA toolES56.85.47.2KeptSE135.64.310.0All timber values removed, as in the INCA toolLU105.23.612.6KeptIT124.82.611.4KeptRO144.63.47.2KeptAT254.63.07.4KeptLV44.43.06.2KeptHU23.53.33.7KeptSK123.12.45.8KeptFR132.72.14.1KeptCZ102.72.02.9KeptDE122.72.25.1KeptPL112.42.03.0KeptSI132.21.82.5KeptNL32.11.74.7KeptEE22.01.82.1KeptIE21.81.62.1KeptBG111.30.71.8KeptBE20.90.41.4All timber values removed\n\n\n\n\n\nExport prices have their own errors. A decision was made to drop a point that lies more than three times above or below the median of its country, a rule that also catches the Greek point of the INCA tool, while the Danish point has no data in this release. It removes 19 points, listed in Table 10, and 5 of them fall in reporting years. Among those, Croatia in 2012 stands at 10.4 euro per cubic metre against a median of 67.3, and Romania in 2024 at 286.3 euro against a median of 92.8. Table 11 shows how much of the result rests on each kind of ratio after these steps.\n\n\n\n\nTable 10: Export unit values removed, in euro per cubic metre.\n\n\n\nCountryYearUnit valueMedian of the countryBE2014465.686.2BE2015648.686.2BE2016448.586.2BE202125.686.2BE202313.686.2BE202427.086.2EL2001107.131.6EL20060.931.6EL20071.031.6EL20081.931.6EL20093.131.6EL20102.431.6EL20112.531.6HR201210.467.3IE2000215.262.6LT2013233.663.6LU2010249.172.5LU20160.172.5RO2024286.392.8\n\n\n\n\n\n\n\n\n\nTable 11: Origin of the ratio of the 27 Member States in the reporting years.\n\n\n\nYearObservedCountry meanEU mean20001161020062151020129810201811610202421510\n\n\n\n\n\n\n\n2.4.2 Constant prices\nPart III moves its other accounts to constant prices, so that the accounts follow changes in the service and leave aside changes in the market (La Notte et al., 2021). It does not state a deflator or a price basis for wood. The accounts therefore report both current and constant prices. Constant prices multiply the value of each year by the deflator of Table 12, which is the HICP of the EU27 (Eurostat, 2026b) rebased to 2010. A single EU27 index and the base year 2010 are a method choice that keeps all the accounts of this series on one price basis, and the INCA tool uses national indices with base year 2000 instead.\n\n\n\n\nTable 12: Deflator applied to current prices, with 2010 equal to 1.\n\n\n\nYearDeflator20001.27220061.09020120.94720180.89820240.717\n\n\n\n\n\nOveruse and the sustainable flow take the same unit value as the NAI of their country and year, since the method has no separate price for them.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#the-spatial-key",
+    "href": "documentation/methods/wood-provision/index.html#the-spatial-key",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "2.5 The spatial key",
+    "text": "2.5 The spatial key\nPart II spreads national flows over the forest of Corine Land Cover in proportion to Dry Matter Productivity (Vallecillo et al., 2019), and the Earth observation roadmap of the INCA project keeps a forest mask and that proxy (Zurbarán Nucci et al., 2025). The weight of a 100 m cell in year \\(t\\) is therefore\n\\[\nw_{i,t} = F_{i,t} \\cdot P_{i,t}\n\\tag{5}\\]\nwhere \\(F_{i,t}\\) is 1 for forest in the Corine accounting layer of the year (European Environment Agency, 2026) and 0 elsewhere, and \\(P_{i,t}\\) is the annual productivity resampled to 100 m with bilinear interpolation (see 05_prepare_weights.R in Annex I). A cell then receives\n\\[\n\\text{Value}_{i,t} = \\text{Value}_{c,t} \\cdot \\frac{w_{i,t}}{\\sum_{j \\in c} w_{j,t}}\n\\tag{6}\\]\nso the cells of a country add up to its national value (see 10_write_maps_100m.R in Annex I).\nForest mask. Part II limits the mask to the broad-leaved, coniferous and mixed forest classes (311, 312 and 313) and leaves out transitional woodland and shrub (324) (Vallecillo et al., 2019). The INCA tool includes that class, so the two differ, and a decision was made to follow the report. Table 13 shows that the excluded class equals 13 percent of the mask in 2018.\n\n\n\n\nTable 13: Area of the forest mask and of the excluded class in the EU27, in million hectares.\n\n\n\nYearForest mask (311, 312, 313)Transitional woodland and shrub (324)2000139.518.32006138.519.32012139.917.92018139.717.92024137.120.4\n\n\n\n\n\nAvailability. The mask holds all forest, available or not. Part II tried to delineate available forest through slope and protected areas and rejected this, because thresholds differ across countries and the result can mislead (Vallecillo et al., 2019). A map of available forest now exists for 2020 (European Commission, Joint Research Centre, 2026), and a decision was made to leave it out. It covers one year in a series of five, the reports do not call for it, and the statistic that is spread already refers to available forest.\nProductivity. Part II and the roadmap name Dry Matter Productivity. This work uses Gross Dry Matter Productivity, a separate Copernicus product that also counts the autotrophic respiration of the plants, because it was the product at hand and the other needs a further bulk download.1 The proxy only shares a national value among the cells of a country, so what matters is the relative pattern within a country and national totals do not depend on it. The 1 km product, version 2, serves 2000, 2006 and 2012 (Copernicus Land Monitoring Service, n.d.-a), and the 300 m product, version 2, serves 2018 and 2024 (Copernicus Land Monitoring Service, n.d.-b).",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#regional-tables",
+    "href": "documentation/methods/wood-provision/index.html#regional-tables",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "2.6 Regional tables",
+    "text": "2.6 Regional tables\nThe value of a region is the national value times the share of the region in the weight of its country in that year, so the regions add up to the country and follow the same key as the maps (see 06_prepare_nuts_weights.R in Annex I for the shares and helpers_results.R in Annex I for the regional values). Shares are computed on the 1 km weights, which keeps the step in the repository. All regions of a country therefore share one unit value, and the overuse of a country reaches all its regions in proportion to their weight, since the data do not show where removals take place inside a country.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#maps",
+    "href": "documentation/methods/wood-provision/index.html#maps",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "2.7 Maps",
+    "text": "2.7 Maps\nThe maps use the projection EPSG:3035 on a 100 m grid aligned with the Corine grid. There are six per year, for the actual flow, the sustainable flow and the overuse, in physical terms and in constant prices, which gives 30 maps. They hold whole numbers per cell, in cubic decimetres and in euro cents, which makes the files several times smaller than decimals with no loss that matters at this resolution. Because they are too large for the repository, they are kept in an external folder with a README file. The 1 km maps of the flow and its value are kept outside the repository as well, and they give the figures of this report (see 09_write_maps_1km.R in Annex I).",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#checks",
+    "href": "documentation/methods/wood-provision/index.html#checks",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "2.8 Checks",
+    "text": "2.8 Checks\nEach script stops when a check fails and records the result. Table 14 lists them with the largest relative gap found. The 100 m maps are read back from disk and compared with the national values country by country (see 11_check_maps_100m.R in Annex I). The workbook also carries a sheet that compares the NUTS2 and NUTS3 totals with the NUTS0 totals for every table, metric and year.\n\n\n\n\nTable 14: Checks in the scripts. A script stops if a gap exceeds its tolerance.\n\n\n\nCheckLargest gapToleranceSustainable flow and overuse add up to removals1.5e-161e-06One row per member state and year0.0e+001e-06Constant prices return to current prices through the deflator2.0e-161e-06The deflator equals one in the base year0.0e+001e-061 km maps of the flow against the national tables2.9e-111e-041 km maps of the value against the national tables4.7e-111e-04100 m physical maps against the national tables, by country6.8e-051e-03100 m monetary maps against the national tables, by country4.9e-051e-03",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#actual-flow-1",
+    "href": "documentation/methods/wood-provision/index.html#actual-flow-1",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "3.1 Actual flow",
+    "text": "3.1 Actual flow\nTable 15 shows the accounts for the EU27. The NAI falls by 22 percent between 2000 and 2024. Eurostat’s own aggregate for available forest falls too, from 891 million cubic metres in 2000 to 784 million in 2018, by 12 percent, so part of the fall is present in the statistics themselves, and the changes of source described in Section 2.2.2 add to it.\n\n\n\n\nTable 15: Physical accounts of the EU27, in million cubic metres. The last column counts Member States with overuse.\n\n\n\nYearActual flow (NAI)RemovalsSustainable flowOveruseCountries with overuse2000955.3464.3464.30.002006915.6476.2476.20.002012887.5464.0464.00.002018822.2562.1562.10.002024749.1525.0518.86.23\n\n\n\n\n\nFigure 1 shows where the flow is placed. Borders between countries can appear on the map, because each country spreads its own national total.\n\n\n\n\n\n\nFigure 1: Actual flow of wood provision, in thousand cubic metres per 10 km cell, shown as the sum of the 1 km cells.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#sustainable-flow-and-overuse-1",
+    "href": "documentation/methods/wood-provision/index.html#sustainable-flow-and-overuse-1",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "3.2 Sustainable flow and overuse",
+    "text": "3.2 Sustainable flow and overuse\nRemovals grow from 464 million cubic metres in 2000 to 562 million in 2018, and they take 68 percent of the NAI in that year against 49 percent in 2000. Figure 2 shows the ratio by Member State. Table 16 lists the cases of overuse in the reporting years. All of them fall in 2024, and both sides of each comparison repeat earlier years, so they describe the last reports of those Member States and may not describe 2024 itself. Czechia sits almost exactly on the threshold, with a ratio of 1.002. Looking at every year of the series, overuse appears in 12 country-years between 2019 and 2023, so the reporting years understate how often the threshold has been crossed recently.\n\n\n\n\nTable 16: Member States with overuse in the reporting years, in thousand cubic metres.\n\n\n\nYearCountryNAIRemovalsOveruseRemovals / NAINAI originRemovals origin2024EE8,200.011,564.03,364.01.410carriedcarried2024LV16,126.618,920.02,793.41.173carriedcarried2024CZ20,458.320,495.737.41.002carriedcarried\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Removals divided by the net annual increment, by Member State. Points to the right of the dashed line are overuse. Malta has no values.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#value",
+    "href": "documentation/methods/wood-provision/index.html#value",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "3.3 Value",
+    "text": "3.3 Value\nTable 17 gives the value of each quantity. In current prices the flow rises by 19 percent over the period, and in constant prices it falls by 33 percent, since the deflator removes the general rise in prices and the NAI itself falls. Figure 3 maps the flow in constant prices. Each cell of a country has the same unit value, so within a country this map has the pattern of the physical map. Figure 4 shows the unit values, whose median in 2018 is 24.3 euro per cubic metre.\n\n\n\n\nTable 17: Monetary accounts of the EU27, in million euro.\n\n\n\nYearActual flow, current pricesActual flow, 2010 pricesSustainable flow, 2010 pricesOveruse, 2010 prices200020,14225,62312,1880200618,68020,35410,0580201222,31921,14611,1190201821,21319,05413,2690202423,92917,16712,224146\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Value of the actual flow, in million euro at 2010 prices per 10 km cell.\n\n\n\n\n\n\n\n\n\nFigure 4: Unit value of the net annual increment by Member State, in current prices, with the origin of the ratio.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#sec-published",
+    "href": "documentation/methods/wood-provision/index.html#sec-published",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "3.4 Comparison with the published accounts",
+    "text": "3.4 Comparison with the published accounts\nTable 18 compares the value in current prices with the annexes of INCA Part III, for the same 27 Member States. The annexes do not state their price basis. Their values for 2012 match our current prices closely, which would also fit a constant series based on 2012, so the comparison of earlier years is the less certain one. The year 2012 lies within 0.3 percent of the published total, and 2000 and 2006 each lie about 12 percent below it. Several large countries agree closely in 2012, as Germany at 3,626 million euro against 3,626 million and Sweden at 3,581 million against 3,520 million. The largest relative gap in that year is Croatia, at 219 million euro against 40 million, which comes from the export point of 2012 removed above. Part III holds an earlier release of the same statistics, so an exact match is neither possible nor expected.\n\n\n\n\nTable 18: Value of the actual flow in current prices against INCA Part III, EU27, in million euro.\n\n\n\nYearAccountsINCA Part IIIMedian difference by country (%)200020,14222,87111200618,68021,12513201222,31922,3869",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#script-00",
+    "href": "documentation/methods/wood-provision/index.html#script-00",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "00_prepare_gdmp_annual.R",
+    "text": "00_prepare_gdmp_annual.R\nView on GitHub\nThis script builds the annual productivity layers from the ten-day files of Gross Dry Matter Productivity, using the 1 km product for 2000, 2006 and 2012 (Copernicus Land Monitoring Service, n.d.-a) and the 300 m product for 2018 and 2024 (Copernicus Land Monitoring Service, n.d.-b). It reads the part of each file that covers Europe from the Copernicus Data Space Ecosystem, multiplies the daily rate by the days that the file covers, counts missing cells as zero and adds up the 36 files of the year. It saves one file per year, gdmp_&lt;product&gt;_&lt;year&gt;_4326.tif, outside the repository for script 05. The pipeline does not run this script every time, because it needs Copernicus access keys, reads 180 files over the network for hours and uses many gigabytes of temporary disk space, while its five results take about 1 GB and rarely need replacing. Its line is therefore commented out in run_all.R, and it skips any layer that already exists.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#script-01",
+    "href": "documentation/methods/wood-provision/index.html#script-01",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "01_prepare_nuts.R",
+    "text": "01_prepare_nuts.R\nView on GitHub\nThis script takes the NUTS 2024 boundaries of Eurostat at a scale of 1:1 million (Eurostat GISCO, 2024), in the copy distributed with the INCA plugin (European Union, 2026), and keeps only the level of countries. It marks the 27 Member States and stops if it does not find all of them. The result is a small file, NUTS_RG_01M_2024_3035_LEVL0.gpkg, which the later scripts use to identify the countries and to draw the maps, and the copyright notice of the boundaries is copied next to it.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#script-02",
+    "href": "documentation/methods/wood-provision/index.html#script-02",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "02_download_eurostat.R",
+    "text": "02_download_eurostat.R\nView on GitHub\nThis script downloads four tables through the Eurostat data service. From for_vol_efa (Eurostat, 2026e) it keeps the net annual increment and the removals of every forest class, in thousand cubic metres. From for_sup_cp (Eurostat, 2026d) it keeps the output of forest trees, in million euro. From for_basic (Eurostat, 2026c) it keeps the exports of roundwood of all species, in value and in volume. The first three are limited to 2000 to 2024. The fourth table is the annual price index of the EU27 for all items, with 2015 as its base (Eurostat, 2026b). Each table is saved as an rds file, namely for_vol_efa_thsm3.rds for the physical accounts and for_sup_cp_p1tr.rds, for_basic_rw_exports.rds and hicp_eu27.rds for the monetary accounts. A new release of these tables changes the results, so this step runs only when an update is intended.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#script-03",
+    "href": "documentation/methods/wood-provision/index.html#script-03",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "03_prepare_carbon_budget.R",
+    "text": "03_prepare_carbon_budget.R\nView on GitHub\nThis script reads the workbook that combines the carbon budget model with the forest accounts (Pilli & Grassi, 2021), which it downloads if the file is missing. The workbook has one sheet per country and none for Malta. For each of the 26 other Member States and each year from 2000 to 2019, the script keeps the total net annual increment and the share of available forest in the growing stock. It stops if a value is missing or if an increment is not positive. The result is cbm_nai.rds, a small table that fills the gaps of the physical accounts in script 07.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#script-04",
+    "href": "documentation/methods/wood-provision/index.html#script-04",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "04_extract_manual_annex.R",
+    "text": "04_extract_manual_annex.R\nView on GitHub\nThis script reads the text of INCA Part III (La Notte et al., 2021) and extracts the timber tables of Annexes AA37 to AA47, which give the supply by Member State in 2000, 2006 and 2012, in million cubic metres and in million euro. The annexes include the United Kingdom, so the script stops unless it finds 28 countries in each of the three years. The result is inca_part3_timber_annex.csv, short enough to check by eye against the published annexes. Scripts 07 and 08 use it only for comparison, so no result of the accounts depends on it.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#script-05",
+    "href": "documentation/methods/wood-provision/index.html#script-05",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "05_prepare_weights.R",
+    "text": "05_prepare_weights.R\nView on GitHub\nThis script builds the spatial key for each reporting year. It takes the Corine Land Cover accounting layer at 100 m (European Environment Agency, 2026) and the annual Gross Dry Matter Productivity, from the 1 km product in 2000, 2006 and 2012 (Copernicus Land Monitoring Service, n.d.-a) and from the 300 m product in 2018 and 2024 (Copernicus Land Monitoring Service, n.d.-b). Script 00 builds these annual layers, and manifest_heavy_inputs.csv lists them with their sources. The script marks the forest classes 311, 312 and 313, resamples the productivity to the 100 m grid and multiplies the two, so cells outside forest or outside the EU27 receive zero. The 100 m weights take about 2.4 GB for the five years, so they stay outside the repository for script 10. The script adds them up in cells of 1 km and saves each year as clc_gdmp_weight_1km_&lt;year&gt;.tif, a file of about 11 MB that scripts 06 and 09 read. It also saves the hectares of forest and of the excluded class 324 as forest_mask.rds for this report.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#script-06",
+    "href": "documentation/methods/wood-provision/index.html#script-06",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "06_prepare_nuts_weights.R",
+    "text": "06_prepare_nuts_weights.R\nView on GitHub\nThis script takes the boundaries of the countries, NUTS2 and NUTS3 regions of the EU27 (Eurostat GISCO, 2024), in the same copy as script 01, and the 1 km weights of script 05. For each region and reporting year, it adds up the weight of the cells that fall inside the region and divides it by the total of all regions of that level in the country. The result is weight_by_nuts.rds, which script 08 uses to share national values among the regions. The number of regions at each level is saved as region_counts.rds for this report.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#script-07",
+    "href": "documentation/methods/wood-provision/index.html#script-07",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "07_build_physical_accounts.R",
+    "text": "07_build_physical_accounts.R\nView on GitHub\nThis script takes the forest volumes of script 02, the carbon budget estimates of script 03 and the published annexes of script 04. It builds the net annual increment of each Member State and year from 2000 to 2024 from the value reported for available forest, then the carbon budget estimate, then the mean of the nearest values of the country, and at the ends of the series the nearest value. Removals follow the same order, with reported removals of total forest in place of the estimate. Malta takes zero. The script then compares removals with the increment to obtain the overuse and the sustainable flow, and it stops if a value is missing or if the two quantities do not add up to the removals. It also tests the candidate rules for the gaps against the annexes. It saves wood_nai_faws_country_year.rds and wood_overuse_country_year.rds for the later scripts, and it saves the small tables of the physical results in data/outputs/report/, with the figure of the ratio of removals to increment.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#script-08",
+    "href": "documentation/methods/wood-provision/index.html#script-08",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "08_build_monetary_accounts.R",
+    "text": "08_build_monetary_accounts.R\nView on GitHub\nThis script takes the physical accounts of script 07, the output of forest trees, roundwood exports and price index of script 02, the regional shares of script 06 and the annexes of script 04. It computes the export price of each country and year and drops the points more than three times away from the median of the country. It removes the outliers of the INCA tool (European Union, 2026) and the countries and points whose ratio falls outside the range of Section 2.4.1, and it fills the gaps with country and EU means. The export price divided by the ratio gives the unit value, and the unit value times the physical quantity gives the value, in current prices and in constant 2010 prices. The script stops if a value is missing or if the deflator does not return to current prices. It saves wood_value_country_year.rds for the maps. It also writes the workbook of the Downloads page, wood_provision_results.xlsx, with four tables at three NUTS levels, the origin of each national value and a sheet that confirms that regions add up to countries. Finally, it saves the small tables of the monetary results and the figure of the unit values.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#script-09",
+    "href": "documentation/methods/wood-provision/index.html#script-09",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "09_write_maps_1km.R",
+    "text": "09_write_maps_1km.R\nView on GitHub\nThis script takes the 1 km weights of script 05 and the national tables of scripts 07 and 08. For each reporting year, it gives each cell the national value times its weight divided by the total weight of the country, which yields 10 maps, five of the flow in thousand cubic metres and five of its value at 2010 prices. The maps take about 110 MB and stay outside the repository. The script reads them back and stops if the EU totals differ from the tables by more than 0.01 percent or if a country with a value has no forest weight. It saves the record as maps_1km_totals.rds and checks_maps_1km.rds, and it draws the two map figures of this report at 10 km.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#script-10",
+    "href": "documentation/methods/wood-provision/index.html#script-10",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "10_write_maps_100m.R",
+    "text": "10_write_maps_100m.R\nView on GitHub\nThis script takes the 100 m weights of script 05 and the national tables of scripts 07 and 08. It spreads each national value in the same way as script 09 and writes 30 maps, which are the actual flow, the sustainable flow and the overuse in cubic decimetres and in euro cents at 2010 prices, for each of the five reporting years. It stores whole numbers per cell and picks up where it stopped if a run is interrupted. The maps take about 5.4 GB in total, so they stay outside the repository and are published in the external folder of the Downloads page.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#script-11",
+    "href": "documentation/methods/wood-provision/index.html#script-11",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "11_check_maps_100m.R",
+    "text": "11_check_maps_100m.R\nView on GitHub\nThis script reads the 30 maps at 100 m back from disk, adds up their cells by country and compares the totals with the national tables. It stops if a country differs by more than 0.1 percent, and it leaves out of the comparison the countries whose national value in the map is under 10,000 of its units, where rounding to whole numbers has a large relative effect. Because the maps stay outside the repository, the script saves this record as maps_100m_totals.rds and checks_maps_100m.rds, and the report reads it from there.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#script-run-all",
+    "href": "documentation/methods/wood-provision/index.html#script-run-all",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "run_all.R",
+    "text": "run_all.R\nView on GitHub\nThis script runs the numbered scripts in order, grouped into four stages, which are the inputs (scripts 01 to 06), the tables (07 and 08), the 1 km maps (09) and the 100 m maps (10 and 11). With no stage named it runs the tables and the 1 km maps, which need only the repository. Script 00 appears as a commented line with a note that explains why it stays out of the run.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#script-helpers",
+    "href": "documentation/methods/wood-provision/index.html#script-helpers",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "Helper files",
+    "text": "Helper files\nView on GitHub: helpers_common.R, helpers_wood.R, helpers_monetary.R, helpers_weights.R, helpers_results.R and helpers_report.R\nThese files hold the steps that several scripts share, and they do not run on their own. The first holds the reporting years, the list of Member States, the saving of small tables and figures, the checks and the national values of the 100 m maps. The second fills the gaps in a series, compares removals with the increment and spreads national values over the 1 km grid. The third fills gaps with means and prepares the deflator. The fourth holds the forest classes, the 100 m grid and the weight of each cell. The fifth shares national values among the regions and builds the workbook, and the sixth reads the small tables and formats them for this report.",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/methods/wood-provision/index.html#footnotes",
+    "href": "documentation/methods/wood-provision/index.html#footnotes",
+    "title": "Wood Provision Ecosystem Service Accounts",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nThe annual layers are the sum of the 36 ten-day values of each year, each multiplied by its number of days (see 00_prepare_gdmp_annual.R in Annex I).↩︎",
+    "crumbs": [
+      "Documents",
+      "Methods",
+      "Wood Provision Ecosystem Service Accounts"
+    ]
+  },
+  {
+    "objectID": "documentation/index.html",
+    "href": "documentation/index.html",
+    "title": "Documents",
+    "section": "",
+    "text": "This section collects the reports on the wood provision ecosystem service accounts. A report can also be downloaded as a PDF from the link on its page.",
+    "crumbs": [
+      "Documents"
+    ]
+  },
+  {
+    "objectID": "documentation/index.html#methods-and-results",
+    "href": "documentation/index.html#methods-and-results",
+    "title": "Documents",
+    "section": "Methods and results",
+    "text": "Methods and results\n\nWood Provision Ecosystem Service Accounts\n\nDescribes how the actual flow, the sustainable flow and the overuse of wood provision are estimated and valued for the EU27 in 2000, 2006, 2012, 2018 and 2024, and presents the results.",
+    "crumbs": [
+      "Documents"
+    ]
+  },
+  {
+    "objectID": "downloads/index.html",
+    "href": "downloads/index.html",
+    "title": "Downloads",
+    "section": "",
+    "text": "The workbook below holds the wood provision accounts of the EU27 for 2000, 2006, 2012, 2018 and 2024, in Excel format. It arranges the actual flow, the sustainable flow and the overuse by NUTS0, NUTS2 and NUTS3, with one column per year, in physical terms and in monetary terms. Physical values are in thousand cubic metres over bark, and monetary values are in million euro at current prices and at constant 2010 prices. A further sheet gives the origin of each national value.\nThe 100 m maps are too large for the repository, so they are kept in an external folder. It holds 30 GeoTIFF files, with six maps per year of the actual flow, the sustainable flow and the overuse, in physical terms and at constant 2010 prices. A README.md file in that folder explains the units and how to read them.\nValues for 2024 mostly repeat the last year reported for each Member State, because Eurostat holds few values for that year. The report explains how each file was produced and how to read it.\n\n\n\n\nDownload\nDescription\n\n\n\n\nwood_provision_results.xlsx\nWorkbook with the actual flow, sustainable flow and overuse, in physical and monetary terms, by NUTS0, NUTS2 and NUTS3\n\n\n100 m maps, 2000 to 2024\nFolder with the 30 GeoTIFF files of the actual flow, sustainable flow and overuse at 100 m, opened in Dropbox"
+  }
+]
