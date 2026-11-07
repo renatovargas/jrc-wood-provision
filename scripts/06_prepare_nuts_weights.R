@@ -1,7 +1,7 @@
 # Prepare the share of each NUTS2 and NUTS3 region in the weight of its country, by year.
 #
 # Why    : national values reach the regions through the same key as the maps, so regions add up to the country.
-# Input  : refs/INCA_plugin/src/inca/data/NUTS_RG_01M_2024_3035_LEVL0123_INCA.gpkg
+# Input  : data/inputs/gis/NUTS_RG_01M_2024_3035_LEVL0123_INCA.gpkg
 #          data/inputs/weights/clc_gdmp_weight_1km_<year>.tif (script 05)
 # Output : data/inputs/weights/weight_by_nuts.rds
 #          One row per EU27 region of levels 0, 2 and 3 and year, with the sum of the weight of
@@ -13,7 +13,7 @@ library(terra)
 library(dplyr)
 
 years_report <- c(2000, 2006, 2012, 2018, 2024)
-source_gpkg <- "refs/INCA_plugin/src/inca/data/NUTS_RG_01M_2024_3035_LEVL0123_INCA.gpkg"
+source_gpkg <- "data/inputs/gis/NUTS_RG_01M_2024_3035_LEVL0123_INCA.gpkg"
 eu27 <- sf::st_read("data/inputs/gis/NUTS_RG_01M_2024_3035_LEVL0.gpkg", quiet = TRUE) |>
   filter(eu27) |>
   pull(geo)

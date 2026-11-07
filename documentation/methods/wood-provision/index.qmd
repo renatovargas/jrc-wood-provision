@@ -147,7 +147,7 @@ flow, so those steps are decisions of this work, explained below.
 ## Territory and reporting regions
 
 The accounts cover the EU27 with the NUTS 2024 boundaries, at the country level (`r regions$NUTS0` regions), NUTS2 (`r regions$NUTS2`
-regions) and NUTS3 (`r regions$NUTS3` regions) [@gisco2024nuts] (see [01_prepare_nuts.R in Annex I](#script-01)). Malta has no forest available
+regions) and NUTS3 (`r regions$NUTS3` regions) [@gisco2024nuts] (see [01_prepare_nuts.R in Annex I](#script-01)). The boundaries carry the notice © EuroGeographics for the administrative boundaries. Malta has no forest available
 for wood supply and no forestry activity [@vallecillo2019], so its values are zero throughout.
 
 ## Actual flow
@@ -609,8 +609,8 @@ by_country |>
 # Annex I. Scripts of the pipeline {.unnumbered}
 
 This annex describes each script in the order in which it runs. The link under each name opens its code on GitHub, and the paragraph explains
-what the script takes in, what it does and what it saves for the steps that follow. Script 00 builds the annual productivity layers and runs only by hand. Scripts 01 to 06 prepare the inputs. Script 02 needs internet
-access, and the others need source files that are kept outside the repository. Scripts 07 to 09 run from the repository alone. Scripts 10 and
+what the script takes in, what it does and what it saves for the steps that follow. Script 00 builds the annual productivity layers and runs only by hand. Scripts 01 to 06 prepare the inputs. Scripts 01 and 06 run from the repository alone, script 02 needs internet
+access, and scripts 03 to 05 need source files that are kept outside the repository. Scripts 07 to 09 run from the repository alone. Scripts 10 and
 11 write and check the 100 m maps, and they need large files kept outside the repository again. Script 12 is a test that runs by hand, and the report reads the small table it saved.
 
 ## 00_prepare_gdmp_annual.R {#script-00 .unnumbered .unlisted}
@@ -630,8 +630,8 @@ network for hours and uses many gigabytes of temporary disk space, while its fiv
 
 This script takes the NUTS 2024 boundaries of Eurostat at a scale of 1:1 million [@gisco2024nuts], in the copy distributed with the INCA plugin
 [@incatool], and keeps only the level of countries. It marks the 27 Member States and stops if it does not find all of them. The result is a small
-file, `NUTS_RG_01M_2024_3035_LEVL0.gpkg`, which the later scripts use to identify the countries and to draw the maps, and the copyright notice of the
-boundaries is copied next to it.
+file, `NUTS_RG_01M_2024_3035_LEVL0.gpkg`, which the later scripts use to identify the countries and to draw the maps. The repository holds the source file with its
+copyright notice.
 
 ## 02_download_eurostat.R {#script-02 .unnumbered .unlisted}
 

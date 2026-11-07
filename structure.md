@@ -35,7 +35,7 @@ rules in `AGENTS.md` still apply. This file only adds what those rules do not co
 │   ├── inputs/
 │   │   ├── manifest_heavy_inputs.csv  heavy sources kept in refs/, with source, size and md5
 │   │   ├── params/           published tables of INCA Part III by Member State
-│   │   ├── gis/              country boundaries
+│   │   ├── gis/              NUTS boundaries, as distributed and for the countries
 │   │   ├── eurostat/         forest volumes, value of forest trees, exports and price index
 │   │   ├── carbon_budget/    NAI estimated by the carbon budget model
 │   │   └── weights/          spatial key at 1 km and shares of the NUTS regions
